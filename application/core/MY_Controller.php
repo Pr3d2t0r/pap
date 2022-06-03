@@ -9,12 +9,12 @@ class MY_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $userId = $this->isUserLogedIn();
+        /*$userId = $this->isUserLogedIn();
         if ($userId) {
             $this->user = $this->UsersModel->getById($userId, "OBJECT");
             $this->isLoggedIn = true;
             $this->isSuperAdmin = $this->hasPermissions("SuperAdmin");
-        }
+        }*/
     }
 
     private function isUserLogedIn(){

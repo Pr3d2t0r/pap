@@ -58,6 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
+// todo: add 'database' to the libraries
 $autoload['libraries'] = array();
 
 /*
@@ -89,7 +90,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array();
+$autoload['helper'] = array('url', 'file', 'cookie');
 
 /*
 | -------------------------------------------------------------------
