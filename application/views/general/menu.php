@@ -154,14 +154,14 @@ $this->load->view('components/sign_up');
                                         </ul>
                                     </div>
                                     <div class="col-sm-4 multi-gd-img">
-                                        <img src="images/nav.png" alt="">
+                                        <img src="<?php echo base_url('resources/images/nav.png'); ?>" alt="">
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
                             </ul>
                         </li>
                         <li class="">
-                            <a class="nav-stylehead" href="#">Sobre nós</a>
+                            <a class="nav-stylehead" href="<?php echo base_url("sobre/"); ?>">Sobre nós</a>
                         </li>
                         <li class="">
                             <a class="nav-stylehead" href="#">Folhetos</a>

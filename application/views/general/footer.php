@@ -214,6 +214,7 @@
 
 <script src="<?php echo base_url("resources/js/minicart.js");?>"></script>
 <script>
+    // user-content-minicartjs
     paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
 
     paypalm.minicartk.cart.on('checkout', function (evt) {
@@ -324,8 +325,10 @@
             easingType: 'linear'
         };
         */
+        // https://gist.github.com/svizion/3241271
         $().UItoTop({
-            easingType: 'easeOutQuart'
+            easingType: 'easeOutQuart',
+            min:  600
         });
 
     });
