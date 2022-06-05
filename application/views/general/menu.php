@@ -5,7 +5,7 @@
     <div class="header-bot_inner_wthreeinfo_header_mid">
         <div class="col-md-4 logo_agile">
             <h1>
-                <a href="index.html">
+                <a href="<?php echo base_url(); ?>">
                     <span>O</span>n
                     <span>M</span>arket
                     <img src="<?php echo base_url('resources/images/logo2.png');?>" alt=" ">
@@ -167,7 +167,7 @@ $this->load->view('components/sign_up');
                             <a class="nav-stylehead" href="#">Folhetos</a>
                         </li>
                         <li class="">
-                            <a class="nav-stylehead" href="#">Ajuda</a>
+                            <a class="nav-stylehead" href="<?php echo base_url("ajuda/"); ?>">Ajuda</a>
                         </li>
                         <!--<li class="dropdown">
                             <a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Pages
