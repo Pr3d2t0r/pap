@@ -97,7 +97,7 @@ $this->load->view('components/sign_up');
                                 <span class="sr-only">(Atual)</span>
                             </a>
                         </li>-->
-                        <li class="dropdown">
+                        <li class="dropdown <?php echo $this->router->fetch_class() == "Product" ? "active" : ""; ?> ?>">
                             <a href="#" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produtos
                                 <span class="caret"></span>
                             </a>
@@ -160,14 +160,33 @@ $this->load->view('components/sign_up');
                                 </div>
                             </ul>
                         </li>
-                        <li class="">
-                            <a class="nav-stylehead" href="<?php echo base_url("sobre/"); ?>">Sobre nós</a>
+                        <li class="<?php echo $this->router->fetch_class() == "About" ? "active" : ""; ?>">
+                            <a class="nav-stylehead" href="<?php echo base_url("sobre/"); ?>">Sobre nós
+                                <?php if ($this->router->fetch_class() == "About"): ?>
+                                    <span class="sr-only">(Atual)</span>
+                                <?php endif; ?>
+                            </a>
                         </li>
-                        <li class="">
-                            <a class="nav-stylehead" href="#">Folhetos</a>
+                        <li class="<?php echo $this->router->fetch_class() == "Fliers" ? "active" : ""; ?>">
+                            <a class="nav-stylehead" href="<?php echo base_url("folhetos/"); ?>">Folhetos
+                                <?php if ($this->router->fetch_class() == "Fliers"): ?>
+                                    <span class="sr-only">(Atual)</span>
+                                <?php endif; ?>
+                            </a>
                         </li>
-                        <li class="">
-                            <a class="nav-stylehead" href="<?php echo base_url("ajuda/"); ?>">Ajuda</a>
+                        <li class="<?php echo $this->router->fetch_class() == "Help" ? "active" : ""; ?>">
+                            <a class="nav-stylehead" href="<?php echo base_url("ajuda/"); ?>">Ajuda
+                                <?php if ($this->router->fetch_class() == "Help"): ?>
+                                    <span class="sr-only">(Atual)</span>
+                                <?php endif; ?>
+                            </a>
+                        </li>
+                        <li class="<?php echo $this->router->fetch_class() == "Contacts" ? "active" : ""; ?>">
+                            <a class="nav-stylehead" href="<?php echo base_url("contactos/"); ?>">Contactos
+                                <?php if ($this->router->fetch_class() == "Contacts"): ?>
+                                    <span class="sr-only">(Atual)</span>
+                                <?php endif; ?>
+                            </a>
                         </li>
                         <!--<li class="dropdown">
                             <a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Pages
@@ -182,9 +201,6 @@ $this->load->view('components/sign_up');
                                 </li>
                             </ul>
                         </li>-->
-                        <li class="">
-                            <a class="nav-stylehead" href="#">Contactos</a>
-                        </li>
                     </ul>
                 </div>
             </div>
