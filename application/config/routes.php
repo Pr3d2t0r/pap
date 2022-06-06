@@ -57,3 +57,4 @@ $route['sobre'] = "About";
 $route['ajuda'] = "Help";
 $route['contactos'] = "Contacts";
 $route['termos'] = "Help/terms";
+$route['privacidade'] = "Help/privacy";
