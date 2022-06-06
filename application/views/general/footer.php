@@ -87,22 +87,19 @@
                     <h3>Acesso Rápido</h3>
                     <ul>
                         <li>
-                            <a href="about.html">About Us</a>
+                            <a href="<?php echo base_url("sobre"); ?>">About Us</a>
                         </li>
                         <li>
-                            <a href="contact.html">Contact Us</a>
+                            <a href="<?php echo base_url("contactos"); ?>">Contact Us</a>
                         </li>
                         <li>
-                            <a href="help.html">Help</a>
+                            <a href="<?php echo base_url("ajuda"); ?>">Help</a>
                         </li>
                         <li>
-                            <a href="faqs.html">Faqs</a>
+                            <a href="<?php echo base_url("termos"); ?>">Terms of use</a>
                         </li>
                         <li>
-                            <a href="terms.html">Terms of use</a>
-                        </li>
-                        <li>
-                            <a href="privacy.html">Privacy Policy</a>
+                            <a href="<?php echo base_url("privacidade"); ?>">Privacy Policy</a>
                         </li>
                     </ul>
                 </div>
