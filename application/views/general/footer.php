@@ -117,7 +117,7 @@
                             <i class="fa fa-phone"></i> (+351) 291 201 770 </li>
                         <li>
                             <i class="fa fa-envelope-o"></i>
-                            <a href="mailto:example@mail.com"> info@epcc.pt</a>
+                            <a href="mailto:info@epcc.pt"> info@epcc.pt</a>
                         </li>
                     </ul>
                 </div>

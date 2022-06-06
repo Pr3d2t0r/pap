@@ -1,9 +1,10 @@
+<div class="page-head_agile_info_w3l"></div>
 <?php $this->load->view('components/bread_crumbs'); ?>
 
 <div class="faqs-w3l">
     <div class="container">
         <!-- tittle heading -->
-        <h3 class="tittle-w3l">Perguntas Frequentes
+        <h3 class="tittle-w3l">Ajuda
             <span class="heading-style">
 					<i></i>
 					<i></i>
@@ -11,8 +12,23 @@
 				</span>
         </h3>
         <!-- //tittle heading -->
-        <h3 class="w3-head">10 Perguntas Mais Frequentes</h3>
+        <div class="wthree-help">
+            <div class="col-xs-7 agile-left-help">
+                <h3 class="w3-head">Como Podemos Ajudar-lhe?</h3>
+                <form action="#" method="get">
+                    <textarea placeholder="Sua Pergunta" name="Message" required=""></textarea>
+                    <input type="submit" value="Submit">
+                </form>
+                <h5>OU</h5>
+                <a href="<?php echo base_url("contactos"); ?>">Contact Us</a>
+            </div>
+            <div class="col-xs-5 agile-right-help">
+                <img src="<?php echo base_url("resources/images/contact2.jpg"); ?>" alt=" ">
+            </div>
+            <div class="clearfix"></div>
+        </div>
         <div class="faq-w3agile">
+            <h5>10 Perguntas mais frequentes</h5>
             <ul class="faq">
                 <li class="item1">
                     <a href="#" title="click here">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor vehicula ipsum nec ?</a>
@@ -122,3 +138,4 @@
         </div>
     </div>
 </div>
+
