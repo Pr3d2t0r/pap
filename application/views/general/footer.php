@@ -356,5 +356,15 @@
     });
 </script>
 
+<script src="<?php echo base_url("js/jquery.flexslider.js");?>"></script>
+<script>
+    // Can also be used with $(document).ready()
+    $(window).load(function () {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            controlNav: "thumbnails"
+        });
+    });
+</script>
 </body>
 </html>
