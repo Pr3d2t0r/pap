@@ -356,7 +356,9 @@
     });
 </script>
 
-<script src="<?php echo base_url("js/jquery.flexslider.js");?>"></script>
+<script src="<?php echo base_url("resources/js/imagezoom.js"); ?>"></script>
+
+<script src="<?php echo base_url("resources/js/jquery.flexslider.js");?>"></script>
 <script>
     // Can also be used with $(document).ready()
     $(window).load(function () {
