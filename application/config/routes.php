@@ -61,3 +61,6 @@ $route['privacidade'] = "Help/privacy";
 
 $route['produtos'] = "Product";
 $route['produto/(:num)'] = "Product/details/$1";
+
+$route['checkout'] = "Cart/checkout";
+$route['pagamento'] = "Cart/payment";
