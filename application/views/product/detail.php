@@ -67,6 +67,29 @@
                     </li>
                 </ul>
             </div>
+            <div class="product-single-w3l">
+                <p>
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>This is a
+                    <label>Vegetarian</label> product.</p>
+                <ul>
+                    <li>
+                        Best for Biryani and Pulao.
+                    </li>
+                    <li>
+                        After cooking, Zeeba Basmati rice grains attain an extra ordinary length of upto 2.4 cm/~1 inch.
+                    </li>
+                    <li>
+                        Zeeba Basmati rice adheres to the highest food afety standards as your health is paramount to us.
+                    </li>
+                    <li>
+                        Contains only the best and purest grade of basmati rice grain of Export quality.
+                    </li>
+                </ul>
+                <p>
+                    <i class="fa fa-refresh" aria-hidden="true"></i>All food products are
+                    <label>non-returnable.</label>
+                </p>
+            </div>
             <div class="occasion-cart">
                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                     <form action="#" method="post">

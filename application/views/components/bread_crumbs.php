@@ -5,13 +5,13 @@
                 <?php $last = count($this->router->uri->segments);?>
                 <li>
                     <a href="<?php echo base_url(); ?>">Home</a>
-                    <i>|</i>
+                    <i>/</i>
                 </li>
                 <?php foreach ($this->router->uri->segments as $i => $segment): ?>
                     <li>
                         <?php echo $segment; ?>
                         <?php if ($i != $last): ?>
-                            <i>|</i>
+                            <i>/</i>
                         <?php endif; ?>
                     </li>
                 <?php endforeach;?>

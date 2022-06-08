@@ -59,4 +59,5 @@ $route['contactos'] = "Contacts";
 $route['termos'] = "Help/terms";
 $route['privacidade'] = "Help/privacy";
 
+$route['produtos'] = "Product";
 $route['produto/(:num)'] = "Product/details/$1";

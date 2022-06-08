@@ -9,6 +9,13 @@ class Product extends MY_Controller {
         parent::__construct();
     }
 
+    public function index(){
+        $this->load->view('general/header');
+        $this->load->view('general/menu');
+        $this->load->view('product/index');
+        $this->load->view('general/footer');
+    }
+
     public function details($id)
 	{
 		$this->load->view('general/header');
