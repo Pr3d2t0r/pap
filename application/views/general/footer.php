@@ -173,9 +173,6 @@
                     <li>
                         <img src="<?php echo base_url("resources/images/pay3.png"); ?>" alt="">
                     </li>
-                    <li>
-                        <img src="<?php echo base_url("resources/images/pay4.png"); ?>" alt="">
-                    </li>
                 </ul>
             </div>
         </div>
@@ -189,9 +186,9 @@
 </div>
 
 
-<script src="<?php echo base_url("resources/js/jquery-2.1.4.min.js");?>"></script>
+<script src="<?php echo base_url("resources/js/jquery-2.1.4.min.js"); ?>"></script>
 
-<script src="<?php echo base_url("resources/js/jquery.magnific-popup.js");?>"></script>
+<script src="<?php echo base_url("resources/js/jquery.magnific-popup.js"); ?>"></script>
 <script>
     $(document).ready(function () {
         $('.popup-with-zoom-anim').magnificPopup({
@@ -209,7 +206,7 @@
     });
 </script>
 
-<script src="<?php echo base_url("resources/js/minicart.js");?>"></script>
+<script src="<?php echo base_url("resources/js/minicart.js"); ?>"></script>
 <script>
     //https://github.com/jeffharrell/minicart#basic-setup
     // user-content-minicartjs
@@ -237,7 +234,7 @@
     });
 </script>
 
-<script src="<?php echo base_url("resources/js/jquery-ui.js");?>"></script>
+<script src="<?php echo base_url("resources/js/jquery-ui.js"); ?>"></script>
 <script>
     //<![CDATA[
     $(window).load(function () {
@@ -255,7 +252,7 @@
     }); //]]>
 </script>
 
-<script src="<?php echo base_url("resources/js/jquery.flexisel.js");?>"></script>
+<script src="<?php echo base_url("resources/js/jquery.flexisel.js"); ?>"></script>
 <script>
     $(window).load(function () {
         $("#flexiselDemo1").flexisel({
@@ -301,10 +298,10 @@
     }
 </script>
 
-<script src="<?php echo base_url("resources/js/SmoothScroll.min.js");?>"></script>
+<script src="<?php echo base_url("resources/js/SmoothScroll.min.js"); ?>"></script>
 
-<script src="<?php echo base_url("resources/js/move-top.js");?>"></script>
-<script src="<?php echo base_url("resources/js/easing.js");?>"></script>
+<script src="<?php echo base_url("resources/js/move-top.js"); ?>"></script>
+<script src="<?php echo base_url("resources/js/easing.js"); ?>"></script>
 <script>
     jQuery(document).ready(function ($) {
         $(".scroll").click(function (event) {
@@ -336,7 +333,7 @@
     });
 </script>
 
-<script src="<?php echo base_url("resources/js/bootstrap.js");?>"></script>
+<script src="<?php echo base_url("resources/js/bootstrap.js"); ?>"></script>
 
 <script>
     $(function () {
@@ -373,5 +370,44 @@
         });
     });
 </script>
+
+<script src="<?php echo base_url("resources/js/easyResponsiveTabs.js");?>"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#parentHorizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true, // 100% fit in a container
+            tabidentify: 'hor_1', // The tab groups identifier
+            activate: function (event) { // Callback function if tab is switched
+                var $tab = $(this);
+                var $info = $('#nested-tabInfo');
+                var $name = $('span', $info);
+                $name.text($tab.text());
+                $info.show();
+            }
+        });
+    });
+</script>
+
+<script src="<?php echo base_url("resources/js/creditly.js");?>"></script>
+
+<script>
+    $(function () {
+        var creditly = Creditly.initialize(
+            '.creditly-wrapper .expiration-month-and-year',
+            '.creditly-wrapper .credit-card-number',
+            '.creditly-wrapper .security-code',
+            '.creditly-wrapper .card-type');
+        $(".creditly-card-form .submit, .cc-form .submit").click(function (e) {
+            var output = creditly.validate();
+            if (!output) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

@@ -148,12 +148,12 @@
                                     </select>
                                 </div>
                             </div>
-                            <button class="submit check_out">Delivery to this Address</button>
+                            <button class="submit check_out">Entrega neste endereço</button>
                         </div>
                     </div>
                 </form>
                 <div class="checkout-right-basket">
-                    <a href="<?php echo base_url("pagamento"); ?>">Make a Payment
+                    <a href="<?php echo base_url("pagamento"); ?>">Prossiga para o pagamento
                         <span class="fa fa-hand-o-right" aria-hidden="true"></span>
                     </a>
                 </div>
