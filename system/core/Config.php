@@ -319,7 +319,8 @@ class CI_Config {
 				$base_url = $protocol.substr($base_url, strpos($base_url, '://'));
 			}
 		}
-
+        if (ENVIRONMENT != "production")
+            return $base_url.$this->_uri_string($uri) . "?" .time();
 		return $base_url.$this->_uri_string($uri);
 	}
 
