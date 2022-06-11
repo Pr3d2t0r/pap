@@ -4,11 +4,12 @@ use `on_market`;
 
 create table if not exists `User`
 (
-    `id`            int(11) primary key auto_increment,
-    `email`         varchar(255) unique not null,
-    `password`      varchar(255)        not null,
-    `registered_at` datetime default NOW(),
-    `last_login`    datetime default NULL
+    `id`                    int(11) primary key auto_increment,
+    `email`                 varchar(255) unique not null,
+    `password`              varchar(255)        not null,
+    `main_personal_info_id` int(11)             not null,
+    `registered_at`         datetime default NOW(),
+    `last_login`            datetime default NULL
 );
 
 create table if not exists `PersonalInfo`
@@ -287,12 +288,13 @@ create table if not exists `Transaction`
 create table if not exists `UsersTokens`
 (
     id      int auto_increment primary key,
-    user_id int(11)              not null,
+    user_id int(11)             not null,
     token   varchar(255) unique not null
 );
 
-create table if not exists Logs(
-    id int(11) primary key auto_increment,
+create table if not exists Logs
+(
+    id        int(11) primary key auto_increment,
     logged_at datetime not null default NOW(),
-    log longtext not null
+    log       longtext not null
 );
