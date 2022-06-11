@@ -284,3 +284,15 @@ create table if not exists `Transaction`
     `updated_at` datetime                    null
 );
 
+create table if not exists `UsersTokens`
+(
+    id      int auto_increment primary key,
+    user_id int(11)              not null,
+    token   varchar(255) unique not null
+);
+
+create table if not exists Logs(
+    id int(11) primary key auto_increment,
+    logged_at datetime not null default NOW(),
+    log longtext not null
+);
