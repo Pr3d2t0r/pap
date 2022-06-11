@@ -248,15 +248,16 @@ create table `CartItem`
 create table if not exists `Order`
 (
     `id`               int(11) primary key auto_increment,
-    `user_id`          int(11)      not null,
+    `reference`        varchar(15) unicode                                           not null,
+    `user_id`          int(11)                                                       not null,
     `status`           enum ('received', 'awaiting_shipping', 'shipped', 'complete') not null default 'received',
-    `sub_total`        float        not null,
-    `shipping`         float        not null,
-    `total`            float        not null,
-    `promocode`        varchar(80)  null,
-    `discount_id`      int(11)      null,
-    `personal_info_id` int(11)      not null,
-    `created_at`       datetime     not null default NOW()
+    `sub_total`        float                                                         not null,
+    `shipping`         float                                                         not null,
+    `total`            float                                                         not null,
+    `promocode`        varchar(80)                                                   null,
+    `discount_id`      int(11)                                                       null,
+    `personal_info_id` int(11)                                                       not null,
+    `created_at`       datetime                                                      not null default NOW()
 );
 
 create table if not exists `OrderItem`
