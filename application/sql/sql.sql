@@ -5,11 +5,19 @@ use `on_market`;
 create table if not exists `User`
 (
     `id`                    int(11) primary key auto_increment,
-    `email`                 varchar(255) unique not null,
-    `password`              varchar(255)        not null,
-    `main_personal_info_id` int(11)             not null,
-    `registered_at`         datetime default NOW(),
-    `last_login`            datetime default NULL
+    `email`                 varchar(255) unique                                  not null,
+    `password`              varchar(255)                                         not null,
+    `main_personal_info_id` int(11)                                              not null,
+    `status`                enum ('awaiting_verification', 'active', 'inactive') not null default 'awaiting_verification',
+    `registered_at`         datetime                                                      default NOW(),
+    `last_login`            datetime                                                      default NULL
+);
+
+create table if not exists `UserVerificationToken`
+(
+    id      int auto_increment primary key,
+    user_id int(11)             not null,
+    token   varchar(255) unique not null
 );
 
 create table if not exists `PersonalInfo`
@@ -18,7 +26,7 @@ create table if not exists `PersonalInfo`
     `first_name`   varchar(100) not null,
     `last_name`    varchar(100) not null,
     `phone_number` varchar(9)   not null,
-    `mail`         varchar(255) not null,
+    `mail`         varchar(255) null,
     `address`      text         not null,
     `city`         varchar(120) not null,
     `country`      varchar(70)  not null,
@@ -292,7 +300,7 @@ create table if not exists `UsersTokens`
     token   varchar(255) unique not null
 );
 
-create table if not exists Logs
+create table if not exists `Logs`
 (
     id        int(11) primary key auto_increment,
     logged_at datetime not null default NOW(),
