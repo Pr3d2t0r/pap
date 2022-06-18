@@ -64,3 +64,5 @@ $route['produto/(:num)'] = "Product/details/$1";
 
 $route['checkout'] = "Cart/checkout";
 $route['pagamento'] = "Cart/payment";
+
+$route['registro'] = "User/register";
