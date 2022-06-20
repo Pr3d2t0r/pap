@@ -26,3 +26,45 @@
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 </head>
 <body>
+<?php
+    $success = $this->session->flashdata('success_msg');
+    $error = $this->session->flashdata('error_msg');
+    if ($error != null){
+        if (is_array($error)){
+            foreach ($error as $error_i){
+                echo <<<HTML
+                        <div class="alert alert-warning alert-dismissible w-100 text-center" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          $error_i
+                        </div>
+                    HTML;
+            }
+        }else{
+            echo <<<HTML
+                        <div class="alert alert-warning alert-dismissible w-100 text-center" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          $error
+                        </div>
+                    HTML;
+        }
+    }
+    if ($success != null){
+        if (is_array($success)){
+            foreach ($success as $success_i){
+                echo <<<HTML
+                            <div class="alert alert-success alert-dismissible w-100 text-center" role="alert">
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              $success_i
+                            </div>
+                        HTML;
+            }
+        }else{
+            echo <<<HTML
+                            <div class="alert alert-success alert-dismissible w-100 text-center" role="alert">
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              $success
+                            </div>
+                        HTML;
+        }
+    }
+?>

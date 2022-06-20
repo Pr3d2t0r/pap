@@ -7,7 +7,7 @@ class Contacts extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->library(array('form_validation', 'session'));
+        $this->load->library(array('form_validation'));
         $this->load->model("ContactsModel");
     }
 
