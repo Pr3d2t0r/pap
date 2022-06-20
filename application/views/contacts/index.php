@@ -13,7 +13,7 @@
         <div class="contact agileits">
             <div class="contact-agileinfo">
                 <div class="contact-form wthree">
-                    <form action="#" method="post">
+                    <form action="" method="post">
                         <div class="">
                             <input type="text" name="name" placeholder="Nome" required="">
                         </div>
@@ -24,7 +24,7 @@
                             <input class="email" type="email" name="email" placeholder="E-mail" required="">
                         </div>
                         <div class="">
-                            <textarea placeholder="Mensagem" name="message" required=""></textarea>
+                            <textarea placeholder="Mensagem" name="body" required=""></textarea>
                         </div>
                         <input type="submit" value="Submit">
                     </form>

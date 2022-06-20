@@ -303,6 +303,16 @@ create table if not exists `UsersTokens`
 create table if not exists `Logs`
 (
     id        int(11) primary key auto_increment,
-    logged_at datetime not null default NOW(),
+    stored_at datetime not null default NOW(),
     log       longtext not null
+);
+
+create table if not exists `Contacts`
+(
+    id      int(11) primary key auto_increment,
+    name    varchar(160) not null,
+    subject varchar(150) not null,
+    email   varchar(255) not null,
+    body    text         not null,
+    sent_at datetime     not null default NOW()
 );
