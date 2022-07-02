@@ -316,3 +316,15 @@ create table if not exists `Contacts`
     body    text         not null,
     sent_at datetime     not null default NOW()
 );
+
+DELIMITER $$
+
+CREATE TRIGGER create_register_token
+    AFTER INSERT
+    ON `User` FOR EACH ROW
+BEGIN
+    INSERT INTO `UserVerificationToken`(`user_id`, `token`)
+        VALUES(new.id,UUID());
+END$$
+
+DELIMITER ;

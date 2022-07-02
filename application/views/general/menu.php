@@ -30,7 +30,7 @@
                         <span class="fa fa-unlock-alt" aria-hidden="true"></span> Login </a>
                 </li>
                 <li>
-                    <a href="#" data-toggle="modal" data-target="#myModal2">
+                    <a href="#" data-toggle="modal" data-target="#registerModal">
                         <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Registro </a>
                 </li>
             </ul>

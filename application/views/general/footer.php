@@ -409,5 +409,23 @@
     });
 </script>
 
+<?php
+    $openModal = $this->session->flashdata('openModal');
+    if ($openModal != null):
+?>
+    <script>
+        switch ("<?php echo $openModal; ?>") {
+            case "register":
+                $('#registerModal').modal('show');
+                break;
+            default:
+                var modal = $('<?php echo $openModal; ?>');
+                if (modal != null)
+                    $('<?php echo $openModal; ?>').modal('show');
+        }
+
+    </script>
+<?php endif; ?>
+
 </body>
 </html>

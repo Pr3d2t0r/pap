@@ -4877,3 +4877,15 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 /*--//responsive--*/
+
+.error p{
+    color: red !important;
+    font-size: smaller !important;
+    margin-bottom: 8px !important;
+    line-height: normal !important;
+}
+
+.error input{
+    border-bottom: 1px solid red !important;
+    margin-bottom: 0 !important;
+}

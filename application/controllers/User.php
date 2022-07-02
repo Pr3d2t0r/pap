@@ -8,7 +8,7 @@ class User extends MY_Controller {
     {
         parent::__construct();
         $this->load->library(array('form_validation'));
-        $this->load->helper(array('passwordhash'));
+        $this->load->helper(array('passwordhash_helper'));
         $this->load->model(array('PersonalInfoModel'));
     }
 
@@ -20,16 +20,87 @@ class User extends MY_Controller {
         $this->form_validation->set_rules('address', 'Morada', 'required|min_length[10]');
         $this->form_validation->set_rules('city', 'Cidade', 'required|max_length[120]');
         $this->form_validation->set_rules('country', 'País', 'required|max_length[70]');
-        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
 
         if (!$this->form_validation->run()) {
-            //validation_errors() -> método responsável por recuperar as mensagens
-            $this->session->set_flashdata('registerErrors', validation_errors());
+            $values = $this->input->post();
+            $this->session->set_flashdata('registerErrors', [
+                "first_name"=>[
+                    "error" => form_error("first_name"),
+                    "value" => $values['first_name'] ?? ""
+                ],
+                "last_name"=>[
+                    "error" => form_error("last_name"),
+                    "value" => $values['last_name'] ?? ""
+                ],
+                "email"=>[
+                    "error" => form_error("email"),
+                    "value" => $values['email'] ?? ""
+                ],
+                "phone_number"=>[
+                    "error" => form_error("phone_number"),
+                    "value" => $values['phone_number'] ?? ""
+                ],
+                "address"=>[
+                    "error" => form_error("address"),
+                    "value" => $values['address'] ?? ""
+                ],
+                "city"=>[
+                    "error" => form_error("city"),
+                    "value" => $values['city'] ?? ""
+                ],
+                "country"=>[
+                    "error" => form_error("country"),
+                    "value" => $values['country'] ?? ""
+                ],
+                "password"=>[
+                    "error" => form_error("password"),
+                    "value" => $values['password'] ?? ""
+                ],
+            ]);
+            $this->session->set_flashdata("openModal", "register");
             redirect();
         } else {
             $this->session->set_flashdata('registerErrors');
-            $this->session->set_flashdata("success_msg", "Cliente Registrado com sucesso!");
             $result_arr = $this->input->post();
+            if ($this->UserModel->emailExists($result_arr['email'])){
+                $this->session->set_flashdata('registerErrors', [
+                    "first_name"=>[
+                        "error" => null,
+                        "value" => $result_arr['first_name'] ?? ""
+                    ],
+                    "last_name"=>[
+                        "error" => null,
+                        "value" => $result_arr['last_name'] ?? ""
+                    ],
+                    "email"=>[
+                        "error" => "<p>This email is already being used</p>",
+                        "value" => $result_arr['email'] ?? ""
+                    ],
+                    "phone_number"=>[
+                        "error" => null,
+                        "value" => $result_arr['phone_number'] ?? ""
+                    ],
+                    "address"=>[
+                        "error" => null,
+                        "value" => $result_arr['address'] ?? ""
+                    ],
+                    "city"=>[
+                        "error" => null,
+                        "value" => $result_arr['city'] ?? ""
+                    ],
+                    "country"=>[
+                        "error" => form_error("country"),
+                        "value" => $result_arr['country'] ?? ""
+                    ],
+                    "password"=>[
+                        "error" => null,
+                        "value" => $result_arr['password'] ?? ""
+                    ],
+                ]);
+                $this->session->set_flashdata("openModal", "register");
+                redirect();
+            }
             $personal_info = [
                 "first_name" => $result_arr['first_name'],
                 "last_name" => $result_arr['last_name'],
@@ -47,12 +118,15 @@ class User extends MY_Controller {
             unset($result_arr['city']);
             unset($result_arr['country']);
 
+            $passwordHash = new PasswordHash(4);
+
+            $result_arr['password'] = $passwordHash->encrypt($result_arr['password']);
+
             $result_arr['main_personal_info_id'] = $this->PersonalInfoModel->insert($personal_info);
             $this->PersonalInfoModel->setUserId($result_arr['main_personal_info_id'], $this->UserModel->insert($result_arr));
             echo "Done!";
+            $this->session->set_flashdata("success_msg", "Cliente Registrado com sucesso!");
+            redirect();
         }
-
-        // usar isto para mostrar o modal $('#myModal').modal('show') no js
-
 	}
 }
