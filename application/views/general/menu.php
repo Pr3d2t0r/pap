@@ -34,6 +34,11 @@
                         <a href="#" data-toggle="modal" data-target="#registerModal">
                             <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Registro </a>
                     </li>
+                <?php else: ?>
+                    <li>
+                        <a href="<?php echo base_url("logout"); ?>">
+                            <span class="fa fa-unlock-alt" aria-hidden="true"></span> Logout </a>
+                    </li>
                 <?php endif; ?>
             </ul>
             <!-- search -->

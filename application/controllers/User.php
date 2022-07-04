@@ -203,4 +203,14 @@ class User extends MY_Controller {
             }
         }
     }
+
+    public function logout(){
+        if ($this->isLoggedIn) {
+            $this->UserTokensModel->delete(get_cookie("loginToken"));
+            set_cookie("loginToken", '0', time() - 3600);
+            set_cookie("loginToken_", '0', time() - 3600);
+        }
+        $this->session->set_flashdata("success_msg", "Logout efetuado com sucesso!");
+        redirect();
+    }
 }
