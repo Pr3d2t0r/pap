@@ -14,18 +14,46 @@
             <div class="contact-agileinfo">
                 <div class="contact-form wthree">
                     <form action="" method="post">
-                        <div class="">
-                            <input type="text" name="name" placeholder="Nome" required="">
+                        <div class="<?php if (isset($formErrors['name']['error']) && $formErrors['name']['error'] != null) echo "error"; ?>">
+                            <input type="text" name="name" placeholder="Nome" required="" value="<?php if (isset($formErrors) && $formErrors != null) echo set_value('name'); ?>">
                         </div>
-                        <div class="">
-                            <input class="text" type="text" name="subject" placeholder="Assunto" required="">
+                        <?php
+                        if (isset($formErrors['name']['error']) && $formErrors['name']['error'] != null):
+                            ?>
+                            <div class="error">
+                                <?php echo $formErrors['name']['error']; ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="<?php if (isset($formErrors['subject']['error']) && $formErrors['subject']['error'] != null) echo "error"; ?>">
+                            <input class="text" type="text" name="subject" placeholder="Assunto" required="" value="<?php if (isset($formErrors) && $formErrors != null) echo set_value('subject'); ?>">
                         </div>
-                        <div class="">
-                            <input class="email" type="email" name="email" placeholder="E-mail" required="">
+                        <?php
+                        if (isset($formErrors['subject']['error']) && $formErrors['subject']['error'] != null):
+                            ?>
+                            <div class="error">
+                                <?php echo $formErrors['subject']['error']; ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="<?php if (isset($formErrors['email']['error']) && $formErrors['email']['error'] != null) echo "error"; ?>">
+                            <input class="email" type="email" name="email" placeholder="E-mail" required="" value="<?php if (isset($formErrors) && $formErrors != null) echo set_value("email"); ?>">
                         </div>
-                        <div class="">
-                            <textarea placeholder="Mensagem" name="body" required=""></textarea>
+                        <?php
+                        if (isset($formErrors['email']['error']) && $formErrors['email']['error'] != null):
+                            ?>
+                            <div class="error">
+                                <?php echo $formErrors['email']['error']; ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="<?php if (isset($formErrors['body']['error']) && $formErrors['body']['error'] != null) echo "error"; ?>">
+                            <textarea placeholder="Mensagem" name="body" required=""><?php if (isset($formErrors) && $formErrors != null) echo set_value('body'); ?></textarea>
                         </div>
+                        <?php
+                        if (isset($formErrors['body']['error']) && $formErrors['body']['error'] != null):
+                            ?>
+                            <div class="error">
+                                <?php echo $formErrors['body']['error']; ?>
+                            </div>
+                        <?php endif; ?>
                         <input type="submit" value="Submit">
                     </form>
                 </div>

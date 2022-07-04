@@ -20,13 +20,26 @@ class Contacts extends MY_Controller {
         $this->form_validation->set_rules('body', 'Mensagem', 'required|min_length[5]');
 
         if (!$this->form_validation->run()) {
-            //validation_errors() -> método responsável por recuperar as mensagens
-            $data['formErrors'] = validation_errors();
+            $this->data['formErrors'] = [
+                "name" => [
+                    "error" => form_error("name"),
+                ],
+                "email" => [
+                    "error" => form_error("email"),
+                ],
+                "subject" => [
+                    "error" => form_error("subject"),
+                ],
+                "body" => [
+                    "error" => form_error("body"),
+                ],
+            ];
         } else {
-            $data['formErrors'] = null;
+            $this->data['formErrors'] = null;
             $result = $this->input->post();
             $this->ContactsModel->insert($result);
             $this->session->set_flashdata("success_msg", "Mensagem enviada com sucesso!");
+            redirect("contactos");
         }
 
         $this->openView("contacts/index");

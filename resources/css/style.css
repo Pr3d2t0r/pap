@@ -4885,7 +4885,8 @@ input[type="radio"], input[type="checkbox"] {
     line-height: normal !important;
 }
 
-.error input{
-    border-bottom: 1px solid red !important;
+.error input, .error textarea{
+    border-color: red !important;
     margin-bottom: 0 !important;
+    color: red !important;
 }
