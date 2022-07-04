@@ -233,13 +233,39 @@
         }
     });
 
-    paypalm.minicartk.cart.on('add', evt => {
-
+    paypalm.minicartk.cart.on('add', (idx, product, isExisting) => {
+        <?php if ($isLoggedIn): ?>
+        console.log(product._data);
+        $.ajax({
+            url: "<?php echo base_url("/api/cart/user/" . $user->id); ?>",
+            success: function (data) {
+                $.ajax({
+                    url: "<?php echo base_url("/api/cart/add/"); ?>",
+                    data: {
+                        product_id: idx,
+                        quantity: product._data.quantity,
+                        cart_id: data.id,
+                        discount_id: product._data.discount_id
+                    },
+                    method: "POST",
+                    success: function (xdata) {
+                        console.log(xdata);
+                    },
+                    error: function () {
+                        console.log("err2")
+                    }
+                })
+            },
+            error: function () {
+                console.log("err1")
+            }
+        })
+        <?php endif; ?>
     });
 
-    paypalm.minicartk.cart.on('delete', evt => {
+    /*paypalm.minicartk.cart.on('delete', evt => {
 
-    });
+    });*/
 </script>
 
 <script src="<?php echo base_url("resources/js/jquery-ui.js"); ?>"></script>

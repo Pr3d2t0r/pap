@@ -30,6 +30,45 @@ class CartResponseHandler extends ResponseHandler {
         return $this->db->getByField("cart","user_id", $this->parameters[0], "AND status='checkout'");
     }
 
+    public function add(){
+        if (!isset($this->request->post['product_id']) || !isset($this->request->post['quantity']) || !isset($this->request->post['cart_id']))
+            throw new Exception("Missing parameters.");
+
+        $body = $this->request->post;
+        /*$product = $this->db->getById('product', $body['product_id']);
+
+        if ($product === false || $product === null)
+            throw new Exception("Product Doesn't exists");*/
+        $cartItem = $this->db->getByField("cartitem", "product_id", $body['product_id'], "AND active=1 AND cart_id=".$body['cart_id']);
+        if ($cartItem !== false && $cartItem !== null){
+            $this->db->update("cartitem", [
+                "id" => $cartItem["id"],
+                "quantity" => (intval($cartItem["quantity"]) + intval($body["quantity"]))
+            ]);
+            return [
+                "success" => "Updated quantity!",
+                "cartItemId" => $cartItem['id']
+            ];
+        }
+        $insertData =  [
+            "product_id" => $body["product_id"],
+            "cart_id" => $body["cart_id"],
+            "quantity" => $body["quantity"],
+            "price" => $product["price"] ?? 120,
+        ];
+        if (isset($body["discount_id"]) )
+            $insertData["discount_id"] = $body["discount_id"];
+        $successfulId = $this->db->insert('cartitem', $insertData);
+
+        if ($successfulId === false)
+            throw new Exception("Error while inserting!");
+
+        return [
+            "success" => "Product added on the cart!",
+            "cartItemId" => $successfulId
+        ];
+    }
+
     public function update() {
         if (!isset($this->parameters[0]))
             throw new Exception("Missing parameters.");

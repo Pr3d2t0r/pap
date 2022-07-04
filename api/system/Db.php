@@ -70,7 +70,7 @@ class Db {
         foreach($data as $value)
             $db->bindValue(++$i, $value);
 
-        return $db->execute();
+        return $db->execute() ? $this->pdo->lastInsertId() : false;
     }
 
     public function update($table, $data = []) {

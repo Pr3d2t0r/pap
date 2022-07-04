@@ -184,7 +184,7 @@
             </div>
             <!-- ofertas -->
             <div class="deal-leftmk left-side">
-                <h3 class="agileits-sear-head">Ofertas</h3>
+                <h3 class="agileits-sear-head">Ver novamente</h3>
                 <div class="special-sec1">
                     <div class="col-xs-4 img-deals">
                         <img src="<?php echo base_url("resources/images/d2.jpg"); ?>" alt="">
@@ -266,11 +266,12 @@
                                     <form action="#" method="post">
                                         <fieldset>
                                             <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="quantity" value="1">
                                             <input type="hidden" name="business" value=" " />
                                             <input type="hidden" name="item_name" value="Almonds, 100g" />
                                             <input type="hidden" name="amount" value="149.00" />
                                             <input type="hidden" name="discount_amount" value="1.00" />
+                                            <input type="hidden" name="discount_id" value="1" />
                                             <input type="hidden" name="currency_code" value="USD" />
                                             <input type="hidden" name="return" value=" " />
                                             <input type="hidden" name="cancel_return" value=" " />
@@ -305,11 +306,12 @@
                                     <form action="#" method="post">
                                         <fieldset>
                                             <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="quantity" value="1">
                                             <input type="hidden" name="business" value=" " />
                                             <input type="hidden" name="item_name" value="Cashew Nuts, 100g" />
                                             <input type="hidden" name="amount" value="200.00" />
                                             <input type="hidden" name="discount_amount" value="1.00" />
+                                            <input type="hidden" name="discount_id" value="" />
                                             <input type="hidden" name="currency_code" value="USD" />
                                             <input type="hidden" name="return" value=" " />
                                             <input type="hidden" name="cancel_return" value=" " />
@@ -345,11 +347,12 @@
                                     <form action="#" method="post">
                                         <fieldset>
                                             <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="quantity" value="1">
                                             <input type="hidden" name="business" value=" " />
                                             <input type="hidden" name="item_name" value="Pista, 250g" />
                                             <input type="hidden" name="amount" value="520.99" />
                                             <input type="hidden" name="discount_amount" value="1.00" />
+                                            <input type="hidden" name="discount_id" value="1" />
                                             <input type="hidden" name="currency_code" value="USD" />
                                             <input type="hidden" name="return" value=" " />
                                             <input type="hidden" name="cancel_return" value=" " />
@@ -389,11 +392,12 @@
                                     <form action="#" method="post">
                                         <fieldset>
                                             <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="quantity" value="1">
                                             <input type="hidden" name="business" value=" " />
                                             <input type="hidden" name="item_name" value="Freedom Sunflower Oil, 1L" />
                                             <input type="hidden" name="amount" value="78.00" />
                                             <input type="hidden" name="discount_amount" value="1.00" />
+                                            <input type="hidden" name="discount_id" value="1" />
                                             <input type="hidden" name="currency_code" value="USD" />
                                             <input type="hidden" name="return" value=" " />
                                             <input type="hidden" name="cancel_return" value=" " />
@@ -429,11 +433,12 @@
                                     <form action="#" method="post">
                                         <fieldset>
                                             <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="quantity" value="1">
                                             <input type="hidden" name="business" value=" " />
                                             <input type="hidden" name="item_name" value="Saffola Gold, 1L" />
                                             <input type="hidden" name="amount" value="130.00" />
                                             <input type="hidden" name="discount_amount" value="1.00" />
+                                            <input type="hidden" name="discount_id" value="" />
                                             <input type="hidden" name="currency_code" value="USD" />
                                             <input type="hidden" name="return" value=" " />
                                             <input type="hidden" name="cancel_return" value=" " />
@@ -469,11 +474,12 @@
                                     <form action="#" method="post">
                                         <fieldset>
                                             <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="quantity" value="1">
                                             <input type="hidden" name="business" value=" " />
                                             <input type="hidden" name="item_name" value="Fortune Oil, 5L" />
                                             <input type="hidden" name="amount" value="399.99" />
                                             <input type="hidden" name="discount_amount" value="1.00" />
+                                            <input type="hidden" name="discount_id" value="1" />
                                             <input type="hidden" name="currency_code" value="USD" />
                                             <input type="hidden" name="return" value=" " />
                                             <input type="hidden" name="cancel_return" value=" " />
@@ -512,11 +518,12 @@
                                     <form action="#" method="post">
                                         <fieldset>
                                             <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="quantity" value="1">
                                             <input type="hidden" name="business" value=" " />
                                             <input type="hidden" name="item_name" value="YiPPee Noodles, 65g" />
                                             <input type="hidden" name="amount" value="15.00" />
                                             <input type="hidden" name="discount_amount" value="1.00" />
+                                            <input type="hidden" name="discount_id" value="1" />
                                             <input type="hidden" name="currency_code" value="USD" />
                                             <input type="hidden" name="return" value=" " />
                                             <input type="hidden" name="cancel_return" value=" " />
@@ -552,11 +559,12 @@
                                     <form action="#" method="post">
                                         <fieldset>
                                             <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="quantity" value="1">
                                             <input type="hidden" name="business" value=" " />
                                             <input type="hidden" name="item_name" value="Wheat Pasta, 500g" />
                                             <input type="hidden" name="amount" value="98.00" />
                                             <input type="hidden" name="discount_amount" value="1.00" />
+                                            <input type="hidden" name="discount_id" value="1" />
                                             <input type="hidden" name="currency_code" value="USD" />
                                             <input type="hidden" name="return" value=" " />
                                             <input type="hidden" name="cancel_return" value=" " />
@@ -592,11 +600,12 @@
                                     <form action="#" method="post">
                                         <fieldset>
                                             <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="quantity" value="1">
                                             <input type="hidden" name="business" value=" " />
                                             <input type="hidden" name="item_name" value="Chinese Noodles, 68g" />
                                             <input type="hidden" name="amount" value="11.99" />
                                             <input type="hidden" name="discount_amount" value="1.00" />
+                                            <input type="hidden" name="discount_id" value="1" />
                                             <input type="hidden" name="currency_code" value="USD" />
                                             <input type="hidden" name="return" value=" " />
                                             <input type="hidden" name="cancel_return" value=" " />

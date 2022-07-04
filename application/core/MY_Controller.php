@@ -4,16 +4,21 @@ class MY_Controller extends CI_Controller
 {
     protected $user = null;
     protected bool $isLoggedIn = false;
-    protected array $data = [];
+    protected array $data = [
+        'isLoggedIn' => false,
+        'user' => null
+    ];
 
     public function __construct()
     {
         parent::__construct();
+
         $userId = $this->isUserLogedIn();
         if ($userId) {
             $this->user = $this->UserModel->getById($userId, "OBJECT");
             $this->isLoggedIn = true;
             $this->data['isLoggedIn'] = true;
+            $this->data['user'] = $this->user;
         }
     }
 

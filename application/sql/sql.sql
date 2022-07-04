@@ -246,7 +246,7 @@ create table `CartItem`
 (
     `id`          int(11) auto_increment primary key,
     `product_id`  int(11)  not null,
-    `discount_id` int(11)  not null,
+    `discount_id` int(11)  null,
     `cart_id`     int(11)  not null,
     `quantity`    int(11)  not null,
     `active`      bit      not null default 1,
