@@ -11,9 +11,6 @@ class About extends MY_Controller {
 
     public function index()
 	{
-		$this->load->view('general/header');
-		$this->load->view('general/menu');
-		$this->load->view('about/index');
-		$this->load->view('general/footer');
+        $this->openView("about/index");
 	}
 }

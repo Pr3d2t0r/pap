@@ -418,6 +418,9 @@
             case "register":
                 $('#registerModal').modal('show');
                 break;
+            case "login":
+                $('#loginModal').modal('show');
+                break;
             default:
                 var modal = $('<?php echo $openModal; ?>');
                 if (modal != null)

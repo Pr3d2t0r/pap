@@ -4,17 +4,17 @@ class MY_Controller extends CI_Controller
 {
     protected $user = null;
     protected bool $isLoggedIn = false;
-    protected bool $isSuperAdmin = false;
+    protected array $data = [];
 
     public function __construct()
     {
         parent::__construct();
-        /*$userId = $this->isUserLogedIn();
+        $userId = $this->isUserLogedIn();
         if ($userId) {
-            $this->user = $this->UsersModel->getById($userId, "OBJECT");
+            $this->user = $this->UserModel->getById($userId, "OBJECT");
             $this->isLoggedIn = true;
-            $this->isSuperAdmin = $this->hasPermissions("SuperAdmin");
-        }*/
+            $this->data['isLoggedIn'] = true;
+        }
     }
 
     private function isUserLogedIn(){
@@ -40,10 +40,14 @@ class MY_Controller extends CI_Controller
         return $userId;
     }
 
-    protected function hasPermissions(string $needed, $userPermissions=null): bool
-    {
-        if (!$this->isLoggedIn) return false;
-        if ($this->isSuperAdmin) return true;
-        return in_array($needed, $userPermissions??$this->user->permissions);
+    protected function openView($name, $standardBody=true){
+        if ($standardBody){
+            $this->load->view('general/header', $this->data);
+            $this->load->view('general/menu', $this->data);
+            $this->load->view($name, $this->data);
+            $this->load->view('general/footer', $this->data);
+            return;
+        }
+        $this->load->view($name, $this->data);
     }
 }

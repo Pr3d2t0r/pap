@@ -1,4 +1,8 @@
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+<?php
+$loginError = $this->session->flashdata('loginErrors');
+?>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,19 +13,34 @@
                     <span class="fa fa-envelope-o" aria-hidden="true"></span>
                 </div>
                 <div class="modal_body_left modal_body_left1">
-                    <h3 class="agileinfo_sign">Sign In </h3>
+                    <h3 class="agileinfo_sign">Login </h3>
                     <p>
                         Vamos começar suas compras no supermercado. Não tem uma conta?
-                        <a href="#" data-toggle="modal" data-target="#myModal2">
+                        <a href="#" data-toggle="modal" data-target="#registerModal">
                             Crie Uma Agora</a>
                     </p>
-                    <form action="#" method="post">
-                        <div class="styled-input agile-styled-input-top">
-                            <input type="text" placeholder="Username" name="Name" required="">
+                    <form action="<?php echo base_url('login'); ?>" method="post">
+                        <div class="styled-input agile-styled-input-top <?php if (isset($loginError['email']["error"]) && $loginError['email']["error"] != null) echo "error";?>">
+                            <input type="email" placeholder="Email" name="email" required="" value="<?php if ($loginError != null) echo $loginError['email']['value'];?>">
                         </div>
-                        <div class="styled-input">
-                            <input type="password" placeholder="Palavra-passe" name="password" required="">
+                        <?php
+                        if (isset($loginError['email']["error"]) && $loginError['email']["error"] != null):
+                            ?>
+                            <div class="error">
+                                <?php echo $loginError['email']["error"]; ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="styled-input <?php if (isset($loginError['password']["error"]) && $loginError['password']["error"] != null) echo "error";?>">
+                            <input type="password" placeholder="Palavra-passe" name="password" required="" value="<?php if ($loginError != null) echo $loginError['password']['value'];?>">
                         </div>
+                        <?php
+                        if (isset($loginError['password']["error"]) && $loginError['password']["error"] != null):
+                            ?>
+                            <div class="error">
+                                <?php echo $loginError['password']["error"]; ?>
+                            </div>
+                        <?php endif; ?>
                         <input type="submit" value="Login">
                     </form>
                     <div class="clearfix"></div>

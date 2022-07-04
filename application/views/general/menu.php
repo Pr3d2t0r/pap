@@ -25,14 +25,16 @@
                 <li>
                     <span class="fa fa-phone" aria-hidden="true"></span> 291 658 216
                 </li>
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#myModal1">
-                        <span class="fa fa-unlock-alt" aria-hidden="true"></span> Login </a>
-                </li>
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#registerModal">
-                        <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Registro </a>
-                </li>
+                <?php if (!isset($isLoggedIn) || !$isLoggedIn): ?>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#loginModal">
+                            <span class="fa fa-unlock-alt" aria-hidden="true"></span> Login </a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#registerModal">
+                            <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Registro </a>
+                    </li>
+                <?php endif; ?>
             </ul>
             <!-- search -->
             <div class="agileits_search">
@@ -66,12 +68,13 @@
 <?php
 //shop locator (popup)
 $this->load->view('components/shop_locator');
+if (!isset($isLoggedIn) || !$isLoggedIn) {
+    //sign-in Modal
+    $this->load->view('components/sign_in');
 
-//sign-in Modal
-$this->load->view('components/sign_in');
-
-//sign-up modal
-$this->load->view('components/sign_up');
+    //sign-up modal
+    $this->load->view('components/sign_up');
+}
 ?>
 
 <!-- navigation -->

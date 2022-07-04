@@ -129,4 +129,78 @@ class User extends MY_Controller {
             redirect();
         }
 	}
+
+    public function login(){
+        if ($this->isLoggedIn) {
+            redirect();
+            return;
+        }
+
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        if (!$this->form_validation->run()) {
+            $values = $this->input->post();
+            $this->session->set_flashdata('loginErrors', [
+                "email"=>[
+                    "error" => form_error("email"),
+                    "value" => $values['email'] ?? ""
+                ],
+                "password"=>[
+                    "error" => form_error("password"),
+                    "value" => $values['password'] ?? ""
+                ],
+            ]);
+            $this->session->set_flashdata("openModal", "login");
+        } else {
+            $this->session->set_flashdata('loginErrors');
+            $result_arr = $this->input->post();
+            $user = $this->UserModel->getByEmail($result_arr['email']);
+            if ($user != null) {
+                $passwordHash = new PasswordHash(4);
+                $success = $passwordHash->validPassword($result_arr['password'], $user['password']);
+                if ($success) {
+                    $strong = true;
+                    $token = bin2hex(openssl_random_pseudo_bytes(64, $strong));
+                    $this->UserTokensModel->insert([
+                        "user_id" => $user['id'],
+                        "token" => $token
+                    ]);// token valido por 7 dias
+                    //                                          Hora atual + 60 segundos * 60 minutos * 24 horas * 7 dias
+                    set_cookie("loginToken", $token, time() + 60 * 60 * 24 * 7, null, '/', null, true);
+                    set_cookie("loginToken_", '0', time() + 60 * 60 * 24 * 3, null, '/', null, true);
+                    echo "Done!";
+
+                    $this->session->set_flashdata("success_msg", "Login efetuado com sucesso!");
+                    redirect();
+                } else {
+                    $this->session->set_flashdata('loginErrors', [
+                        "email"=>[
+                            "error" => "<p>Credenciais invalidas!</p>",
+                            "value" => $result_arr['email'] ?? ""
+                        ],
+                        "password"=>[
+                            "error" => "<p>Credenciais invalidas!</p>",
+                            "value" => ""
+                        ],
+                    ]);
+                    $this->session->set_flashdata("openModal", "login");
+                    redirect();
+                }
+            }else{
+                $this->session->set_flashdata('loginErrors', [
+                    "email"=>[
+                        "error" => "<p>Email não está registrado!</p>",
+                        "value" => $result_arr['email'] ?? ""
+                    ],
+                    "password"=>[
+                        "error" => null,
+                        "value" => ""
+                    ],
+                ]);
+                $this->session->set_flashdata("openModal", "login");
+                redirect();
+            }
+        }
+    }
 }

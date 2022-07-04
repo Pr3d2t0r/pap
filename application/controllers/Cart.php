@@ -11,17 +11,11 @@ class Cart extends MY_Controller {
 
     public function checkout()
 	{
-		$this->load->view('general/header');
-		$this->load->view('general/menu');
-		$this->load->view('cart/checkout');
-		$this->load->view('general/footer');
+        $this->openView("cart/checkout");
 	}
 
     public function payment()
 	{
-		$this->load->view('general/header');
-		$this->load->view('general/menu');
-		$this->load->view('cart/payment');
-		$this->load->view('general/footer');
+        $this->openView("cart/payment");
 	}
 }

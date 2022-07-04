@@ -9,4 +9,7 @@ class UserModel extends MY_Model{
         return $this->get("email", $email) != null;
     }
 
+    public function getByEmail($email){
+        return $this->get("email", $email);
+    }
 }

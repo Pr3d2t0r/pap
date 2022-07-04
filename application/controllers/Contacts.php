@@ -13,10 +13,7 @@ class Contacts extends MY_Controller {
 
     public function index()
 	{
-        $data = [
-            "title" => "Contacte-nos",
-        ];
-
+        $this->data['title'] = "Contacte-nos";
         $this->form_validation->set_rules('name', 'Nome', 'required|min_length[3]|max_length[160]');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('subject', 'Assunto', 'required|min_length[5]|max_length[150]');
@@ -32,9 +29,6 @@ class Contacts extends MY_Controller {
             $this->session->set_flashdata("success_msg", "Mensagem enviada com sucesso!");
         }
 
-		$this->load->view('general/header', $data);
-		$this->load->view('general/menu', $data);
-		$this->load->view('contacts/index', $data);
-		$this->load->view('general/footer', $data);
+        $this->openView("contacts/index");
 	}
 }
