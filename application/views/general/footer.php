@@ -232,6 +232,14 @@
             total += items[i].get('quantity');
         }
     });
+
+    paypalm.minicartk.cart.on('add', evt => {
+
+    });
+
+    paypalm.minicartk.cart.on('delete', evt => {
+
+    });
 </script>
 
 <script src="<?php echo base_url("resources/js/jquery-ui.js"); ?>"></script>

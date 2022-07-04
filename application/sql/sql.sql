@@ -238,8 +238,8 @@ create table if not exists `Cart`
     `id`               int(11) primary key auto_increment,
     `user_id`          int(11)                                                       not null,
     `status`           enum ('checkout', 'awaiting_payment_confirmation', 'ordered') not null default 'checkout',
-    `personal_info_id` int(11)                                                       not null,
-    `created_at`       datetime                                                      not null
+    `personal_info_id` int(11)                                                       null,
+    `created_at`       datetime                                                      not null default NOW()
 );
 
 create table `CartItem`
