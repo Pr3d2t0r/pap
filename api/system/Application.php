@@ -24,6 +24,10 @@ class Application
         } catch (SystemException $e){
             http_response_code(intval($e->getCode()));
             exit;
+        } catch (AppException $ex) {
+            $adapter->set([
+                "error" => $ex->getMessage()
+            ]+$ex->data);
         } catch (Exception $ex) {
             $adapter->set([
                "error" => $ex->getMessage()

@@ -55,12 +55,19 @@ class CartResponseHandler extends ResponseHandler {
         if ($body['quantity']<0)
             throw new Exception("Quantity can not be negative!");
 
+        $qt = intval($body["quantity"]);
+
+        if (!$this->validQuantity($body['product_id'], $qt))
+            throw new AppException("Quantity not available!", [
+                "max_quantity"=>$this->maxQuantity($body['product_id'])
+            ]);
+
+
+
         $cartItem = $this->db->getByField("cartitem", "product_id", $body['product_id'], "AND active=1 AND cart_id=".$body['cart_id']);
 
+
         if ($cartItem !== false && $cartItem !== null){
-            $qt = intval($cartItem["quantity"]) + intval($body["quantity"]);
-            if (!$this->validQuantity($cartItem['product_id'], $qt))
-                throw new Exception("Quantity not available!");
 
             $this->db->update("cartitem", [
                 "quantity" => $qt,
@@ -96,8 +103,12 @@ class CartResponseHandler extends ResponseHandler {
 
     private function validQuantity($productId, $qt){
         $dbQt = $this->db->executeGet("select t1.* from `productquantity` as t1 inner join (select product_id, max(available_quantity) as available_quantity from `productquantity` group by product_id) as t2 on t1.product_id = t2.product_id and t1.available_quantity = t2.available_quantity where t1.product_id=?", [$productId]);
-        if ($dbQt === false || count($dbQt)<1 || $dbQt === null)
+        if (count($dbQt)<1 || empty($dbQt))
             return false;
         return $qt <= $dbQt[0]['available_quantity'];
+    }
+    private function maxQuantity($productId){
+        $dbQt = $this->db->executeGet("select t1.* from `productquantity` as t1 inner join (select product_id, max(available_quantity) as available_quantity from `productquantity` group by product_id) as t2 on t1.product_id = t2.product_id and t1.available_quantity = t2.available_quantity where t1.product_id=?", [$productId]);
+        return $dbQt[0]['available_quantity'];
     }
 }

@@ -234,8 +234,8 @@
     });
 
     paypalm.minicartk.cart.on('add', (idx, product, isExisting) => {
+        console.log(product._data.quantity)
         <?php if ($isLoggedIn): ?>
-        console.log(product._data);
         $.ajax({
             url: "<?php echo base_url("/api/cart/user/" . $user->id); ?>",
             success: function (data) {
@@ -249,10 +249,13 @@
                     },
                     method: "POST",
                     success: function (xdata) {
-                        console.log(xdata);
+                        if (typeof xdata.error !== "undefined"){
+                            product.set("quantity", xdata.max_quantity);
+                            $(".minikcartk-error").html("Quntidade maxima atingida!")
+                        }
                     },
-                    error: function () {
-                        console.log("err2")
+                    error: function (data) {
+                        console.log(data)
                     }
                 })
             },
