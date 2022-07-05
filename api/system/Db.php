@@ -25,6 +25,17 @@ class Db {
         return self::$PDOInstance;
     }
 
+    public function executeGet($query, $data=[], $mode=PDO::FETCH_ASSOC){
+        $db = $this->pdo->prepare($query);
+        if ($db === false)
+            return null;
+        for ($i=1; $i<count($data); $i++)
+            $db->bindParam($i, $value);
+        $db->execute();
+        $db->setFetchMode($mode);
+        return $db->fetchAll();
+    }
+
     public function getById($table, $id, $mode = PDO::FETCH_ASSOC){
         $db = $this->pdo->prepare("SELECT * FROM $table WHERE id = ?");
         if ($db === false)
@@ -73,6 +84,13 @@ class Db {
         return $db->execute() ? $this->pdo->lastInsertId() : false;
     }
 
+    /**
+     * `id` has to be the last attr in the data array
+     * @param $table
+     * @param $data
+     * @return bool|null
+     * @throws Exception
+     */
     public function update($table, $data = []) {
         if (count($data) == 0)
             throw new Exception("Invalid update data.");
@@ -83,12 +101,13 @@ class Db {
             if ($column == 'id')
                 continue;
 
-            $strData .= $column . " = ?,";
+            $strData .= $column . "=?,";
         }
 
         $strData = substr($strData, 0, strlen($strData) - 1);
 
         $db = $this->pdo->prepare("UPDATE $table SET $strData WHERE id = ?");
+        //echo $db->queryString;
         if ($db === false)
             return null;
 

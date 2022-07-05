@@ -12,7 +12,8 @@
 	},
 	"require": {
 		"php": ">=7.4.21",
-      "ext-openssl": "*"
+      "ext-openssl": "*",
+      "ext-pdo": "*"
     },
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

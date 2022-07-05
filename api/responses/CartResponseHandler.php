@@ -41,9 +41,12 @@ class CartResponseHandler extends ResponseHandler {
             throw new Exception("Product Doesn't exists");*/
         $cartItem = $this->db->getByField("cartitem", "product_id", $body['product_id'], "AND active=1 AND cart_id=".$body['cart_id']);
         if ($cartItem !== false && $cartItem !== null){
+            $qt = intval($cartItem["quantity"]) + intval($body["quantity"]);
+            if (!$this->validQuantity($cartItem['product_id'], $qt))
+                throw new Exception("Quantity not available!");
             $this->db->update("cartitem", [
-                "id" => $cartItem["id"],
-                "quantity" => (intval($cartItem["quantity"]) + intval($body["quantity"]))
+                "quantity" => $qt,
+                "id" => $cartItem['id']
             ]);
             return [
                 "success" => "Updated quantity!",
@@ -69,7 +72,13 @@ class CartResponseHandler extends ResponseHandler {
         ];
     }
 
-    public function update() {
+    private function validQuantity($productId, $qt){
+        $dbQt = $this->db->executeGet("select t1.* from `productquantity` as t1 inner join (select product_id, max(available_quantity) as available_quantity from `productquantity` group by product_id) as t2 on t1.product_id = t2.product_id and t1.available_quantity = t2.available_quantity where t1.product_id=?", [$productId]);
+        var_dump($dbQt);
+        return $qt >= $dbQt['quantity'];
+    }
+
+    /*public function update() {
         if (!isset($this->parameters[0]))
             throw new Exception("Missing parameters.");
 
@@ -89,9 +98,9 @@ class CartResponseHandler extends ResponseHandler {
         return [
             "success" => "User updated successfully!"
         ];
-    }
+    }*/
 
-    public function delete() {
+    /*public function delete() {
         if (isset($this->parameters[0]))
             $result = $this->db->getById("user", $this->parameters[0]);
         else
@@ -110,5 +119,5 @@ class CartResponseHandler extends ResponseHandler {
         return [
             "success" => "User deleted successfully!"
         ];
-    }
+    }*/
 }
