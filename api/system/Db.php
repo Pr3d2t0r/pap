@@ -29,9 +29,11 @@ class Db {
         $db = $this->pdo->prepare($query);
         if ($db === false)
             return null;
-        for ($i=1; $i<count($data); $i++)
-            $db->bindParam($i, $value);
+        for ($i=1; $i<=count($data); $i++)
+            $db->bindParam($i, $data[$i-1]);
+
         $db->execute();
+
         $db->setFetchMode($mode);
         return $db->fetchAll();
     }

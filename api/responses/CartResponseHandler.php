@@ -18,6 +18,18 @@ class CartResponseHandler extends ResponseHandler {
         return $result;
     }
 
+    public function item(){
+        if (isset($this->parameters[0]))
+            $result = $this->db->getById("cartitem", $this->parameters[0]);
+        else
+            throw new Exception("Missing parameters.");
+
+        if ($result === false || $result === null)
+            throw new Exception("Cart item doesn't exist!");
+
+        return $result;
+    }
+
     public function user(){
         if (!isset($this->parameters[0]))
             throw new Exception("Missing parameters.");
@@ -39,28 +51,38 @@ class CartResponseHandler extends ResponseHandler {
 
         if ($product === false || $product === null)
             throw new Exception("Product Doesn't exists");*/
+
+        if ($body['quantity']<0)
+            throw new Exception("Quantity can not be negative!");
+
         $cartItem = $this->db->getByField("cartitem", "product_id", $body['product_id'], "AND active=1 AND cart_id=".$body['cart_id']);
+
         if ($cartItem !== false && $cartItem !== null){
             $qt = intval($cartItem["quantity"]) + intval($body["quantity"]);
             if (!$this->validQuantity($cartItem['product_id'], $qt))
                 throw new Exception("Quantity not available!");
+
             $this->db->update("cartitem", [
                 "quantity" => $qt,
                 "id" => $cartItem['id']
             ]);
+
             return [
                 "success" => "Updated quantity!",
                 "cartItemId" => $cartItem['id']
             ];
         }
+
         $insertData =  [
             "product_id" => $body["product_id"],
             "cart_id" => $body["cart_id"],
             "quantity" => $body["quantity"],
             "price" => $product["price"] ?? 120,
         ];
+
         if (isset($body["discount_id"]) )
             $insertData["discount_id"] = $body["discount_id"];
+
         $successfulId = $this->db->insert('cartitem', $insertData);
 
         if ($successfulId === false)
@@ -74,50 +96,8 @@ class CartResponseHandler extends ResponseHandler {
 
     private function validQuantity($productId, $qt){
         $dbQt = $this->db->executeGet("select t1.* from `productquantity` as t1 inner join (select product_id, max(available_quantity) as available_quantity from `productquantity` group by product_id) as t2 on t1.product_id = t2.product_id and t1.available_quantity = t2.available_quantity where t1.product_id=?", [$productId]);
-        var_dump($dbQt);
-        return $qt >= $dbQt['quantity'];
+        if ($dbQt === false || count($dbQt)<1 || $dbQt === null)
+            return false;
+        return $qt <= $dbQt[0]['available_quantity'];
     }
-
-    /*public function update() {
-        if (!isset($this->parameters[0]))
-            throw new Exception("Missing parameters.");
-
-        $result = $this->db->getById("user", $this->parameters[0]);
-
-        if ($result === false)
-            throw new Exception("User doesn't exist!");
-
-        $result = $this->db->update("user", [
-            "username" => "abc",
-            "id" => $this->parameters[0],
-        ]);
-
-        if ($result === false)
-            throw new Exception("Couldn't update this user.");
-
-        return [
-            "success" => "User updated successfully!"
-        ];
-    }*/
-
-    /*public function delete() {
-        if (isset($this->parameters[0]))
-            $result = $this->db->getById("user", $this->parameters[0]);
-        else
-            throw new Exception("Missing parameters.");
-
-        if ($result === false)
-            throw new Exception("User doesn't exist!");
-
-        $result = $this->db->delete("user", [
-            "id" => $this->parameters[0]
-        ]);
-
-        if ($result === false)
-            throw new Exception("Couldn't delete this user.");
-
-        return [
-            "success" => "User deleted successfully!"
-        ];
-    }*/
 }
