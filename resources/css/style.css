@@ -4890,3 +4890,11 @@ input[type="radio"], input[type="checkbox"] {
     margin-bottom: 0 !important;
     color: red !important;
 }
+
+.minikcartk-error{
+    color: red;
+    font-size: smaller;
+    line-height: normal;
+    text-align: center;
+    margin-bottom: 25px;
+}
