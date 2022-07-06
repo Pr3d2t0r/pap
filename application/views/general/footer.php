@@ -220,7 +220,6 @@
         action: "<?php echo base_url("checkout"); ?>",
     });
     //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
-
     <?php if ($isLoggedIn): ?>
         var timeout1, timeout2;
         paypalm.minicartk.cart.on('checkout', function (evt) {
@@ -550,6 +549,97 @@
 
     </script>
 <?php endif; ?>
+    <script>
+        var timeout3;
+        function updateQt(id, qt, inpt) {
+            $.ajax({
+                url: "<?php echo base_url("/api/cart/user/" . $user->id); ?>",
+                success: function (data) {
+                    $.ajax({
+                        url: "<?php echo base_url("/api/cart/add/"); ?>",
+                        data: {
+                            product_id: id,
+                            quantity: qt,
+                            cart_id: data.id,
+                        },
+                        method: "POST",
+                        success: function (xdata) {
+                            if (typeof xdata.error !== "undefined"){
+                                clearTimeout(timeout3)
+                                $(inpt).text(xdata.max_quantity);
+                                $(".error-msg").text("Quntidade maxima atingida!")
+                                timeout3 = setTimeout(()=>{$(".error-msg").text("")}, 4000)
+                            }
+                        },
+                        error: function (data) {
+                            console.log(data)
+                        }
+                    })
+                },
+                error: function () {
+                    console.log("err1.1")
+                }
+            })
+        }
+        function findProductById(pId){
+            var items = paypalm.minicartk.cart.items();
+            for (var i = 0; i < items.length; i++) {
+                if (items[i]._data.id == pId) return items[i];
+            }
+            return null;
+        }
+        $('.value-plus').on('click', function () {
+            var divUpd = $(this).parent().find('.value'),
+                newVal = parseInt(divUpd.text(), 10) + 1;
+            divUpd.text(newVal);
+            var row = $($($($(this).parent()).parent()).parent()).parent()
+            var ciId = $($(row).find("#__cmd")).val();
+            updateQt(ciId, newVal, divUpd);
+            findProductById(ciId).set('quantity', 4);
+        });
+
+        $('.value-minus').on('click', function () {
+            var divUpd = $(this).parent().find('.value'),
+                newVal = parseInt(divUpd.text(), 10) - 1;
+            if (newVal < 1) return;
+            divUpd.text(newVal);
+            var row = $($($($(this).parent()).parent()).parent()).parent()
+            var ciId = $($(row).find("#__cmd")).val();
+            updateQt(ciId, newVal, divUpd);
+        });
+        $(document).ready(function (c) {
+            $('.close').on('click', function (c) {
+                var row = $($($(this).parent()).parent()).parent()
+                var ciId = $($(row).find("#__cmd")).val();
+                $(row).fadeOut('slow', function (c) {
+                    $(row).remove();
+                });
+                <?php if (isset($cart)):?>
+                    $.ajax({
+                        url: "<?php echo base_url("/api/cart/user/" . $user->id); ?>",
+                        success: function (data) {
+                            $.ajax({
+                                url: "<?php echo base_url("/api/cart/remove/"); ?>",
+                                data: {
+                                    product_id: ciId,
+                                    cart_id: data.id
+                                },
+                                method: "POST",
+                                success: function (xdata) {
+                                },
+                                error: function (data) {
+                                }
+                            })
+                        },
+                        error: function () {
+                            console.log("err1.2")
+                        }
+                    })
+                <?php endif; ?>
+            });
+        });
+    </script>
+
 
 </body>
 </html>

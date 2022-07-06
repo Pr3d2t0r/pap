@@ -12,10 +12,10 @@
                         <i></i>
                     </span>
         </h3>
-        <?php if (isset($cart) && !empty($cart)): ?>
+        <?php if (isset($cart) && !empty($cart) && isset($cartItems) && !empty($cartItems)): ?>
             <div class="checkout-right">
                 <h4>Seu carrinho de compras contém:
-                    <span>3 Produtos</span>
+                    <span><?php echo count($cartItems)?> Produtos</span>
                 </h4>
                 <div class="table-responsive">
                     <table class="timetable_sub">
@@ -31,37 +31,43 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="rem1">
-                                <td class="invert">1</td>
-                                <td class="invert-image">
-                                    <a href="#">
-                                        <img src="<?php echo base_url("resources/images/a7.jpg"); ?>" alt=" " class="img-responsive">
-                                    </a>
-                                </td>
-                                <td class="invert">
-                                    <div class="quantity">
-                                        <div class="quantity-select">
-                                            <div class="entry value-minus">&nbsp;</div>
-                                            <div class="entry value">
-                                                <span>1</span>
+                        <div class="error">
+                            <p class="error-msg"></p>
+                        </div>
+                            <?php foreach ($cartItems as $item): ?>
+                                <tr class="rem">
+                                    <input type="hidden" value="<?php echo $item["product_id"]; ?>" id="__cmd">
+                                    <td class="invert"><?php echo $item["product_id"]; ?></td>
+                                    <td class="invert-image">
+                                        <a href="#">
+                                            <img src="<?php echo base_url("resources/images/a7.jpg"); ?>" alt=" " class="img-responsive">
+                                        </a>
+                                    </td>
+                                    <td class="invert">
+                                        <div class="quantity">
+                                            <div class="quantity-select">
+                                                <div class="entry value-minus">&nbsp;</div>
+                                                <div class="entry value">
+                                                    <span><?php echo $item["quantity"]; ?></span>
+                                                </div>
+                                                <div class="entry value-plus active">&nbsp;</div>
                                             </div>
-                                            <div class="entry value-plus active">&nbsp;</div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="invert">Spotzero Spin Mop</td>
-                                <td class="invert">$888.00</td>
-                                <td class="invert">
-                                    <div class="rem">
-                                        <div class="close1"> </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="rem2">
+                                    </td>
+                                    <td class="invert">Spotzero Spin Mop</td>
+                                    <td class="invert"><?php echo $item["price"]; ?></td>
+                                    <td class="invert">
+                                        <div class="rem">
+                                            <div class="close" > </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            <!--<tr class="rem2">
                                 <td class="invert">2</td>
                                 <td class="invert-image">
                                     <a href="#">
-                                        <img src="<?php echo base_url("resources/images/s6.jpg"); ?>" alt=" " class="img-responsive">
+                                        <img src="<?php /*echo base_url("resources/images/s6.jpg"); */?>" alt=" " class="img-responsive">
                                     </a>
                                 </td>
                                 <td class="invert">
@@ -87,7 +93,7 @@
                                 <td class="invert">3</td>
                                 <td class="invert-image">
                                     <a href="#">
-                                        <img src="<?php echo base_url("resources/images/s5.jpg"); ?>" alt=" " class="img-responsive">
+                                        <img src="<?php /*echo base_url("resources/images/s5.jpg"); */?>" alt=" " class="img-responsive">
                                     </a>
                                 </td>
                                 <td class="invert">
@@ -108,7 +114,7 @@
                                         <div class="close3"> </div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
                 </div>
