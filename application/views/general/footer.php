@@ -228,18 +228,38 @@
     //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
 
     <?php if ($isLoggedIn): ?>
+        var timeout1;
         paypalm.minicartk.cart.on('checkout', function (evt) {
-            var items = this.items(),
-                len = items.length,
-                total = 0,
-                i;
-
-            // Count the number of each item in the cart
-            for (i = 0; i < len; i++) {
-                total += items[i].get('quantity');
-            }
+            var items = this.items();
+            $.ajax({
+                url: "<?php echo base_url("/api/cart/user/" . $user->id); ?>",
+                success: function (data) {
+                    $.ajax({
+                        url: "<?php echo base_url("/api/cart/checkout/"); ?>",
+                        data: {
+                            cart_id: data.id,
+                            items: items
+                        },
+                        method: "POST",
+                        success: function (xdata) {
+                            console.log(xdata)
+                            if (typeof xdata.error !== "undefined"){
+                                clearTimeout(timeout1)
+                                evt.preventDefault();
+                                $(".minikcartk-error").html("Não é possivel efetuar checkout neste momento, tente novamente mais tarde!")
+                                timeout1 = setTimeout(()=>{$(".minikcartk-error").html("")}, 4000)
+                            }
+                        },
+                        error: function (data) {
+                            console.log(data)
+                        }
+                    })
+                },
+                error: function () {
+                    console.log("err1.1")
+                }
+            })
         });
-        var timeout;
         paypalm.minicartk.cart.on('add', (idx, product, isExisting) => {
 
             $.ajax({
@@ -256,10 +276,10 @@
                         method: "POST",
                         success: function (xdata) {
                             if (typeof xdata.error !== "undefined"){
-                                clearTimeout(timeout)
+                                clearTimeout(timeout1)
                                 product.set("quantity", xdata.max_quantity);
                                 $(".minikcartk-error").html("Quntidade maxima atingida!")
-                                timeout = setTimeout(()=>{$(".minikcartk-error").html("")}, 4000)
+                                timeout1 = setTimeout(()=>{$(".minikcartk-error").html("")}, 4000)
                             }
                         },
                         error: function (data) {

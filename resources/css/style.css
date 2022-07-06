@@ -4892,6 +4892,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .minikcartk-error{
+    width: 70%;
     color: red;
     font-size: smaller;
     line-height: normal;
@@ -4900,6 +4901,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .minikcartk-success{
+    width: 70%;
     color: green;
     font-size: smaller;
     line-height: normal;

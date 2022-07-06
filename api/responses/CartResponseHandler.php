@@ -127,6 +127,42 @@ class CartResponseHandler extends ResponseHandler {
         ];
     }
 
+    public function checkout(){
+        if (!isset($this->request->post['items']) || !isset($this->request->post['cart_id']))
+            throw new Exception("Missing parameters.");
+
+        $body = $this->request->post;
+
+        $this->db->delete("cartitem", [
+           "cart_id"=>$body['cart_id']
+        ]);
+
+        for ($i=0; $i<= count($body['items']); $i++){
+            /*$product = $this->db->getById('product', $body['items']['idx']);
+
+            if ($product === false || $product === null)
+                throw new Exception("Product Doesn't exists");*/
+            $insertData =  [
+                "product_id" => $body['items']['idx'],
+                "cart_id" => $body['cart_id'],
+                "quantity" => $body['items']['quantity'],
+                "price" => $product["price"] ?? 120,
+            ];
+
+            if (isset($body["discount_id"]) )
+                $insertData["discount_id"] = $body['items']['discount_id'];
+
+            $successfulId = $this->db->insert('cartitem', $insertData);
+
+            if ($successfulId === false)
+                throw new Exception("Error while inserting!");
+        }
+
+        return [
+            "success" => "Ready for checkout!"
+        ];
+    }
+
     private function validQuantity($productId, $qt){
         $dbQt = $this->db->executeGet("select t1.* from `productquantity` as t1 inner join (select product_id, max(available_quantity) as available_quantity from `productquantity` group by product_id) as t2 on t1.product_id = t2.product_id and t1.available_quantity = t2.available_quantity where t1.product_id=?", [$productId]);
         if (count($dbQt)<1 || empty($dbQt))
