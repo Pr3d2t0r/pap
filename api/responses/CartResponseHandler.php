@@ -101,6 +101,32 @@ class CartResponseHandler extends ResponseHandler {
         ];
     }
 
+    public function remove(){
+        if (!isset($this->request->post['product_id']) || !isset($this->request->post['cart_id']))
+            throw new Exception("Missing parameters.");
+
+        $body = $this->request->post;
+
+        /*$product = $this->db->getById('product', $body['product_id']);
+
+        if ($product === false || $product === null)
+            throw new Exception("Product Doesn't exists");*/
+
+        $cartItem = $this->db->getByField("cartitem", "product_id", $body['product_id'], "AND active=1 AND cart_id=".$body['cart_id']);
+
+
+        if ($cartItem !== false && $cartItem !== null){
+            $successful = $this->db->delete('cartitem', ["id"=>$cartItem['id']]);
+
+            if ($successful === false)
+                throw new Exception("Error while deleting!");
+        }
+
+        return [
+            "success" => "Removed with success!"
+        ];
+    }
+
     private function validQuantity($productId, $qt){
         $dbQt = $this->db->executeGet("select t1.* from `productquantity` as t1 inner join (select product_id, max(available_quantity) as available_quantity from `productquantity` group by product_id) as t2 on t1.product_id = t2.product_id and t1.available_quantity = t2.available_quantity where t1.product_id=?", [$productId]);
         if (count($dbQt)<1 || empty($dbQt))

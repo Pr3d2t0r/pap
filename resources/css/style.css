@@ -4898,3 +4898,11 @@ input[type="radio"], input[type="checkbox"] {
     text-align: center;
     margin-bottom: 25px;
 }
+
+.minikcartk-success{
+    color: green;
+    font-size: smaller;
+    line-height: normal;
+    text-align: center;
+    margin-bottom: 25px;
+}

@@ -188,6 +188,12 @@
 
 <script src="<?php echo base_url("resources/js/jquery-2.1.4.min.js"); ?>"></script>
 
+<script>
+    function showSuccess(msg) {
+
+    }
+</script>
+
 <script src="<?php echo base_url("resources/js/jquery.magnific-popup.js"); ?>"></script>
 <script>
     $(document).ready(function () {
@@ -221,39 +227,69 @@
     });
     //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
 
-    paypalm.minicartk.cart.on('checkout', function (evt) {
-        var items = this.items(),
-            len = items.length,
-            total = 0,
-            i;
+    <?php if ($isLoggedIn): ?>
+        paypalm.minicartk.cart.on('checkout', function (evt) {
+            var items = this.items(),
+                len = items.length,
+                total = 0,
+                i;
 
-        // Count the number of each item in the cart
-        for (i = 0; i < len; i++) {
-            total += items[i].get('quantity');
-        }
-    });
-    var timeout;
-    paypalm.minicartk.cart.on('add', (idx, product, isExisting) => {
-        <?php if ($isLoggedIn): ?>
+            // Count the number of each item in the cart
+            for (i = 0; i < len; i++) {
+                total += items[i].get('quantity');
+            }
+        });
+        var timeout;
+        paypalm.minicartk.cart.on('add', (idx, product, isExisting) => {
+
+            $.ajax({
+                url: "<?php echo base_url("/api/cart/user/" . $user->id); ?>",
+                success: function (data) {
+                    $.ajax({
+                        url: "<?php echo base_url("/api/cart/add/"); ?>",
+                        data: {
+                            product_id: idx,
+                            quantity: product._data.quantity,
+                            cart_id: data.id,
+                            discount_id: product._data.discount_id
+                        },
+                        method: "POST",
+                        success: function (xdata) {
+                            if (typeof xdata.error !== "undefined"){
+                                clearTimeout(timeout)
+                                product.set("quantity", xdata.max_quantity);
+                                $(".minikcartk-error").html("Quntidade maxima atingida!")
+                                timeout = setTimeout(()=>{$(".minikcartk-error").html("")}, 4000)
+                            }
+                        },
+                        error: function (data) {
+                            console.log(data)
+                        }
+                    })
+                },
+                error: function () {
+                    console.log("err1.1")
+                }
+            })
+
+        });
+    var timeout2;
+    paypalm.minicartk.cart.on('remove', (idx, product) => {
+        console.log(idx, product);
         $.ajax({
             url: "<?php echo base_url("/api/cart/user/" . $user->id); ?>",
             success: function (data) {
                 $.ajax({
-                    url: "<?php echo base_url("/api/cart/add/"); ?>",
+                    url: "<?php echo base_url("/api/cart/remove/"); ?>",
                     data: {
                         product_id: idx,
-                        quantity: product._data.quantity,
-                        cart_id: data.id,
-                        discount_id: product._data.discount_id
+                        cart_id: data.id
                     },
                     method: "POST",
                     success: function (xdata) {
-                        if (typeof xdata.error !== "undefined"){
-                            clearTimeout(timeout)
-                            product.set("quantity", xdata.max_quantity);
-                            $(".minikcartk-error").html("Quntidade maxima atingida!")
-                            timeout = setTimeout(()=>{$(".minikcartk-error").html("")}, 4000)
-                        }
+                        clearTimeout(timeout2)
+                        $(".minikcartk-success").html("Item removido com sucesso!")
+                        timeout2 = setTimeout(()=>{$(".minikcartk-success").html("")}, 4000)
                     },
                     error: function (data) {
                         console.log(data)
@@ -261,15 +297,11 @@
                 })
             },
             error: function () {
-                console.log("err1")
+                console.log("err1.2")
             }
         })
-        <?php endif; ?>
     });
-
-    /*paypalm.minicartk.cart.on('delete', evt => {
-
-    });*/
+    <?php endif; ?>
 </script>
 
 <script src="<?php echo base_url("resources/js/jquery-ui.js"); ?>"></script>
@@ -278,9 +310,9 @@
     $(window).load(function () {
         $("#slider-range").slider({
             range: true,
-            min: 0,
+            min: 1,
             max: 9000,
-            values: [50, 6000],
+            values: [50, 9000],
             slide: function (event, ui) {
                 $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
             }
