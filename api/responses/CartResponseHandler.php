@@ -137,20 +137,20 @@ class CartResponseHandler extends ResponseHandler {
            "cart_id"=>$body['cart_id']
         ]);
 
-        for ($i=0; $i<= count($body['items']); $i++){
-            /*$product = $this->db->getById('product', $body['items']['idx']);
+        for ($i=0; $i < count($body['items']); $i++){
+            /*$product = $this->db->getById('product', $body['items']['id']);
 
             if ($product === false || $product === null)
                 throw new Exception("Product Doesn't exists");*/
             $insertData =  [
-                "product_id" => $body['items']['idx'],
+                "product_id" => $body['items'][$i]['id'],
                 "cart_id" => $body['cart_id'],
-                "quantity" => $body['items']['quantity'],
+                "quantity" => $body['items'][$i]['quantity'],
                 "price" => $product["price"] ?? 120,
             ];
 
-            if (isset($body["discount_id"]) )
-                $insertData["discount_id"] = $body['items']['discount_id'];
+            if (isset($body['items'][$i]["discount_id"]))
+                $insertData["discount_id"] = $body['items'][$i]['discount_id'];
 
             $successfulId = $this->db->insert('cartitem', $insertData);
 

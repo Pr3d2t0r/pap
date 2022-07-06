@@ -199,7 +199,7 @@
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                         <form action="#" method="post">
                                             <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart" />
+                                                <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                                 <input type="hidden" name="quantity" value="1" />
                                                 <input type="hidden" name="business" value=" " />
                                                 <input type="hidden" name="item_name" value="Almonds, 100g" />
@@ -238,7 +238,7 @@
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                         <form action="#" method="post">
                                             <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart" />
+                                                <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                                 <input type="hidden" name="quantity" value="1" />
                                                 <input type="hidden" name="business" value=" " />
                                                 <input type="hidden" name="item_name" value="Cashew Nuts, 100g" />
@@ -278,7 +278,7 @@
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                         <form action="#" method="post">
                                             <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart" />
+                                                <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                                 <input type="hidden" name="quantity" value="1" />
                                                 <input type="hidden" name="business" value=" " />
                                                 <input type="hidden" name="item_name" value="Pista, 250g" />
@@ -322,7 +322,7 @@
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                         <form action="#" method="post">
                                             <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart" />
+                                                <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                                 <input type="hidden" name="quantity" value="1" />
                                                 <input type="hidden" name="business" value=" " />
                                                 <input type="hidden" name="item_name" value="Freedom Sunflower Oil, 1L" />
@@ -362,7 +362,7 @@
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                         <form action="#" method="post">
                                             <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart" />
+                                                <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                                 <input type="hidden" name="quantity" value="1" />
                                                 <input type="hidden" name="business" value=" " />
                                                 <input type="hidden" name="item_name" value="Saffola Gold, 1L" />
@@ -402,7 +402,7 @@
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                         <form action="#" method="post">
                                             <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart" />
+                                                <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                                 <input type="hidden" name="quantity" value="1" />
                                                 <input type="hidden" name="business" value=" " />
                                                 <input type="hidden" name="item_name" value="Fortune Oil, 5L" />
@@ -445,7 +445,7 @@
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                         <form action="#" method="post">
                                             <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart" />
+                                                <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                                 <input type="hidden" name="quantity" value="1" />
                                                 <input type="hidden" name="business" value=" " />
                                                 <input type="hidden" name="item_name" value="YiPPee Noodles, 65g" />
@@ -485,7 +485,7 @@
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                         <form action="#" method="post">
                                             <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart" />
+                                                <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                                 <input type="hidden" name="quantity" value="1" />
                                                 <input type="hidden" name="business" value=" " />
                                                 <input type="hidden" name="item_name" value="Wheat Pasta, 500g" />
@@ -525,7 +525,7 @@
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                         <form action="#" method="post">
                                             <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart" />
+                                                <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                                 <input type="hidden" name="quantity" value="1" />
                                                 <input type="hidden" name="business" value=" " />
                                                 <input type="hidden" name="item_name" value="Chinese Noodles, 68g" />

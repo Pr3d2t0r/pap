@@ -94,7 +94,7 @@
                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                     <form action="#" method="post">
                         <fieldset>
-                            <input type="hidden" name="cmd" value="_cart" />
+                            <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                             <input type="hidden" name="quantity" value="1" />
                             <input type="hidden" name="business" value=" " />
                             <input type="hidden" name="item_name" value="Zeeba Premium Basmati Rice - 5 KG" />

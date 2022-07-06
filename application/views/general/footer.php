@@ -188,12 +188,6 @@
 
 <script src="<?php echo base_url("resources/js/jquery-2.1.4.min.js"); ?>"></script>
 
-<script>
-    function showSuccess(msg) {
-
-    }
-</script>
-
 <script src="<?php echo base_url("resources/js/jquery.magnific-popup.js"); ?>"></script>
 <script>
     $(document).ready(function () {
@@ -230,7 +224,11 @@
     <?php if ($isLoggedIn): ?>
         var timeout1, timeout2;
         paypalm.minicartk.cart.on('checkout', function (evt) {
-            var items = this.items();
+            var items = paypalm.minicartk.cart.items();
+            var newItems = [];
+            for (var i = 0; i < items.length; i++) {
+                newItems.push(items[i]._data);
+            }
             $.ajax({
                 url: "<?php echo base_url("/api/cart/user/" . $user->id); ?>",
                 success: function (data) {
@@ -238,7 +236,7 @@
                         url: "<?php echo base_url("/api/cart/checkout/"); ?>",
                         data: {
                             cart_id: data.id,
-                            items: items
+                            items: newItems
                         },
                         method: "POST",
                         success: function (xdata) {
@@ -251,7 +249,8 @@
                             }
                         },
                         error: function (data) {
-                            console.log(data)
+                            console.log(data);
+
                         }
                     })
                 },
@@ -268,7 +267,7 @@
                     $.ajax({
                         url: "<?php echo base_url("/api/cart/add/"); ?>",
                         data: {
-                            product_id: idx,
+                            product_id: product._data.id,
                             quantity: product._data.quantity,
                             cart_id: data.id,
                             discount_id: product._data.discount_id
@@ -301,7 +300,7 @@
                     $.ajax({
                         url: "<?php echo base_url("/api/cart/add/"); ?>",
                         data: {
-                            product_id: idx,
+                            product_id: product._data.id,
                             quantity: product._data.quantity,
                             cart_id: data.id,
                             discount_id: product._data.discount_id
@@ -327,14 +326,13 @@
 
         });
         paypalm.minicartk.cart.on('remove', (idx, product) => {
-        console.log(idx, product);
         $.ajax({
             url: "<?php echo base_url("/api/cart/user/" . $user->id); ?>",
             success: function (data) {
                 $.ajax({
                     url: "<?php echo base_url("/api/cart/remove/"); ?>",
                     data: {
-                        product_id: idx,
+                        product_id: product._data.id,
                         cart_id: data.id
                     },
                     method: "POST",

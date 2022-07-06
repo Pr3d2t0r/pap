@@ -27,7 +27,7 @@
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                 <form action="#" method="post">
                                     <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart" />
+                                        <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                         <input type="hidden" name="quantity" value="1" />
                                         <input type="hidden" name="business" value=" " />
                                         <input type="hidden" name="item_name" value="Aashirvaad, 5g" />
@@ -61,7 +61,7 @@
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                 <form action="#" method="post">
                                     <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart" />
+                                        <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                         <input type="hidden" name="quantity" value="1" />
                                         <input type="hidden" name="business" value=" " />
                                         <input type="hidden" name="item_name" value="Kissan Tomato Ketchup, 950g" />
@@ -95,7 +95,7 @@
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                 <form action="#" method="post">
                                     <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart" />
+                                        <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                         <input type="hidden" name="quantity" value="1" />
                                         <input type="hidden" name="business" value=" " />
                                         <input type="hidden" name="item_name" value="Madhur Pure Sugar, 1g" />
@@ -129,7 +129,7 @@
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                 <form action="#" method="post">
                                     <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart" />
+                                        <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                         <input type="hidden" name="quantity" value="1" />
                                         <input type="hidden" name="business" value=" " />
                                         <input type="hidden" name="item_name" value="Surf Excel Liquid, 1.02L" />
@@ -163,7 +163,7 @@
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                 <form action="#" method="post">
                                     <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart" />
+                                        <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                         <input type="hidden" name="quantity" value="1" />
                                         <input type="hidden" name="business" value=" " />
                                         <input type="hidden" name="item_name" value="Cadbury Choclairs, 655.5g" />
@@ -197,7 +197,7 @@
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                 <form action="#" method="post">
                                     <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart" />
+                                        <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                         <input type="hidden" name="quantity" value="1" />
                                         <input type="hidden" name="business" value=" " />
                                         <input type="hidden" name="item_name" value="Fair & Lovely, 80 g" />
@@ -231,7 +231,7 @@
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                 <form action="#" method="post">
                                     <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart" />
+                                        <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                         <input type="hidden" name="quantity" value="1" />
                                         <input type="hidden" name="business" value=" " />
                                         <input type="hidden" name="item_name" value="Sprite, 2.25L (Pack of 2)" />
@@ -265,7 +265,7 @@
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                 <form action="#" method="post">
                                     <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart" />
+                                        <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="1" />
                                         <input type="hidden" name="quantity" value="1" />
                                         <input type="hidden" name="business" value=" " />
                                         <input type="hidden" name="item_name" value="Lakme Eyeconic Kajal, 0.35 g" />
