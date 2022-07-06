@@ -228,7 +228,7 @@
     //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
 
     <?php if ($isLoggedIn): ?>
-        var timeout1;
+        var timeout1, timeout2;
         paypalm.minicartk.cart.on('checkout', function (evt) {
             var items = this.items();
             $.ajax({
@@ -293,8 +293,40 @@
             })
 
         });
-    var timeout2;
-    paypalm.minicartk.cart.on('remove', (idx, product) => {
+        paypalm.minicartk.cart.on('change', idx => {
+            var product = paypalm.minicartk.cart.items(idx);
+            $.ajax({
+                url: "<?php echo base_url("/api/cart/user/" . $user->id); ?>",
+                success: function (data) {
+                    $.ajax({
+                        url: "<?php echo base_url("/api/cart/add/"); ?>",
+                        data: {
+                            product_id: idx,
+                            quantity: product._data.quantity,
+                            cart_id: data.id,
+                            discount_id: product._data.discount_id
+                        },
+                        method: "POST",
+                        success: function (xdata) {
+                            if (typeof xdata.error !== "undefined"){
+                                clearTimeout(timeout1)
+                                product.set("quantity", xdata.max_quantity);
+                                $(".minikcartk-error").html("Quntidade maxima atingida!")
+                                timeout1 = setTimeout(()=>{$(".minikcartk-error").html("")}, 4000)
+                            }
+                        },
+                        error: function (data) {
+                            console.log(data)
+                        }
+                    })
+                },
+                error: function () {
+                    console.log("err1.1")
+                }
+            })
+
+        });
+        paypalm.minicartk.cart.on('remove', (idx, product) => {
         console.log(idx, product);
         $.ajax({
             url: "<?php echo base_url("/api/cart/user/" . $user->id); ?>",
@@ -321,6 +353,7 @@
             }
         })
     });
+
     <?php endif; ?>
 </script>
 
