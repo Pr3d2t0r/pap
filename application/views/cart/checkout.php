@@ -68,9 +68,14 @@
                 </div>
             </div>
             <div class="checkout-left">
-                <form action="<?php echo base_url("pagamento"); ?>" method="post">
+                <form action="<?php echo base_url("checkout"); ?>" method="post">
                     <?php if (isset($personalInfo) && !empty($personalInfo)): ?>
                         <h4 class="header">Escolha as informações de entrega</h4>
+                        <?php if (isset($formErrors["personal_info_id"])): ?>
+                        <div class="error">
+                            <?php echo $formErrors["personal_info_id"]['error']; ?>
+                        </div>
+                        <?php endif; ?>
                         <div class="table-responsive">
                                 <table class="timetable_sub">
                                     <thead>
@@ -84,9 +89,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <div class="error">
-                                        <p class="info-error-msg"></p>
-                                    </div>
                                     <?php foreach ($personalInfo as $item): ?>
                                         <tr class="rem">
                                             <td class="invert">
@@ -104,7 +106,7 @@
                             </div>
                     <?php endif; ?>
                     <div class="address_form_agile">
-                        <h5>Usar novas informações de entrega</h5>
+                        <a href="#" data-toggle="modal" data-target="#personalInfoModal">Usar novas informações de entrega</a>
                         <div class="checkout-right-basket">
                             <button type="submit">Prossiga para o pagamento
                                 <span class="fa fa-hand-o-right" aria-hidden="true"></span>
@@ -123,7 +125,6 @@
                     <h4>Faça <a href="#" data-toggle="modal" data-target="#loginModal">Login</a> para começar a comprar!</h4>
                 <?php endif; ?>
             </div>
-        <? endif; ?>
+        <?php endif; ?>
     </div>
 </div>
-

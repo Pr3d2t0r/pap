@@ -2401,13 +2401,14 @@ td.invert-image a img {
 .checkout-left {
     margin-top: 50px;
 }
-.address_form_agile h5 {
+.address_form_agile a {
     cursor: pointer;
     color: #1accfd;
     font-size: 19px;
     margin-bottom: 30px;
     margin-top: 15px;
     letter-spacing: 1px;
+    text-decoration: none;
 }
 .information-wrapper input, .information-wrapper select {
     width: 100%;
@@ -3578,8 +3579,8 @@ input[type="radio"], input[type="checkbox"] {
         font-size: 22px;
         margin-bottom: 25px;
     }
-    .address_form_agile h4 {
-        font-size: 22px;
+    .address_form_agile a {
+        font-size: 16px;
         margin-bottom: 25px;
     }
     .information-wrapper input, .information-wrapper select {

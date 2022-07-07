@@ -32,7 +32,7 @@
                     </li>
                     <li>
                         <a href="#" data-toggle="modal" data-target="#registerModal">
-                            <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Registro </a>
+                            <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Registo </a>
                     </li>
                 <?php else: ?>
                     <li>
@@ -52,17 +52,19 @@
             </div>
             <!-- end--search -->
             <!-- cart -->
-            <div class="top_nav_right">
-                <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                    <form action="#" method="post" class="last">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="display" value="1">
-                        <button class="w3view-cart" type="submit" name="submit" value="">
-                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-                        </button>
-                    </form>
+            <?php if (!isset($checkout) || $checkout===false): ?>
+                <div class="top_nav_right">
+                    <div class="wthreecartaits wthreecartaits2 cart cart box_1">
+                        <form action="#" method="post" class="last">
+                            <input type="hidden" name="cmd" value="_cart">
+                            <input type="hidden" name="display" value="1">
+                            <button class="w3view-cart" type="submit" name="submit" value="">
+                                <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
             <!-- end--cart -->
             <div class="clearfix"></div>
         </div>
@@ -79,6 +81,9 @@ if (!isset($isLoggedIn) || !$isLoggedIn) {
 
     //sign-up modal
     $this->load->view('components/sign_up');
+}else{
+    if (isset($checkout) && $checkout)
+        $this->load->view('components/add_personal_info');
 }
 ?>
 

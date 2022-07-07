@@ -63,6 +63,7 @@ $route['produtos'] = "Product";
 $route['produto/(:num)'] = "Product/details/$1";
 
 $route['checkout'] = "Cart/checkout";
+$route['cart/redirect'] = "Cart/gotto";
 $route['pagamento'] = "Cart/payment";
 
 $route['registro'] = "User/register";

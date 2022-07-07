@@ -217,7 +217,7 @@
             discount: 'Desconto:',
             empty: 'O Seu Carrinho está vazio!'
         },
-        action: "<?php echo base_url("checkout"); ?>",
+        action: "<?php echo base_url("cart/redirect"); ?>",
     });
     //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
     <?php if ($isLoggedIn): ?>
@@ -555,6 +555,9 @@
             case "login":
                 $('#loginModal').modal('show');
                 break;
+            case "PersonalInfo":
+                $('#personalInfoModal').modal('show');
+                break;
             default:
                 var modal = $('<?php echo $openModal; ?>');
                 if (modal != null)
@@ -643,44 +646,5 @@
             });
         });
     </script>
-
-    <script>
-        $(".address_form_agile h5").on("click", evt=>{
-            var exists = $(".address_form_agile").find(".wthree").length > 0;
-            if (exists)
-                $($(".address_form_agile").find(".wthree")).remove();
-            else
-                $(".address_form_agile h5").after(`
-                    <div class="wthree w3_agileits_wrapper">
-                        <input type="hidden" name="new_info" value="true">
-                        <div class="information-wrapper">
-                            <div class="first-row">
-                                <div class="controls">
-                                    <input class="billing-address-name" type="text" name="first-name" placeholder="Primeiro nome" required="">
-                                </div>
-                                <div class="controls">
-                                    <input class="billing-address-name" type="text" name="last-name" placeholder="Ultimo nome" required="">
-                                </div>
-                                <div class="controls">
-                                    <input type="text" placeholder="Numero de telemovel" name="number" required="">
-                                </div>
-                                <div class="controls">
-                                    <input type="text" placeholder="Morada" name="address" required="">
-                                </div>
-                                <div class="controls">
-                                    <input type="text" placeholder="País" name="country" required="">
-                                </div>
-                                <div class="controls">
-                                    <input type="text" placeholder="Cidade" name="city" required="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `);
-        })
-    </script>
-<!--
-
--->
 </body>
 </html>

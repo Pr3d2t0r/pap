@@ -13,7 +13,7 @@
                     <span class="fa fa-envelope-o" aria-hidden="true"></span>
                 </div>
                 <div class="modal_body_left modal_body_left1">
-                    <h3 class="agileinfo_sign">Registro</h3>
+                    <h3 class="agileinfo_sign">Registo</h3>
                     <p>
                         Junte-se a nossa familia! Crie a sua conta.
                     </p>
