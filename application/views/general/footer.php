@@ -598,7 +598,7 @@
             findProductById(ciId).set('quantity', newVal);
         });
         $(document).ready(function (c) {
-            $('.close').on('click', function (c) {
+            $('.rem .close').on('click', function (c) {
                 var row = $($($(this).parent()).parent()).parent()
                 var ciId = $($(row).find("#__cmd")).val();
                 $(row).fadeOut('slow', function (c) {

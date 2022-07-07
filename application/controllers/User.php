@@ -105,7 +105,6 @@ class User extends MY_Controller {
                 "first_name" => $result_arr['first_name'],
                 "last_name" => $result_arr['last_name'],
                 "phone_number" => $result_arr['phone_number'],
-                "mail" => $result_arr['email'],
                 "address" => $result_arr['address'],
                 "city" => $result_arr['city'],
                 "country" => $result_arr['country']

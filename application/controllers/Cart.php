@@ -24,6 +24,10 @@ class Cart extends MY_Controller {
 
     public function payment()
 	{
+        if (!$this->isLoggedIn) {
+            redirect("checkout");
+            return;
+        }
         $this->openView("cart/payment");
 	}
 }
