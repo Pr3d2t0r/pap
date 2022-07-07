@@ -26,7 +26,6 @@ create table if not exists `PersonalInfo`
     `first_name`   varchar(100) not null,
     `last_name`    varchar(100) not null,
     `phone_number` varchar(9)   not null,
-    `mail`         varchar(255) null,
     `address`      text         not null,
     `city`         varchar(120) not null,
     `country`      varchar(70)  not null,

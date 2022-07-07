@@ -2401,10 +2401,12 @@ td.invert-image a img {
 .checkout-left {
     margin-top: 50px;
 }
-.address_form_agile h4 {
+.address_form_agile h5 {
+    cursor: pointer;
     color: #1accfd;
-    font-size: 24px;
+    font-size: 19px;
     margin-bottom: 30px;
+    margin-top: 15px;
     letter-spacing: 1px;
 }
 .information-wrapper input, .information-wrapper select {
@@ -2448,7 +2450,7 @@ button.submit.check_out:hover {
 .checkout-right-basket {
     margin-top: 20px;
 }
-.checkout-right-basket a {
+.checkout-right-basket button {
     padding: 12px 25px;
     color: #fff;
     font-size: 16px;
@@ -2457,15 +2459,16 @@ button.submit.check_out:hover {
     letter-spacing: 1px;
     display: inline-block;
 }
-.checkout-right-basket a:hover{
+.checkout-right-basket button:hover{
     background: #FF5722;
+    border: 3px solid #FF5722;
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
 }
-.checkout-right-basket a span {
+.checkout-right-basket button span {
     margin-left: 7px;
     color: #1accfd;
     font-size: 20px;
@@ -4907,4 +4910,10 @@ input[type="radio"], input[type="checkbox"] {
     line-height: normal;
     text-align: center;
     margin-bottom: 25px;
+}
+
+.checkout-left h4.header{
+    color: #FF5722;
+    font-size: 27px;
+    margin-bottom: 30px;
 }

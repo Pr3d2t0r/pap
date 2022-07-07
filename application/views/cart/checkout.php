@@ -68,50 +68,50 @@
                 </div>
             </div>
             <div class="checkout-left">
-            <div class="address_form_agile">
-                <h4>Adicionar novas informações de entrega</h4>
-                <form action="<?php echo base_url("pagamento"); ?>" method="post" class="creditly-card-form agileinfo_form">
-                    <div class="creditly-wrapper wthree, w3_agileits_wrapper">
-                        <div class="information-wrapper">
-                            <div class="first-row">
-                                <div class="controls">
-                                    <input class="billing-address-name" type="text" name="name" placeholder="Full Name" required="">
-                                </div>
-                                <div class="w3_agileits_card_number_grids">
-                                    <div class="w3_agileits_card_number_grid_left">
-                                        <div class="controls">
-                                            <input type="text" placeholder="Mobile Number" name="number" required="">
-                                        </div>
+                <form action="<?php echo base_url("pagamento"); ?>" method="post">
+                    <?php if (isset($personalInfo) && !empty($personalInfo)): ?>
+                        <h4 class="header">Escolha as informações de entrega</h4>
+                        <div class="table-responsive">
+                                <table class="timetable_sub">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nome</th>
+                                        <th>Numero de telemovel</th>
+                                        <th>Morada</th>
+                                        <th>Cidade</th>
+                                        <th>País</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <div class="error">
+                                        <p class="info-error-msg"></p>
                                     </div>
-                                    <div class="w3_agileits_card_number_grid_right">
-                                        <div class="controls">
-                                            <input type="text" placeholder="Landmark" name="landmark" required="">
-                                        </div>
-                                    </div>
-                                    <div class="clear"> </div>
-                                </div>
-                                <div class="controls">
-                                    <input type="text" placeholder="Town/City" name="city" required="">
-                                </div>
-                                <div class="controls">
-                                    <select class="option-w3ls">
-                                        <option>Select Address type</option>
-                                        <option>Office</option>
-                                        <option>Home</option>
-                                        <option>Commercial</option>
-
-                                    </select>
-                                </div>
+                                    <?php foreach ($personalInfo as $item): ?>
+                                        <tr class="rem">
+                                            <td class="invert">
+                                                <input type="checkbox" name="personal_info_id" value="<?php echo $item["id"]; ?>">
+                                            </td>
+                                            <td class="invert"><?php echo $item["first_name"] . " " . $item["last_name"]; ?></td>
+                                            <td class="invert"><?php echo $item["phone_number"]; ?></td>
+                                            <td class="invert"><?php echo $item["address"]; ?></td>
+                                            <td class="invert"><?php echo $item["city"]; ?></td>
+                                            <td class="invert"><?php echo $item["country"]; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
                             </div>
-                            <button class="submit check_out">Entrega neste endereço</button>
+                    <?php endif; ?>
+                    <div class="address_form_agile">
+                        <h5>Usar novas informações de entrega</h5>
+                        <div class="checkout-right-basket">
+                            <button type="submit">Prossiga para o pagamento
+                                <span class="fa fa-hand-o-right" aria-hidden="true"></span>
+                            </button>
                         </div>
                     </div>
                 </form>
-                <div class="checkout-right-basket">
-                    <a href="<?php echo base_url("pagamento"); ?>">Prossiga para o pagamento
-                        <span class="fa fa-hand-o-right" aria-hidden="true"></span>
-                    </a>
-                </div>
             </div>
             <div class="clearfix"> </div>
         </div>
@@ -126,3 +126,4 @@
         <? endif; ?>
     </div>
 </div>
+
