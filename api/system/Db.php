@@ -69,6 +69,16 @@ class Db {
         return $db->fetchAll();
     }
 
+    public function getAllWhere($table, $field, $value, $whereClause = null, $mode = PDO::FETCH_ASSOC){
+        $db = $this->pdo->prepare("SELECT * FROM $table WHERE $field = ? " . ($whereClause ?: ""));
+        if ($db === false)
+            return null;
+        $db->bindParam(1, $value);
+        $db->execute();
+        $db->setFetchMode($mode);
+        return $db->fetchAll();
+    }
+
     public function insert($table, $data = []) {
         if (count($data) == 0)
             throw new Exception("Invalid insert data.");

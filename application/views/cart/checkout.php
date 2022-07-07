@@ -63,58 +63,6 @@
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
-                            <!--<tr class="rem2">
-                                <td class="invert">2</td>
-                                <td class="invert-image">
-                                    <a href="#">
-                                        <img src="<?php /*echo base_url("resources/images/s6.jpg"); */?>" alt=" " class="img-responsive">
-                                    </a>
-                                </td>
-                                <td class="invert">
-                                    <div class="quantity">
-                                        <div class="quantity-select">
-                                            <div class="entry value-minus">&nbsp;</div>
-                                            <div class="entry value">
-                                                <span>1</span>
-                                            </div>
-                                            <div class="entry value-plus active">&nbsp;</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="invert">Fair & Lovely, 80 g</td>
-                                <td class="invert">$121.60</td>
-                                <td class="invert">
-                                    <div class="rem">
-                                        <div class="close2"> </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="rem3">
-                                <td class="invert">3</td>
-                                <td class="invert-image">
-                                    <a href="#">
-                                        <img src="<?php /*echo base_url("resources/images/s5.jpg"); */?>" alt=" " class="img-responsive">
-                                    </a>
-                                </td>
-                                <td class="invert">
-                                    <div class="quantity">
-                                        <div class="quantity-select">
-                                            <div class="entry value-minus">&nbsp;</div>
-                                            <div class="entry value">
-                                                <span>1</span>
-                                            </div>
-                                            <div class="entry value-plus active">&nbsp;</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="invert">Sprite, 2.25L (Pack of 2)</td>
-                                <td class="invert">$180.00</td>
-                                <td class="invert">
-                                    <div class="rem">
-                                        <div class="close3"> </div>
-                                    </div>
-                                </td>
-                            </tr>-->
                         </tbody>
                     </table>
                 </div>

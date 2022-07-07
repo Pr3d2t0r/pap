@@ -221,7 +221,7 @@
     });
     //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
     <?php if ($isLoggedIn): ?>
-        var timeout1, timeout2;
+        var timeout1, timeout2, timeout3, checkout=false, inpt;
         paypalm.minicartk.cart.on('checkout', function (evt) {
             var items = paypalm.minicartk.cart.items();
             var newItems = [];
@@ -244,7 +244,9 @@
                                 clearTimeout(timeout1)
                                 evt.preventDefault();
                                 $(".minikcartk-error").html("Não é possivel efetuar checkout neste momento, tente novamente mais tarde!")
-                                timeout1 = setTimeout(()=>{$(".minikcartk-error").html("")}, 4000)
+                                timeout1 = setTimeout(() => {
+                                    $(".minikcartk-error").html("")
+                                }, 4000)
                             }
                         },
                         error: function (data) {
@@ -307,10 +309,22 @@
                         method: "POST",
                         success: function (xdata) {
                             if (typeof xdata.error !== "undefined"){
-                                clearTimeout(timeout1)
                                 product.set("quantity", xdata.max_quantity);
-                                $(".minikcartk-error").html("Quntidade maxima atingida!")
-                                timeout1 = setTimeout(()=>{$(".minikcartk-error").html("")}, 4000)
+                                if (checkout !== true){
+                                    clearTimeout(timeout1)
+                                    $(".minikcartk-error").html("Quntidade maxima atingida!")
+                                    timeout1 = setTimeout(() => {
+                                        $(".minikcartk-error").html("")
+                                    }, 4000)
+                                }else{
+                                    paypalm.minicartk.view.hide();
+                                    clearTimeout(timeout3)
+                                    $(inpt).text(xdata.max_quantity);
+                                    $(".error-msg").text("Quntidade maxima atingida!")
+                                    timeout3 = setTimeout(()=>{$(".error-msg").text("")}, 4000)
+                                    checkout=false;
+                                    inpt=null;
+                                }
                             }
                         },
                         error: function (data) {
@@ -550,41 +564,14 @@
     </script>
 <?php endif; ?>
     <script>
-        var timeout3;
-        function updateQt(id, qt, inpt) {
-            $.ajax({
-                url: "<?php echo base_url("/api/cart/user/" . $user->id); ?>",
-                success: function (data) {
-                    $.ajax({
-                        url: "<?php echo base_url("/api/cart/add/"); ?>",
-                        data: {
-                            product_id: id,
-                            quantity: qt,
-                            cart_id: data.id,
-                        },
-                        method: "POST",
-                        success: function (xdata) {
-                            if (typeof xdata.error !== "undefined"){
-                                clearTimeout(timeout3)
-                                $(inpt).text(xdata.max_quantity);
-                                $(".error-msg").text("Quntidade maxima atingida!")
-                                timeout3 = setTimeout(()=>{$(".error-msg").text("")}, 4000)
-                            }
-                        },
-                        error: function (data) {
-                            console.log(data)
-                        }
-                    })
-                },
-                error: function () {
-                    console.log("err1.1")
-                }
-            })
-        }
         function findProductById(pId){
             var items = paypalm.minicartk.cart.items();
             for (var i = 0; i < items.length; i++) {
-                if (items[i]._data.id == pId) return items[i];
+                if (items[i]._data.id == pId) {
+                    console.log(i)
+                    items[i].idx = i;
+                    return items[i];
+                }
             }
             return null;
         }
@@ -594,8 +581,9 @@
             divUpd.text(newVal);
             var row = $($($($(this).parent()).parent()).parent()).parent()
             var ciId = $($(row).find("#__cmd")).val();
-            updateQt(ciId, newVal, divUpd);
-            findProductById(ciId).set('quantity', 4);
+            inpt=divUpd;
+            checkout=true;
+            findProductById(ciId).set('quantity', newVal);
         });
 
         $('.value-minus').on('click', function () {
@@ -605,7 +593,9 @@
             divUpd.text(newVal);
             var row = $($($($(this).parent()).parent()).parent()).parent()
             var ciId = $($(row).find("#__cmd")).val();
-            updateQt(ciId, newVal, divUpd);
+            inpt=divUpd;
+            checkout=true;
+            findProductById(ciId).set('quantity', newVal);
         });
         $(document).ready(function (c) {
             $('.close').on('click', function (c) {
@@ -626,6 +616,20 @@
                                 },
                                 method: "POST",
                                 success: function (xdata) {
+                                    paypalm.minicartk.reset();
+                                    var items = xdata.items;
+                                    for (var i = 0; i < items.length; i++) {
+                                        paypalm.minicartk.cart.add({
+                                            amount: items[i].price,
+                                            quantity: items[i].quantity,
+                                            item_name: items[i].title,
+                                            currency_code: "EUR",
+                                            id: items[i].id,
+                                            reference: items[i].reference
+                                        });
+                                        console.log(items[i]);
+                                    }
+                                    paypalm.minicartk.view.hide();
                                 },
                                 error: function (data) {
                                 }

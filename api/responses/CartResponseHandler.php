@@ -123,7 +123,8 @@ class CartResponseHandler extends ResponseHandler {
         }
 
         return [
-            "success" => "Removed with success!"
+            "success" => "Removed with success!",
+            "items" => $this->db->executeGet("select ci.quantity, p.price, p.title, p.id, p.reference from `CartItem` as ci inner join `Product` as p on ci.product_id=p.id where ci.cart_id=? AND active=1", [$body["cart_id"]])
         ];
     }
 
