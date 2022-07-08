@@ -24,7 +24,6 @@ class Cart extends MY_Controller {
 
         if ($this->isLoggedIn){
             $result = $this->input->post();
-            var_dump($result);
             $newInfo = isset($result['new_info']);
             if ($newInfo) {
                 $this->form_validation->set_rules('first_name', 'Primeiro Nome!', 'required|min_length[3]|max_length[160]');

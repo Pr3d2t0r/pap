@@ -47,10 +47,10 @@ class CartResponseHandler extends ResponseHandler {
             throw new Exception("Missing parameters.");
 
         $body = $this->request->post;
-        /*$product = $this->db->getById('product', $body['product_id']);
+        $product = $this->db->getById('product', $body['product_id']);
 
         if ($product === false || $product === null)
-            throw new Exception("Product Doesn't exists");*/
+            throw new Exception("Product Doesn't exists");
 
         if ($body['quantity']<0)
             throw new Exception("Quantity can not be negative!");
@@ -84,7 +84,7 @@ class CartResponseHandler extends ResponseHandler {
             "product_id" => $body["product_id"],
             "cart_id" => $body["cart_id"],
             "quantity" => $body["quantity"],
-            "price" => $product["price"] ?? 120,
+            "price" => $product["price"],
         ];
 
         if (isset($body["discount_id"]) )
@@ -107,10 +107,10 @@ class CartResponseHandler extends ResponseHandler {
 
         $body = $this->request->post;
 
-        /*$product = $this->db->getById('product', $body['product_id']);
+        $product = $this->db->getById('product', $body['product_id']);
 
         if ($product === false || $product === null)
-            throw new Exception("Product Doesn't exists");*/
+            throw new Exception("Product Doesn't exists");
 
         $cartItem = $this->db->getByField("cartitem", "product_id", $body['product_id'], "AND active=1 AND cart_id=".$body['cart_id']);
 
@@ -139,15 +139,15 @@ class CartResponseHandler extends ResponseHandler {
         ]);
 
         for ($i=0; $i < count($body['items']); $i++){
-            /*$product = $this->db->getById('product', $body['items']['id']);
+            $product = $this->db->getById('product', $body['items'][$i]['id']);
 
             if ($product === false || $product === null)
-                throw new Exception("Product Doesn't exists");*/
+                continue;
             $insertData =  [
                 "product_id" => $body['items'][$i]['id'],
                 "cart_id" => $body['cart_id'],
                 "quantity" => $body['items'][$i]['quantity'],
-                "price" => $product["price"] ?? 120,
+                "price" => $product["price"],
             ];
 
             if (isset($body['items'][$i]["discount_id"]))
