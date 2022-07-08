@@ -92,7 +92,7 @@
                                     <?php foreach ($personalInfo as $item): ?>
                                         <tr class="rem">
                                             <td class="invert">
-                                                <input type="checkbox" name="personal_info_id" value="<?php echo $item["id"]; ?>">
+                                                <input type="radio" name="personal_info_id" value="<?php echo $item["id"]; ?>" <?php if (isset($cart['personal_info_id']) && $cart['personal_info_id'] != null && $cart['personal_info_id'] == $item['id']) echo "checked"; ?>>
                                             </td>
                                             <td class="invert"><?php echo $item["first_name"] . " " . $item["last_name"]; ?></td>
                                             <td class="invert"><?php echo $item["phone_number"]; ?></td>
