@@ -534,8 +534,9 @@
             '.creditly-wrapper .credit-card-number',
             '.creditly-wrapper .security-code',
             '.creditly-wrapper .card-type');
-        $(".creditly-card-form .submit, .cc-form .submit").click(function (e) {
+        $(".creditly-card-form .submit").click(function (e) {
             var output = creditly.validate();
+            console.log(output);
             if (!output) {
                 e.preventDefault();
             }

@@ -32,6 +32,16 @@ create table if not exists `PersonalInfo`
     `user_id`      int(11)      null
 );
 
+create table if not exists `PaymentInfo`
+(
+    `id`      int(11) primary key auto_increment,
+    `name`    varchar(200) not null,
+    `number`  varchar(19)  not null,
+    `cvv`     varchar(3)   not null,
+    `city`    date         not null,
+    `user_id` int(11)      null
+);
+
 create table if not exists `Shop`
 (
     `id`           int(11) primary key auto_increment,

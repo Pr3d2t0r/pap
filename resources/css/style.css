@@ -4918,3 +4918,36 @@ input[type="radio"], input[type="checkbox"] {
     font-size: 27px;
     margin-bottom: 30px;
 }
+
+.resp-tabs-container ul{
+    list-style: none;
+    margin-top: 45px;
+}
+
+.resp-tabs-container ul li{
+    margin-bottom: 15px;
+}
+
+.resp-tabs-container ul li label{
+    color: #212121;
+    letter-spacing: 1.3px;
+    font-size: 1.2em;
+    font-weight: 500 !important;
+}
+
+.resp-tabs-container button.submit-data{
+    margin-top: 35px;
+    padding: 12px 25px;
+    letter-spacing: 1px;
+    background: #FF5722;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    outline: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    display: inline-block;
+}

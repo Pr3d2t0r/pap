@@ -7,7 +7,7 @@ class Cart extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array("CartItemsModel", "CartModel", "PersonalInfoModel"));
+        $this->load->model(array("CartItemsModel", "CartModel", "PersonalInfoModel", "PaymentInfoModel"));
         $this->load->library(array('form_validation'));
         $this->data['checkout'] = true;
         $this->data['formErrors'] = null;
@@ -94,6 +94,10 @@ class Cart extends MY_Controller {
             redirect("checkout");
             return;
         }
+
+        $this->data['cart'] = $this->isLoggedIn ? $this->CartModel->getForUser($this->user->id) : null;
+        $this->data['paymentInfo'] = $this->isLoggedIn ? $this->PaymentInfoModel->getFromUser($this->user->id) : null;
+
 
         $this->openView("cart/payment");
 	}

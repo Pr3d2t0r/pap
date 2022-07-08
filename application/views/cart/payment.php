@@ -5,7 +5,7 @@ $this->load->view("components/bread_crumbs");
 
 <div class="privacy">
     <div class="container">
-        <h3 class="tittle-w3l">Payment
+        <h3 class="tittle-w3l">Pagamento
             <span class="heading-style">
 					<i></i>
 					<i></i>
@@ -15,12 +15,32 @@ $this->load->view("components/bread_crumbs");
         <div class="checkout-right">
             <div id="parentHorizontalTab">
                 <ul class="resp-tabs-list hor_1">
-                    <li>Credit/Debit</li>
-                    <li>Paypal Account</li>
+                    <?php if (isset($paymentInfo) && !empty($paymentInfo)): ?>
+                        <li>Meus Cartões</li>
+                    <?php endif; ?>
+                    <li>Credito/Debito</li>
+                    <li>Paypal</li>
                 </ul>
                 <div class="resp-tabs-container hor_1">
+                    <?php if (isset($paymentInfo) && !empty($paymentInfo)): ?>
+                        <div>
+                            <h4>Meus Cartões</h4>
+                            <form action="<?php echo base_url("pagamento/old"); ?>" method="post">
+                                <ul>
+                                    <?php foreach ($paymentInfo as $item): ?>
+                                        <li>
+                                            <label><input type="radio" name="card_id" value="<?php echo $item['id']; ?>"> **** **** **** <span><?php echo $item['last_4_digits']; ?></span><img src="<?php echo base_url("resources/images/" . ($item['number'][0] == 4?"pay1.png":"pay2.png")); ?>" alt=""></label>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                                <button class="submit-data">
+                                    <span>Faça o Pagamento</span>
+                                </button>
+                            </form>
+                        </div>
+                    <?php endif; ?>
                     <div>
-                        <form action="#" method="post" class="creditly-card-form agileinfo_form">
+                        <form action="<?php echo base_url("pagamento/new"); ?>" method="post" class="creditly-card-form agileinfo_form">
                             <div class="creditly-wrapper wthree, w3_agileits_wrapper">
                                 <div class="credit-card-wrapper">
                                     <div class="first-row form-group">
@@ -59,7 +79,6 @@ $this->load->view("components/bread_crumbs");
                                 </div>
                             </div>
                         </form>
-
                     </div>
                     <div>
                         <div id="tab4" class="tab-grid" style="display: block;">
@@ -70,31 +89,27 @@ $this->load->view("components/bread_crumbs");
                                     <a class="btn btn-primary">Checkout via Paypal</a>
                                 </div>
                                 <div class="col-md-6 number-paymk">
-                                    <form class="cc-form" action="#" method="">
+                                    <form class="cc-form" action="https://www.paypal.com/pt/home" method="get">
                                         <div class="clearfix">
                                             <div class="form-group form-group-cc-number">
                                                 <label>Numero do Cartão</label>
-                                                <input class="form-control" placeholder="xxxx xxxx xxxx xxxx" type="text">
+                                                <input class="form-control" placeholder="xxxx xxxx xxxx xxxx" type="text" name="card">
                                                 <span class="cc-card-icon"></span>
                                             </div>
                                             <div class="form-group form-group-cc-cvc">
                                                 <label>CVV</label>
-                                                <input class="form-control" placeholder="xxxx" type="text">
+                                                <input class="form-control" placeholder="xxx" type="text" name="cvv">
                                             </div>
                                         </div>
                                         <div class="clearfix">
                                             <div class="form-group form-group-cc-name">
                                                 <label>Nome no Cartão</label>
-                                                <input class="form-control" type="text">
+                                                <input class="form-control" type="text" name="name">
                                             </div>
                                             <div class="form-group form-group-cc-date">
                                                 <label>Data de Validade</label>
-                                                <input class="form-control" placeholder="mm/yy" type="text">
+                                                <input class="form-control" placeholder="mm/yy" type="text" name="date">
                                             </div>
-                                        </div>
-                                        <div class="checkbox checkbox-small">
-                                            <label>
-                                                <input class="i-check" type="checkbox" checked="">Guardar nos meus cartões</label>
                                         </div>
                                         <input type="submit" class="submit" value="Faça o Pagamento">
                                     </form>
