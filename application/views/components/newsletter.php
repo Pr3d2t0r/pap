@@ -1,9 +1,9 @@
-<div class="footer-top">
+<div class="footer-top" id="newsletter">
     <div class="container-fluid">
         <div class="col-xs-8 agile-leftmk">
             <h2>Receba as nossas novidades por e-mail</h2>
             <p>Inscreva-se para receber as novidades!</p>
-            <form action="#" method="post">
+            <form action="<?php echo base_url("newsletter"); ?>" method="post">
                 <input type="email" placeholder="E-mail" name="email" required="">
                 <input type="submit" value="Subscrever">
             </form>

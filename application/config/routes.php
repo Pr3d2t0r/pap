@@ -69,6 +69,7 @@ $route['pagamento'] = "Cart/payment";
 $route['pagamento/old'] = "Cart/old";
 $route['pagamento/new'] = "Cart/new";
 
+$route['newsletter'] = "User/newsletter";
 $route['registro'] = "User/register";
 $route['login'] = "User/login";
 $route['logout'] = "User/logout";

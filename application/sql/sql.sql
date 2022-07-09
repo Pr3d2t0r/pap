@@ -343,6 +343,12 @@ create table if not exists `Questions`
     `created_at` datetime not null default NOW()
 );
 
+create table if not exists `Newsletter`
+(
+    id    int(11) primary key auto_increment,
+    email varchar(255) unique not null
+);
+
 DELIMITER $$
 
 CREATE TRIGGER create_register_token

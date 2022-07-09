@@ -212,4 +212,24 @@ class User extends MY_Controller {
         $this->session->set_flashdata("success_msg", "Logout efetuado com sucesso!");
         redirect();
     }
+
+    public function newsletter(){
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+
+        if (!$this->form_validation->run()) {
+            $this->session->set_flashdata("error_msg", "Por favor preencha com um email valido!");
+            redirect();
+        } else {
+            $this->session->set_flashdata('newsLetterErrors');
+            $result_arr = $this->input->post();
+            $result = $this->UserModel->signUpToNewsLetter($result_arr['email']);
+            if ($result === false) {
+                $this->session->set_flashdata("error_msg", "Email ja está registrado na newsletter!");
+                redirect();
+            }else{
+                $this->session->set_flashdata("success_msg", "Email registrado na newsletter com sucesso!");
+                redirect();
+            }
+        }
+    }
 }
