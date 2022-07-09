@@ -4951,3 +4951,38 @@ input[type="radio"], input[type="checkbox"] {
     -ms-transition: 0.5s all;
     display: inline-block;
 }
+
+.privacy .values{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.privacy .values > div{
+    width: fit-content;
+    min-height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px 55px;
+    font-size: 20px;
+    border-color: rgb(193, 193, 193);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    color: #fff;
+    background-color: #1accfd;
+}
+
+.privacy .values > div:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.privacy .values > div:nth-child(2){
+    background-color: #FF5722;
+}
+
+.privacy .values > div > span{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}

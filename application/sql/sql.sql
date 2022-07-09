@@ -38,7 +38,7 @@ create table if not exists `PaymentInfo`
     `name`    varchar(200) not null,
     `number`  varchar(19)  not null,
     `cvv`     varchar(3)   not null,
-    `city`    date         not null,
+    `valid_til`    date         not null,
     `user_id` int(11)      null
 );
 
@@ -248,6 +248,7 @@ create table if not exists `Cart`
     `user_id`          int(11)                                                       not null,
     `status`           enum ('checkout', 'awaiting_payment_confirmation', 'ordered') not null default 'checkout',
     `personal_info_id` int(11)                                                       null,
+    `payment_info_id`  int(11)                                                       null,
     `created_at`       datetime                                                      not null default NOW()
 );
 
@@ -266,7 +267,7 @@ create table `CartItem`
 create table if not exists `Order`
 (
     `id`               int(11) primary key auto_increment,
-    `reference`        varchar(15) unicode                                           not null,
+    `reference`        varchar(15)                                                   not null default substr(UUID(), -15),
     `user_id`          int(11)                                                       not null,
     `status`           enum ('received', 'awaiting_shipping', 'shipped', 'complete') not null default 'received',
     `sub_total`        float                                                         not null,
@@ -275,6 +276,7 @@ create table if not exists `Order`
     `promocode`        varchar(80)                                                   null,
     `discount_id`      int(11)                                                       null,
     `personal_info_id` int(11)                                                       not null,
+    `payment_info_id`  int(11)                                                       not null,
     `created_at`       datetime                                                      not null default NOW()
 );
 

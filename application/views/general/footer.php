@@ -559,6 +559,9 @@
             case "PersonalInfo":
                 $('#personalInfoModal').modal('show');
                 break;
+            case "RESET_CART":
+                paypalm.minicartk.reset();
+                break;
             default:
                 var modal = $('<?php echo $openModal; ?>');
                 if (modal != null)

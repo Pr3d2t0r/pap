@@ -7,7 +7,7 @@ class Cart extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array("CartItemsModel", "CartModel", "PersonalInfoModel", "PaymentInfoModel"));
+        $this->load->model(array("CartItemsModel", "CartModel", "PersonalInfoModel", "PaymentInfoModel", "OrderModel", "OrderItemsModel", "DiscountModel", "ProductModel"));
         $this->load->library(array('form_validation'));
         $this->data['checkout'] = true;
         $this->data['formErrors'] = null;
@@ -95,14 +95,118 @@ class Cart extends MY_Controller {
             return;
         }
 
-        $this->data['cart'] = $this->isLoggedIn ? $this->CartModel->getForUser($this->user->id) : null;
-        $this->data['paymentInfo'] = $this->isLoggedIn ? $this->PaymentInfoModel->getFromUser($this->user->id) : null;
+        $this->data['cart'] =  $this->CartModel->getForUser($this->user->id);
+        $this->data['paymentInfo'] = $this->PaymentInfoModel->getFromUser($this->user->id);
 
+        $amounts = $this->calculate();
+
+        $this->data['total'] = number_format($amounts['total'], 2);
+        $this->data['subtotal'] = number_format($amounts['subtotal'], 2);
+        $this->data['envio'] = number_format($amounts['envio'], 2);
 
         $this->openView("cart/payment");
 	}
 
+    public function old(){
+        if (!$this->isLoggedIn) {
+            redirect("checkout");
+            return;
+        }
+        $this->data['cart'] = $this->CartModel->getForUser($this->user->id);
+        $body = $this->input->post();
+        if (!isset($body['payment_info_id'])){
+            $this->session->set_flashdata("old_card_info_error", "Por favor selecione um cartão ou escolha uma das outras opções!");
+            redirect('pagamento#parentHorizontalTab1');
+            return;
+        }
+
+        $this->data['cart'] = $this->CartModel->associatePaymentInfo($this->data['cart']['id'], $body['payment_info_id']);
+        $reference = $this->complete();
+
+        $this->session->set_flashdata("success_msg", "Compra efetuada com sucesso! Referência do Pedido: $reference");
+        $this->session->set_flashdata("openModal", "RESET_CART");
+        redirect();
+    }
+
+    public function new(){
+        if (!$this->isLoggedIn) {
+            redirect("checkout");
+            return;
+        }
+        $this->data['cart'] = $this->CartModel->getForUser($this->user->id);
+
+        $this->form_validation->set_rules('name', 'Nome!', 'required|min_length[3]|max_length[200]');
+        $this->form_validation->set_rules('number', 'Nº do cartão', 'required|min_length[19]|max_length[19]  ');
+        $this->form_validation->set_rules('cvv', 'CVV', 'required|min_length[3]|max_length[3]');
+        $this->form_validation->set_rules('expiration-month-and-year', 'Data de validade', 'required');
+
+        if (!$this->form_validation->run()){
+            $this->session->set_flashdata("form_errors", validation_errors());
+            redirect("pagamento");
+        }
+        $body = $this->input->post();
+        $old_date = explode(" / ", $body['expiration-month-and-year']);
+        $body["valid_til"] = $old_date[1]."/".$old_date[0]."/01";
+        if (isset($body["remember"]))
+            $body["user_id"] = $this->user->id;
+        unset($body['expiration-month-and-year']);
+        unset($body['remember']);
+        $payment_info_id = $this->PaymentInfoModel->insert($body);
+        $this->session->set_flashdata("openModal", "RESET_CART");
+        $this->data['cart'] = $this->CartModel->associatePaymentInfo($this->data['cart']['id'], $payment_info_id);
+
+
+        $reference = $this->complete();
+
+        $this->session->set_flashdata("success_msg", "Compra efetuada com sucesso! Referência do Pedido: $reference");
+        redirect();
+    }
+
     public function gotto(){
         redirect("checkout");
+    }
+
+    private function calculate(){
+        $items = $this->CartItemsModel->getForCart($this->data['cart']['id'], "OBJECT");
+        $subtotal = 0;
+        $envio = 0;
+        foreach ($items as $key => $item){
+            $discountObj = $this->DiscountModel->getById($item->discount_id ?? -1, "OBJECT");
+            $product = $this->ProductModel->getById($item->product_id ?? -1, "OBJECT");
+            $items[$key]->price = $product->price;
+            if ($discountObj != null)
+                $discount = $item->price * ($discountObj->discount/100);
+            $subtotal += (($item->price * $item->quantity) - $discount ?? 0);
+            $envio += 0.6;
+            $items[$key]->total = (($item->price * $item->quantity) - $discount ?? 0);
+        }
+        return [
+            "items"    => $items,
+            "subtotal" => $subtotal,
+            "envio"    => $envio,
+            "total"    => $subtotal + $envio
+        ];
+    }
+
+    private function complete(){
+        $amounts = $this->calculate();
+        $orderId = $this->OrderModel->insert([
+            "user_id" => $this->user->id,
+            "sub_total" => $amounts['subtotal'],
+            "shipping" => $amounts['envio'],
+            "total" => $amounts['total'],
+            "personal_info_id" => $this->data['cart']['personal_info_id'],
+            "payment_info_id" => $this->data['cart']['payment_info_id'],
+        ]);
+        foreach ($amounts['items'] as $cartItem){
+            $this->OrderItemsModel->insert([
+                "product_id" => $cartItem->product_id,
+                "order_id" => $orderId,
+                "total" => $cartItem->total,
+                "discount_id" => $cartItem->discount_id ?? null,
+                "quantity" => $cartItem->quantity,
+            ]);
+        }
+        return $this->OrderModel->getReference($orderId);
     }
 }

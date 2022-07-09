@@ -13,6 +13,17 @@ $this->load->view("components/bread_crumbs");
 				</span>
         </h3>
         <div class="checkout-right">
+            <div class="values">
+                <div> Sub-Total:
+                    <span><?php echo $subtotal; ?>€</span>
+                </div>
+                <div> Total:
+                    <span><?php echo $total; ?>€</span>
+                </div>
+                <div> Envio:
+                    <span><?php echo $envio; ?>€</span>
+                </div>
+            </div>
             <div id="parentHorizontalTab">
                 <ul class="resp-tabs-list hor_1">
                     <?php if (isset($paymentInfo) && !empty($paymentInfo)): ?>
@@ -29,10 +40,18 @@ $this->load->view("components/bread_crumbs");
                                 <ul>
                                     <?php foreach ($paymentInfo as $item): ?>
                                         <li>
-                                            <label><input type="radio" name="card_id" value="<?php echo $item['id']; ?>"> **** **** **** <span><?php echo $item['last_4_digits']; ?></span><img src="<?php echo base_url("resources/images/" . ($item['number'][0] == 4?"pay1.png":"pay2.png")); ?>" alt=""></label>
+                                            <label><input type="radio" name="payment_info_id" value="<?php echo $item['id']; ?>"> **** **** **** <span><?php echo $item['last_4_digits']; ?></span><img src="<?php echo base_url("resources/images/" . ($item['number'][0] == 4?"pay1.png":"pay2.png")); ?>" alt=""></label>
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>
+                                <?php
+                                    $error = $this->session->flashdata('old_card_info_error');
+                                    if ($error != null):
+                                ?>
+                                    <div class="error">
+                                        <p><?php echo $error; ?></p>
+                                    </div>
+                                <?php endif; ?>
                                 <button class="submit-data">
                                     <span>Faça o Pagamento</span>
                                 </button>
@@ -59,7 +78,7 @@ $this->load->view("components/bread_crumbs");
                                             <div class="w3_agileits_card_number_grid_right">
                                                 <div class="controls">
                                                     <label class="control-label">CVV</label>
-                                                    <input class="security-code form-control"  inputmode="numeric" type="text" name="security-code" placeholder="&#149;&#149;&#149;">
+                                                    <input class="security-code form-control"  inputmode="numeric" type="text" name="cvv" placeholder="&#149;&#149;&#149;">
                                                 </div>
                                             </div>
                                             <div class="clear"> </div>
@@ -70,9 +89,17 @@ $this->load->view("components/bread_crumbs");
                                         </div>
                                         <div class="checkbox checkbox-small">
                                             <label>
-                                                <input class="i-check" type="checkbox" checked="">Guardar nos meus cartões</label>
+                                                <input class="i-check" name="remember" type="checkbox" checked="">Guardar nos meus cartões</label>
                                         </div>
                                     </div>
+                                    <?php
+                                    $formErrors = $this->session->flashdata("form_errors");
+                                    if ($formErrors != null):
+                                        ?>
+                                        <div class="error">
+                                            <?php echo $formErrors; ?>
+                                        </div>
+                                    <?php endif; ?>
                                     <button class="submit">
                                         <span>Faça o Pagamento</span>
                                     </button>
