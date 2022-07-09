@@ -7,7 +7,7 @@ class Cart extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array("CartItemsModel", "CartModel", "PersonalInfoModel", "PaymentInfoModel", "OrderModel", "OrderItemsModel", "DiscountModel", "ProductModel"));
+        $this->load->model(array("CartItemsModel", "CartModel", "PersonalInfoModel", "PaymentInfoModel", "OrderModel", "OrderItemsModel", "DiscountModel", "ProductModel", "ShopModel"));
         $this->load->library(array('form_validation'));
         $this->data['checkout'] = true;
         $this->data['formErrors'] = null;
@@ -190,6 +190,7 @@ class Cart extends MY_Controller {
 
     private function complete(){
         $amounts = $this->calculate();
+        $shopId = $this->findBestShop($amounts['items']);
         $orderId = $this->OrderModel->insert([
             "user_id" => $this->user->id,
             "sub_total" => $amounts['subtotal'],
@@ -197,16 +198,45 @@ class Cart extends MY_Controller {
             "total" => $amounts['total'],
             "personal_info_id" => $this->data['cart']['personal_info_id'],
             "payment_info_id" => $this->data['cart']['payment_info_id'],
+            "shop_id" => $shopId,
         ]);
         foreach ($amounts['items'] as $cartItem){
+            $this->ProductModel->reserve($cartItem->product_id, $shopId, $cartItem->quantity);
             $this->OrderItemsModel->insert([
                 "product_id" => $cartItem->product_id,
                 "order_id" => $orderId,
                 "total" => $cartItem->total,
                 "discount_id" => $cartItem->discount_id ?? null,
                 "quantity" => $cartItem->quantity,
+
             ]);
         }
+
         return $this->OrderModel->getReference($orderId);
+    }
+
+    private function findBestShop($items){
+        $shops = $this->ShopModel->getAll();
+        $bigest = [
+            "shop_id" => null,
+            "avg"     => -999999
+        ];
+        foreach ($shops as $shop){
+            $x = 0;
+            $avg = 0;
+            foreach($items as $item){
+                $quantity = $this->ProductModel->getStockForProduct($item->product_id, $shop['id'])[0];
+                if (!empty($quantity)){
+                    $avg += $quantity['available_quantity'];
+                }
+                $x++;
+            }
+            $avg /= $x;
+            if ($avg > $bigest['avg']){
+                $bigest["shop_id"] = $shop['id'];
+                $bigest["avg"] = $avg;
+            }
+        }
+        return $bigest["shop_id"];
     }
 }

@@ -277,6 +277,7 @@ create table if not exists `Order`
     `discount_id`      int(11)                                                       null,
     `personal_info_id` int(11)                                                       not null,
     `payment_info_id`  int(11)                                                       not null,
+    `shop_id`          int(11)                                                       not null,
     `created_at`       datetime                                                      not null default NOW()
 );
 
