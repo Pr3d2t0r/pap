@@ -47,6 +47,7 @@ create table if not exists `Shop`
     `id`           int(11) primary key auto_increment,
     `phone_number` varchar(9),
     `address`      text         not null,
+    `county`       varchar(255) not null,
     `city`         varchar(120) not null,
     `country`      varchar(70)  not null
 );

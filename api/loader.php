@@ -8,5 +8,6 @@ if (defined("COMPOSER_AUTOLOAD") && COMPOSER_AUTOLOAD !== null)
 $app = new Application();
 
 $app->router->response('cart/', new CartResponseHandler());
+$app->router->response('stores/', new ShopResponseHandler());
 
 $app->run();

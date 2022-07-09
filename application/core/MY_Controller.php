@@ -20,6 +20,7 @@ class MY_Controller extends CI_Controller
             $this->data['isLoggedIn'] = true;
             $this->data['user'] = $this->user;
         }
+        $this->data['locations'] = $this->ShopModel->getLocationList();
     }
 
     private function isUserLogedIn(){

@@ -650,5 +650,38 @@
             });
         });
     </script>
+    <script>
+        $(".list_of_cities").on("change", evt=>{
+            var city = $(evt.target).val();
+
+            $.ajax({
+                url: "<?php echo base_url("/api/stores/find", null, false); ?>/"+city,
+                method: "GET",
+                success: function (xdata) {
+                    var items = xdata;
+                    $(".stores").html(`
+                        <div>
+                            <h3 class="w3-head">Lojas</h3>
+                        </div>
+                    `);
+                    for (var i = 0; i < items.length; i++) {
+                        $(".stores").append(`
+                            <div class="store">
+                                <div>
+                                    <span class="fa fa-home" aria-hidden="true"></span>
+                                    <span class="info">${items[i].address}</span>
+                                </div>
+                                <div>
+                                    <span class="fa fa-phone" aria-hidden="true"></span>
+                                    <span class="info">${items[i].phone_number}</span>
+                                </div>
+                            </div>
+                        `);
+                    }
+                }
+            })
+        })
+    </script>
 </body>
 </html>
+

@@ -303,7 +303,7 @@ class CI_Config {
 	 * @param	string	$protocol
 	 * @return	string
 	 */
-	public function base_url($uri = '', $protocol = NULL)
+	public function base_url($uri = '', $protocol = NULL, $timestamp=true)
 	{
 		$base_url = $this->slash_item('base_url');
 
@@ -319,7 +319,7 @@ class CI_Config {
 				$base_url = $protocol.substr($base_url, strpos($base_url, '://'));
 			}
 		}
-        if (ENVIRONMENT != "production")
+        if (ENVIRONMENT != "production" && $timestamp === true)
             return $base_url.$this->_uri_string($uri) . "?" .time();
 		return $base_url.$this->_uri_string($uri);
 	}

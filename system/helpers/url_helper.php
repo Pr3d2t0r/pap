@@ -83,9 +83,9 @@ if ( ! function_exists('base_url'))
 	 * @param	string	$protocol
 	 * @return	string
 	 */
-	function base_url($uri = '', $protocol = NULL)
+	function base_url($uri = '', $protocol = NULL, $timestamp=true)
 	{
-		return get_instance()->config->base_url($uri, $protocol);
+		return get_instance()->config->base_url($uri, $protocol, $timestamp);
 	}
 }
 
