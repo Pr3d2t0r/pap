@@ -16,4 +16,9 @@ class Product extends MY_Controller {
     public function details($id){
         $this->openView("product/detail");
 	}
+
+    public function category($category){
+        echo $category;
+        $this->openView("product/detail");
+	}
 }

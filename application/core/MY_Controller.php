@@ -21,6 +21,7 @@ class MY_Controller extends CI_Controller
             $this->data['user'] = $this->user;
         }
         $this->data['locations'] = $this->ShopModel->getLocationList();
+        $this->data['categories'] = chunkArrayHalf($this->CategoryModel->getAll());
     }
 
     private function isUserLogedIn(){

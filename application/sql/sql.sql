@@ -97,19 +97,23 @@ create table if not exists `EmployeeEntry`
 create table if not exists `Category`
 (
     `id`         int(11) primary key auto_increment,
-    `parent_id`  int(11) not null,
-    `title`      varchar(100),
-    `meta_title` varchar(100),
-    `content`    text
+    `title`      varchar(100) not null,
+    `slug`       varchar(100) not null,
+    `meta_title` varchar(100) not null,
+    `content`    tinytext
 );
 
-create table if not exists Category
-(
-    id         int(11) primary key auto_increment,
-    title      varchar(100),
-    meta_title varchar(100),
-    content    text
-);
+insert into `Category` (`title`, `meta_title`, `slug`, `content`)
+values ('Mercearia', 'Merciaria', 'mercearia', ''),
+       ('Laticínios e Ovos', 'Laticínios e Ovos', 'laticinios-e-ovos', ''),
+       ('Peixaria e Talho', 'Peixaria e Talho', 'peixaria-e-talho', ''),
+       ('Frutas e Legumes', 'Frutas e Legumes', 'frutas-e-legumes', ''),
+       ('Charcutaria e Queijos', 'Charcutaria e Queijos', 'charcutaria-e-queijos', ''),
+       ('Padaria', 'Pães e bolos', 'padaria', ''),
+       ('Congelados', 'Produtos Congelados', 'congelados', ''),
+       ('Bebidas', 'Bebidas e Garrafeira', 'bebidas', ''),
+       ('Higiene', 'Produtos de Higiene', 'higiene', ''),
+       ('Limpesa', 'Produtos de Limpesa', 'limpesa', '');
 
 create table if not exists `Campaign`
 (

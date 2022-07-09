@@ -116,59 +116,17 @@ if (!isset($isLoggedIn) || !$isLoggedIn) {
                             </a>
                             <ul class="dropdown-menu multi-column columns-3">
                                 <div class="agile_inner_drop_nav_info">
-                                    <div class="col-sm-4 multi-gd-img">
-                                        <ul class="multi-column-dropdown">
-                                            <li>
-                                                <a href="product.html">Bakery</a>
-                                            </li>
-                                            <li>
-                                                <a href="product.html">Baking Supplies</a>
-                                            </li>
-                                            <li>
-                                                <a href="product.html">Coffee, Tea & Beverages</a>
-                                            </li>
-                                            <li>
-                                                <a href="product.html">Dried Fruits, Nuts</a>
-                                            </li>
-                                            <li>
-                                                <a href="product.html">Sweets, Chocolate</a>
-                                            </li>
-                                            <li>
-                                                <a href="product.html">Spices & Masalas</a>
-                                            </li>
-                                            <li>
-                                                <a href="product.html">Jams, Honey & Spreads</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-4 multi-gd-img">
-                                        <ul class="multi-column-dropdown">
-                                            <li>
-                                                <a href="product.html">Pickles</a>
-                                            </li>
-                                            <li>
-                                                <a href="product.html">Pasta & Noodles</a>
-                                            </li>
-                                            <li>
-                                                <a href="product.html">Rice, Flour & Pulses</a>
-                                            </li>
-                                            <li>
-                                                <a href="product.html">Sauces & Cooking Pastes</a>
-                                            </li>
-                                            <li>
-                                                <a href="product.html">Snack Foods</a>
-                                            </li>
-                                            <li>
-                                                <a href="product.html">Oils, Vinegars</a>
-                                            </li>
-                                            <li>
-                                                <a href="product.html">Meat, Poultry & Seafood</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-4 multi-gd-img">
-                                        <img src="<?php echo base_url('resources/images/nav.png'); ?>" alt="">
-                                    </div>
+                                    <?php foreach ($categories as $categoryArr): ?>
+                                        <div class="col-sm-4 multi-gd-img">
+                                            <ul class="multi-column-dropdown">
+                                                <?php foreach ($categoryArr as $category): ?>
+                                                    <li>
+                                                        <a href="<?php echo base_url("produtos/".$category['slug']);?>"><?php echo $category['title']; ?></a>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                    <?php endforeach; ?>
                                     <div class="clearfix"></div>
                                 </div>
                             </ul>

@@ -34,52 +34,19 @@
         </div>
 
         <div class="footer-info w3-agileits-info">
+            <h3>Categorias</h3>
             <div class="col-sm-5 address-right">
-                <div class="col-xs-6 footer-grids">
-                    <h3>Categorias</h3>
-                    <ul>
-                        <li>
-                            <a href="product.html">Grocery</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Fruits</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Soft Drinks</a>
-                        </li>
-                        <li>
-                            <a href="product2.html">Dishwashers</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Biscuits & Cookies</a>
-                        </li>
-                        <li>
-                            <a href="product2.html">Baby Diapers</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-xs-6 footer-grids agile-secomk">
-                    <ul>
-                        <li>
-                            <a href="product.html">Snacks & Beverages</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Bread & Bakery</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Sweets</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Chocolates & Biscuits</a>
-                        </li>
-                        <li>
-                            <a href="product2.html">Personal Care</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Dried Fruits & Nuts</a>
-                        </li>
-                    </ul>
-                </div>
+                <?php foreach ($categories as $categoryArr): ?>
+                    <div class="col-xs-6 footer-grids">
+                        <ul>
+                            <?php foreach ($categoryArr as $category): ?>
+                                <li>
+                                    <a href="<?php echo base_url("produtos/".$category['slug']);?>"><?php echo $category['title']; ?></a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endforeach; ?>
                 <div class="clearfix"></div>
             </div>
             <div class="col-sm-5 address-right">
@@ -87,19 +54,19 @@
                     <h3>Acesso Rápido</h3>
                     <ul>
                         <li>
-                            <a href="<?php echo base_url("sobre"); ?>">About Us</a>
+                            <a href="<?php echo base_url("sobre"); ?>">Sobre Nós</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url("contactos"); ?>">Contact Us</a>
+                            <a href="<?php echo base_url("contactos"); ?>">Contacte-nos</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url("ajuda"); ?>">Help</a>
+                            <a href="<?php echo base_url("ajuda"); ?>">Ajuda</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url("termos"); ?>">Terms of use</a>
+                            <a href="<?php echo base_url("termos"); ?>">Termos de Utilização</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url("privacidade"); ?>">Privacy Policy</a>
+                            <a href="<?php echo base_url("privacidade"); ?>">Politica de Privacidade</a>
                         </li>
                     </ul>
                 </div>
@@ -162,7 +129,7 @@
             </div>
 
             <div class="sub-some child-momu">
-                <h5>Payment Method</h5>
+                <h5>Metodo de Pagamento</h5>
                 <ul>
                     <li>
                         <img src="<?php echo base_url("resources/images/pay1.png"); ?>" alt="">

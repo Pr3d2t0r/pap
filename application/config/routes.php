@@ -60,6 +60,7 @@ $route['termos'] = "Help/terms";
 $route['privacidade'] = "Help/privacy";
 
 $route['produtos'] = "Product";
+$route['produtos/(:any)'] = "Product/category/$1";
 $route['produto/(:num)'] = "Product/details/$1";
 
 $route['checkout'] = "Cart/checkout";
