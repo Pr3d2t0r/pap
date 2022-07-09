@@ -4986,3 +4986,14 @@ input[type="radio"], input[type="checkbox"] {
     text-align: center;
     margin-top: 10px;
 }
+
+h4.help-head{
+    font-size: 19px;
+    margin-bottom: 40px;
+}
+
+h4.help-head a{
+    text-decoration: underline;
+    letter-spacing: .8px;
+    line-height: 1.2px;
+}

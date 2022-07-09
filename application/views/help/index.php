@@ -12,128 +12,25 @@
 				</span>
         </h3>
         <!-- //tittle heading -->
-        <div class="wthree-help">
-            <div class="col-xs-7 agile-left-help">
-                <h3 class="w3-head">Como Podemos Ajudar-lhe?</h3>
-                <form action="#" method="get">
-                    <textarea placeholder="Sua Pergunta" name="Message" required=""></textarea>
-                    <input type="submit" value="Submit">
-                </form>
-                <h5>OU</h5>
-                <a href="<?php echo base_url("contactos"); ?>">Contact Us</a>
-            </div>
-            <div class="col-xs-5 agile-right-help">
-                <img src="<?php echo base_url("resources/images/contact2.jpg"); ?>" alt=" ">
+        <div>
+            <div class="col-xs-7">
+                <h4 class="help-head">Se o que precisa não está aqui não hesite em nos <a href="<?php echo base_url("contactos"); ?>">contactar</a></h4>
             </div>
             <div class="clearfix"></div>
         </div>
         <div class="faq-w3agile">
-            <h5>10 Perguntas mais frequentes</h5>
+            <h3 class="w3-head">10 Perguntas mais frequentes</h3>
             <ul class="faq">
-                <li class="item1">
-                    <a href="#" title="click here">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor vehicula ipsum nec ?</a>
-                    <ul>
-                        <li class="subitem1">
-                            <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.
-                                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-                                corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-                        </li>
-                    </ul>
-                </li>
-                <li class="item2">
-                    <a href="#" title="click here">The standard Lorem Ipsum passage Etiam faucibus viverra libero vel efficitur. Ut semper nisl ut laoreet ultrices ?</a>
-                    <ul>
-                        <li class="subitem1">
-                            <p> Tincidunt ut laoreet dolore At vero eos et Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                nibh euismod consectetuer adipiscing elit, sed diam nonummy nibh euismod accusamus et iusto odio dignissimos ducimus
-                                qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
-                                cupiditate non provident.</p>
-                        </li>
-                    </ul>
-                </li>
-                <li class="item3">
-                    <a href="#" title="click here">Consectetuer adipiscing elit Etiam faucibus viverra libero vel efficitur. Ut semper nisl ut laoreet ultrices?</a>
-                    <ul>
-                        <li class="subitem1">
-                            <p>Dincidunt ut laoreet dolore At vero eos et Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                nibh euismod consectetuer adipiscing elit, sed diam nonummy nibh euismod accusamus et iusto odio dignissimos ducimus
-                                qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
-                                cupiditate non provident.</p>
-                        </li>
-                    </ul>
-                </li>
-                <li class="item4">
-                    <a href="#" title="click here">Sed diam nonummy nibh euismod Etiam faucibus viverra libero vel efficitur. Ut semper nisl ut laoreet ultrices?</a>
-                    <ul>
-                        <li class="subitem1">
-                            <p>At vero eos et Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod consectetuer
-                                adipiscing elit, sed diam nonummy nibh euismod accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                                voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-                        </li>
-                    </ul>
-                </li>
-                <li class="item5">
-                    <a href="#" title="click here">Euismod tincidunt laoreet Etiam faucibus viverra libero vel efficitur ?</a>
-                    <ul>
-                        <li class="subitem1">
-                            <p>At vero eos et Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod consectetuer
-                                adipiscing elit, sed diam nonummy nibh euismod accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                                voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-                        </li>
-                    </ul>
-                </li>
-                <li class="item6">
-                    <a href="#" title="click here">Voluptas sit aspernatur aut Ut semper nisl ut laoreet ultrices ?</a>
-                    <ul>
-                        <li class="subitem1">
-                            <p>At vero eos et Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod consectetuer
-                                adipiscing elit, sed diam nonummy nibh euismod accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                                voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-                        </li>
-                    </ul>
-                </li>
-                <li class="item7">
-                    <a href="#" title="click here">Donec ut quam ligula feugiat Ut semper nisl ut laoreet ultrices ?</a>
-                    <ul>
-                        <li class="subitem1">
-                            <p>At vero eos et Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod consectetuer
-                                adipiscing elit, sed diam nonummy nibh euismod accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                                voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-                        </li>
-                    </ul>
-                </li>
-                <li class="item8">
-                    <a href="#" title="click here">The standard Lorem Ipsum Ut semper nisl ut laoreet ultrices passage ?</a>
-                    <ul>
-                        <li class="subitem1">
-                            <p>Lorem ipsum dolor sit amet At vero eos et Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                nibh euismod consectetuer adipiscing elit, sed diam nonummy nibh euismod accusamus et iusto odio dignissimos ducimus
-                                qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
-                                cupiditate non provident.</p>
-                        </li>
-                    </ul>
-                </li>
-                <li class="item9">
-                    <a href="#" title="click here">Consectetuer adipiscing Ut semper nisl ut laoreet ultrices elit ?</a>
-                    <ul>
-                        <li class="subitem1">
-                            <p>Lorem ipsum dolor sit amet At vero eos et Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                nibh euismod consectetuer adipiscing elit, sed diam nonummy nibh euismod accusamus et iusto odio dignissimos ducimus
-                                qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
-                                cupiditate non provident.</p>
-                        </li>
-                    </ul>
-                </li>
-                <li class="item10">
-                    <a href="#" title="click here">Sed diam nonummy Ut semper nisl ut laoreet ultrices nibh euismod ?</a>
-                    <ul>
-                        <li class="subitem1">
-                            <p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod consectetuer adipiscing elit, sed diam nonummy nibh euismod
-                                accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
-                                et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-                        </li>
-                    </ul>
-                </li>
+                <?php foreach ($questions as $i => $question): ?>
+                    <li class="item<?php echo $i+1; ?>">
+                        <a href="#" title="click here"><?php echo $question["question"]; ?></a>
+                        <ul>
+                            <li class="subitem1">
+                                <p><?php echo $question["response"]; ?></p>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>

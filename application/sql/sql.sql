@@ -307,26 +307,35 @@ create table if not exists `Transaction`
 
 create table if not exists `UsersTokens`
 (
-    id      int auto_increment primary key,
-    user_id int(11)             not null,
-    token   varchar(255) unique not null
+    `id`      int auto_increment primary key,
+    `user_id` int(11)             not null,
+    `token`   varchar(255) unique not null
 );
 
 create table if not exists `Logs`
 (
-    id        int(11) primary key auto_increment,
-    stored_at datetime not null default NOW(),
-    log       longtext not null
+    `id`        int(11) primary key auto_increment,
+    `stored_at` datetime not null default NOW(),
+    `log`       longtext not null
 );
 
 create table if not exists `Contacts`
 (
-    id      int(11) primary key auto_increment,
-    name    varchar(160) not null,
-    subject varchar(150) not null,
-    email   varchar(255) not null,
-    body    text         not null,
-    sent_at datetime     not null default NOW()
+    `id`      int(11) primary key auto_increment,
+    `name`    varchar(160) not null,
+    `subject` varchar(150) not null,
+    `email`   varchar(255) not null,
+    `body`    text         not null,
+    `sent_at` datetime     not null default NOW()
+);
+
+create table if not exists `Questions`
+(
+    `id`         int(11) primary key auto_increment,
+    `question`   tinytext not null,
+    `response`   text     not null,
+    `status`     enum ('active', 'inactive') not null default 'active',
+    `created_at` datetime not null default NOW()
 );
 
 DELIMITER $$
