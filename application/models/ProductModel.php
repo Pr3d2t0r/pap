@@ -35,4 +35,11 @@ class ProductModel extends MY_Model{
             "available_quantity" => $product[0]["available_quantity"] - $qt
         ]);
     }
+
+    public function getAllLimit($limit){
+        $query = $this->db->get($this->table, $limit);
+        if ($query->num_rows() > 0)
+            return $query->result_array();
+        return null;
+    }
 }

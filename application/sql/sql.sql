@@ -161,6 +161,7 @@ create table if not exists `Card`
 create table if not exists `Product`
 (
     `id`          int(11) primary key auto_increment,
+    `discount_id` int(11)            null,
     `reference`   varchar(15) unique not null,
     `title`       varchar(80)        not null,
     `meta_title`  varchar(80)        not null,
@@ -203,13 +204,6 @@ create table if not exists `ProductMeta`
     `product_id` int(11)     not null,
     `key`        varchar(50) not null,
     `content`    text
-);
-
-create table if not exists `ProductDiscount`
-(
-    `product_id`  int(11) not null,
-    `discount_id` int(11) not null,
-    primary key (`product_id`, `discount_id`)
 );
 
 create table if not exists `ProductCategory`

@@ -114,5 +114,3 @@
         <div class="clearfix"></div>
     </div>
 </div>
-
-<?php $this->load->view("components/special_offers"); ?>
