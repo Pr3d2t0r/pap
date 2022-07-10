@@ -122,7 +122,7 @@ create table if not exists `Campaign`
     `description` varchar(120) not null,
     `thumbnail`   varchar(255) not null,
     `href`        varchar(255) not null,
-    `discount_id` int(11)      not null
+    `discount_id` int(11)      null
 );
 
 create table if not exists `Discount`
