@@ -213,13 +213,6 @@ create table if not exists `ProductCategory`
     primary key (`product_id`, `category_id`)
 );
 
-create table if not exists `ProductTag`
-(
-    `product_id` int(11) not null,
-    `tag_id`     int(11) not null,
-    primary key (`product_id`, `tag_id`)
-);
-
 create table if not exists `Purchase`
 (
     `id`          int(11) primary key auto_increment,

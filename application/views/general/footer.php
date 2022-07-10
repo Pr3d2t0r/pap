@@ -341,14 +341,15 @@
     $(window).load(function () {
         $("#slider-range").slider({
             range: true,
-            min: 1,
-            max: 9000,
-            values: [50, 9000],
+            min: 0,
+            max: 1000,
+            values: <?php if (!isset($filters['range'])){ ?>[0, 1000] <?php } else echo "[".$filters['range'][0].",".$filters['range'][1]."]"?>,
             slide: function (event, ui) {
-                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                $("#amount").val(ui.values[0] + " - " + ui.values[1]);
+                $("#amount").removeAttr("disabled")
             }
         });
-        $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+        $("#amount").val($("#slider-range").slider("values", 0) + " - " + $("#slider-range").slider("values", 1));
 
     }); //]]>
 </script>
@@ -717,6 +718,11 @@
             })
         })
     </script>
+    <?php if (!empty($filters)): ?>
+        <script>
+            document.getElementById("products").scrollIntoView();
+        </script>
+    <?php endif; ?>
 </body>
 </html>
 

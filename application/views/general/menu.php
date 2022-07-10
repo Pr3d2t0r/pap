@@ -43,8 +43,8 @@
             </ul>
             <!-- search -->
             <div class="agileits_search">
-                <form action="#" method="post">
-                    <input name="Search" type="search" placeholder="O que procura?" required="">
+                <form action="<?php echo base_url(); ?>" method="post">
+                    <input name="q" type="search" placeholder="O que procura?" required="">
                     <button type="submit" class="btn btn-default" aria-label="Left Align">
                         <span class="fa fa-search" aria-hidden="true"> </span>
                     </button>

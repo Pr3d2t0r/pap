@@ -29,11 +29,9 @@
         <span class="sr-only">Proximo</span>
     </a>
 </div>
-
 <!-- Produtos -->
-<div class="ads-grid">
+<div class="ads-grid" >
     <div class="container">
-
         <h3 class="tittle-w3l">Nosso Produtos
             <span class="heading-style">
 					<i></i>
@@ -42,111 +40,143 @@
 				</span>
         </h3>
         <div class="side-bar col-md-3">
-            <div class="search-hotel">
-                <h3 class="agileits-sear-head">Procure aqui..</h3>
-                <form action="#" method="post">
-                    <input type="search" placeholder="Nome do produto..." name="search" required="">
-                    <input type="submit" value=" ">
-                </form>
-            </div>
-            <div class="range">
-                <h3 class="agileits-sear-head">Preço</h3>
-                <ul class="dropdown-menu6">
-                    <li>
-                        <div id="slider-range"></div>
-                        <input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" disabled/>
-                    </li>
-                </ul>
-            </div>
-            <!-- descontos -->
-            <div class="left-side">
-                <h3 class="agileits-sear-head">Desconto</h3>
-                <ul>
-                    <li>
-                        <input type="checkbox" class="checked">
-                        <span class="span">5% ou Mais</span>
-                    </li>
-                    <li>
-                        <input type="checkbox" class="checked">
-                        <span class="span">10% ou Mais</span>
-                    </li>
-                    <li>
-                        <input type="checkbox" class="checked">
-                        <span class="span">20% ou Mais</span>
-                    </li>
-                    <li>
-                        <input type="checkbox" class="checked">
-                        <span class="span">30% ou Mais</span>
-                    </li>
-                    <li>
-                        <input type="checkbox" class="checked">
-                        <span class="span">50% ou Mais</span>
-                    </li>
-                    <li>
-                        <input type="checkbox" class="checked">
-                        <span class="span">60% ou Mais</span>
-                    </li>
-                </ul>
-            </div>
-            <!-- reviews -->
-            <div class="customer-rev left-side">
-                <h3 class="agileits-sear-head">Avaliações</h3>
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <span>5.0</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <span>4.0</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <span>3.5</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <span>3.0</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <span>2.5</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <form action="" method="post" class="filter-form">
+                <div class="search-hotel">
+                    <h3 class="agileits-sear-head">Procure aqui..</h3>
+                    <input type="search" placeholder="Nome do produto..." name="q" value="<?php if(isset($filters['q'])) echo $filters['q']; ?>">
+                </div>
+                <div class="range">
+                    <h3 class="agileits-sear-head">Preço</h3>
+                    <ul class="dropdown-menu6">
+                        <li>
+                            <div id="slider-range"></div>
+                            <input type="text" id="amount" name="range" style="border: 0; color: #ffffff; font-weight: normal;" disabled/>
+                        </li>
+                    </ul>
+                </div>
+                <!-- descontos -->
+                <div class="left-side">
+                    <h3 class="agileits-sear-head">Desconto</h3>
+                    <ul>
+                        <li>
+                            <label>
+                                <input type="radio" class="checked='checked'" name="discount" value="5" <?php if(isset($filters['discount']) && $filters['discount'] == 5) echo "checked='checked'"; ?>>
+                                <span class="span">5% ou Mais</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" class="checked='checked'" name="discount" value="10" <?php if(isset($filters['discount']) && $filters['discount'] == 10) echo "checked='checked'"; ?>>
+                                <span class="span">10% ou Mais</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" class="checked='checked'" name="discount" value="20" <?php if(isset($filters['discount']) && $filters['discount'] == 20) echo "checked='checked'"; ?>>
+                                <span class="span">20% ou Mais</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" class="checked='checked'" name="discount" value="30" <?php if(isset($filters['discount']) && $filters['discount'] == 30) echo "checked='checked'"; ?>>
+                                <span class="span">30% ou Mais</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" class="checked='checked'" name="discount" value="50" <?php if(isset($filters['discount']) && $filters['discount'] == 50) echo "checked='checked'"; ?>>
+                                <span class="span">50% ou Mais</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" class="checked='checked'" name="discount" value="60" <?php if(isset($filters['discount']) && $filters['discount'] == 60) echo "checked='checked'"; ?>>
+                                <span class="span">60% ou Mais</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <!-- reviews -->
+                <div class="customer-rev left-side">
+                    <h3 class="agileits-sear-head">Avaliações</h3>
+                    <ul>
+                        <li>
+                            <label>
+                                <input type="radio" name="ratings" class="hidden" value="5" <?php if(isset($filters['ratings']) && $filters['ratings'] == 5) echo "checked='checked'"; ?>>
+                                <span>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <span>5.0</span>
+                                </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="ratings" class="hidden" value="4" <?php if(isset($filters['ratings']) && $filters['ratings'] == 4) echo "checked='checked'"; ?>>
+                                <span>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <span>4.0</span>
+                                </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="ratings" value="3" class="hidden" <?php if(isset($filters['ratings']) && $filters['ratings'] == 3) echo "checked='checked'"; ?>>
+                                <span>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <span>3.0</span>
+                                </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="ratings" value="2" class="hidden" <?php if(isset($filters['ratings']) && $filters['ratings'] == 2) echo "checked='checked'"; ?>>
+                                <span>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <span>2.0</span>
+                                </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="ratings" value="1" class="hidden" <?php if(isset($filters['ratings']) && $filters['ratings'] == 1) echo "checked='checked'"; ?>>
+                                <span>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <span>1.0</span>
+                                </span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="filter-submit">
+                    <input type="submit" value="Filtrar">
+                </div>
+                <div class="filter-submit">
+                    <a href="<?php echo base_url(); ?>" class="filter-reset">Limpar Filtros</a>
+                </div>
+            </form>
         </div>
         <!-- produtos -->
-        <div class="agileinfo-ads-display col-md-9">
+        <div class="agileinfo-ads-display col-md-9" id="products">
             <div class="wrapper">
                 <div class="product-sec1">
                     <?php foreach ($products as $product): ?>

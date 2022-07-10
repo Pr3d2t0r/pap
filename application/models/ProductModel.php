@@ -36,7 +36,36 @@ class ProductModel extends MY_Model{
         ]);
     }
 
-    public function getAllLimit($limit){
+    public function getAllLimit($limit, $filters=[]){
+        if (!empty($filters)){
+            $query = "Select * from " . $this->table . " where ";
+            $where = [];
+            if (isset($filters['discount'])){
+                $where[] = "discount_id IN (select id from discount where discount >= ".$filters['discount'].")";
+            }
+
+            if (isset($filters['ratings'])){
+                $where[] = "id IN (select product_id from productreview where rating >= ".$filters['ratings'].")";
+            }
+
+            if (isset($filters['range'])){
+                $where[] = "price >= ".$filters['range'][0]." and price <= ".$filters['range'][1];
+//                $where[] = "price >= ".$filters['range'][0]." and price - price * ((select discount from discount where id=product.discount_id limit 1)/100) <= ".$filters['range'][1];
+            }
+
+            if (isset($filters['q'])){
+                $queryQ = "id IN (select product_id from productmeta where upper(content) like upper('%".$filters['q']."%')) ";
+                $queryQ .= "or upper(title) like upper('%" . $filters['q'] . "%') ";
+                $queryQ .= "or upper(description) like upper('%" . $filters['q'] . "%')";
+
+                $where[] = $queryQ;
+            }
+            $query .= implode(" AND ", $where);
+//            echo $query;
+            $result = $this->db->query($query );
+            return $result->result_array();
+        }
+
         $query = $this->db->get($this->table, $limit);
         if ($query->num_rows() > 0)
             return $query->result_array();
