@@ -83,8 +83,11 @@ if (!isset($isLoggedIn) || !$isLoggedIn) {
     //sign-up modal
     $this->load->view('components/sign_up');
 }else{
-    if (isset($checkout) && $checkout)
+    if (isset($checkout) && $checkout) {
         $this->load->view('components/add_personal_info');
+        $this->load->view('components/export_cart');
+
+    }
 }
 ?>
 

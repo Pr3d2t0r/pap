@@ -2291,6 +2291,7 @@ img.zoom-img:hover{
     font-size: 27px;
     margin-bottom: 30px;
 }
+
 table.timetable_sub {
 	width:100%;
 	margin:0 auto;
@@ -5039,4 +5040,64 @@ h4.help-head a{
 }
 .order-info ul li{
     margin-bottom: 5px;
+}
+
+.export div{
+    text-align: initial;
+    margin-left: 65px;
+}
+
+.export h3{
+    padding: 12px 25px;
+    letter-spacing: 1px;
+    color: #FF5722;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.export div h4{
+    text-align: left;
+    margin-left: -30px;
+    margin-bottom: 15px;
+}
+
+.export div.url{
+    margin-bottom: 15px;
+}
+
+.export div.url a{
+    display: block;
+    font-size: smaller;
+}
+
+.export div.url p#url{
+    background-color: rgba(239, 239, 239, 0.3);
+    border:1px solid rgba(118, 118, 118, 0.3);
+    text-align: center;
+    width: 90%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 15px;
+    color: #2e3436;
+}
+
+.export div.mail input[type="submit"]{
+    background-color: #FF5722;
+    border: #FF5722 solid 1px;
+    color: #fff;
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.export div.mail input[type="email"]{
+    background-color: rgba(239, 239, 239, 0.3);
+    border:1px solid rgba(118, 118, 118, 0.3);
+    height: 30px;
+    width: 250px;
+    font-size: 15px;
+}
+
+.export .expt-success{
+    color: green;
 }

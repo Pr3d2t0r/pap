@@ -17,6 +17,9 @@
                 <h4>Seu carrinho de compras contém:
                     <span><?php echo count($cartItems)?> Produtos</span>
                 </h4>
+                <div class="export">
+                    <a class="play-icon popup-with-zoom-anim" href="#small-dialog" ><span class="fa fa-share"></span> Exportar Carrinho </a>
+                </div>
                 <div class="table-responsive">
                     <table class="timetable_sub">
                         <thead>

@@ -9,6 +9,7 @@ class Cart extends MY_Controller {
         parent::__construct();
         $this->load->model(array("CartItemsModel", "CartModel", "PersonalInfoModel", "PaymentInfoModel", "OrderModel", "OrderItemsModel", "DiscountModel", "ProductModel", "ShopModel"));
         $this->load->library(array('form_validation'));
+        $this->load->helper(array('mail_helper'));
         $this->data['checkout'] = true;
         $this->data['formErrors'] = null;
     }
@@ -163,6 +164,52 @@ class Cart extends MY_Controller {
     }
 
     public function gotto(){
+        redirect("checkout");
+    }
+
+    public function see(){
+        $get = $this->input->get();
+        if (!isset($get['scrt'])) {
+            $this->session->set_flashdata("error_msg", "Acesso Proibido");
+            redirect();
+        }
+        $this->data['cart'] = $this->CartModel->getForToken($get['scrt']);
+
+        if ($this->data['cart'] == null) {
+            $this->session->set_flashdata("error_msg", "Acesso Proibido");
+            redirect();
+        }
+
+        $this->data['cartItems'] = $this->CartItemsModel->getForCart($this->data['cart']['id']);
+
+        $this->openView("cart/see");
+    }
+
+    public function share(){
+        if (!$this->isLoggedIn) {
+            redirect("checkout");
+            return;
+        }
+
+        $this->data['cart'] = $this->CartModel->getForUser($this->user->id);
+        $info = $this->PersonalInfoModel->getById($this->user->main_personal_info_id);
+        $token = $this->CartModel->createPublicToken($this->data['cart']['id']);
+        $mailSender = new MailSender([
+            "name" => $info['first_name'] . " " . $info['last_name'],
+            "email" => "compras@onmarketstote.pt"
+        ]);
+        $mailSender->setSubject("Carinho de compras enviado por " . $info['first_name'] . " " . $info['last_name']);
+
+        $mailSender->body("<h4>Carinho de compras</h4>");
+        $mailSender->body("<p>Clique <a href='".base_url("cart/see/?scrt=".$token['token'], null, false)."'>AQUI</a> para prosseguir para o carrinho</p>");
+        $email = $this->input->post("email") ?? "rafaelvelosa18@gmail.com";
+        $mailSender->sendTo([
+            "name" => "Carrinho de Compras",
+            "email" => $email
+        ]);
+
+        $mailSender->send();
+        $this->session->set_flashdata("success_msg", "Carrinho enviado para $email com sucesso!");
         redirect("checkout");
     }
 

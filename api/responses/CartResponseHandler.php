@@ -164,6 +164,17 @@ class CartResponseHandler extends ResponseHandler {
         ];
     }
 
+    public function public(){
+        if (!isset($this->request->post['cart_id']))
+            throw new Exception("Missing parameters! ");
+        $token = $this->db->getByField("cartpublictokens", "cart_id", $this->request->post['cart_id']);
+        if ($token === false) {
+            $id = $this->db->insert("cartpublictokens", ["cart_id" => $this->request->post['cart_id']]);
+            $token = $this->db->getById("cartpublictokens", $id);
+        }
+        return $token;
+    }
+
     private function validQuantity($productId, $qt){
         $dbQt = $this->db->executeGet("select t1.* from `productquantity` as t1 inner join (select product_id, max(available_quantity) as available_quantity from `productquantity` group by product_id) as t2 on t1.product_id = t2.product_id and t1.available_quantity = t2.available_quantity where t1.product_id=?", [$productId]);
         if (count($dbQt)<1 || empty($dbQt))

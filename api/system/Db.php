@@ -92,8 +92,8 @@ class Db {
 
         foreach($data as $value)
             $db->bindValue(++$i, $value);
-
-        return $db->execute() ? $this->pdo->lastInsertId() : false;
+        $db->execute();
+        return $this->pdo->lastInsertId();
     }
 
     /**

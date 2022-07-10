@@ -690,6 +690,33 @@
             })
         })
     </script>
+    <script>
+        var tmout;
+        $(".copy-url").on("click", evt => {
+            clearTimeout(tmout);
+            navigator.clipboard.writeText($("#url").text())
+            $(".url .expt-success").html("Copiado com successo");
+            tmout = setTimeout(()=>{
+                $(".url .expt-success").html("");
+            }, 3000)
+            evt.preventDefault();
+        });
+    </script>
+    <script>
+        $(".export a").on("click", evt => {
+            $.ajax({
+                url: "<?php echo base_url("/api/cart/public"); ?>/",
+                data:{
+                    cart_id: <?php echo $cart['id'] ?? -1; ?>
+                },
+                method: "POST",
+                success: function (item) {
+                    console.log(item);
+                    $("#url").html("http://localhost/pap/cart/see?scrt="+ item.token);
+                }
+            })
+        })
+    </script>
 </body>
 </html>
 

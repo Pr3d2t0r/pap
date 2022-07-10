@@ -68,6 +68,8 @@ $route['cart/redirect'] = "Cart/gotto";
 $route['pagamento'] = "Cart/payment";
 $route['pagamento/old'] = "Cart/old";
 $route['pagamento/new'] = "Cart/new";
+$route['cart/share'] = "Cart/share";
+$route['cart/see'] = "Cart/see";
 
 $route['newsletter'] = "User/newsletter";
 $route['registro'] = "User/register";

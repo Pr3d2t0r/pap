@@ -269,6 +269,13 @@ create table `CartItem`
     `created_at`  datetime not null default NOW()
 );
 
+create table if not exists `CartPublicTokens`
+(
+    `id`      int auto_increment primary key,
+    `cart_id` int(11)             not null,
+    `token`   varchar(15) unique not null default substr(UUID(), -15)
+);
+
 create table if not exists `Order`
 (
     `id`               int(11) primary key auto_increment,
