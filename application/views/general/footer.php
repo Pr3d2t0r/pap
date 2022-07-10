@@ -181,7 +181,7 @@
         strings:{
             button: 'Check Out',
             subtotal: 'Sub-total:',
-            discount: 'Desconto:',
+            discount: 'Guardas-te:',
             empty: 'O Seu Carrinho está vazio!'
         },
         action: "<?php echo base_url("cart/redirect"); ?>",

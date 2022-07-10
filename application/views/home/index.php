@@ -177,13 +177,15 @@
                                                 <input type="hidden" name="cmd" value="_cart" />
                                                 <input type="hidden" name="id" value="<?php echo $product['id']; ?>" />
                                                 <input type="hidden" name="quantity" value="1">
+                                                <input type="hidden" name="href" value="<?php echo base_url("produto/".$product['id']); ?>">
                                                 <input type="hidden" name="item_name" value="<?php echo $product['title']; ?>" />
                                                 <input type="hidden" name="amount" value="<?php echo $product['price']; ?>" />
                                                 <input type="hidden" name="discount_amount" value="<?php echo $product['discount_amount'] ?? 0; ?>" />
-                                                <?php if (isset($product['discount_id'])):?>
-                                                    <input type="hidden" name="discount_id" value="<?php echo $product['discount_id']; ?>" />
-                                                <?php endif; ?>
-                                                <input type="hidden" name="currency_code" value="€" />
+                                                <input type="hidden" name="discount_id" value="<?php echo $product['discount_id'] ?? ""; ?>" />
+                                                <input type="hidden" name="currency_code" value="EUR" />
+                                                <input type="hidden" name="business" value=" " />
+                                                <input type="hidden" name="return" value=" " />
+                                                <input type="hidden" name="cancel_return" value=" " />
                                                 <input type="submit" name="submit" value="Pôr no Carrinho" class="button" />
                                             </fieldset>
                                         </form>
@@ -192,88 +194,6 @@
                             </div>
                         </div>
                     <?php endforeach; ?>
-                    <!--<div class="col-md-4 product-men">
-                        <div class="men-pro-item simpleCart_shelfItem">
-                            <div class="men-thumb-item">
-                                <img src="<?php /*echo base_url("resources/images/m2.jpg");*/?>" alt="">
-                                <div class="men-cart-pro">
-                                    <div class="inner-men-cart-pro">
-                                        <a href="#" class="link-product-add-cart">Ver Mais</a>
-                                    </div>
-                                </div>
-                                <span class="product-new-top">New</span>
-
-                            </div>
-                            <div class="item-info-product ">
-                                <h4>
-                                    <a href="#">Cashew Nuts, 100g</a>
-                                </h4>
-                                <div class="info-product-price">
-                                    <span class="item_price">$200.00</span>
-                                    <del>$420.00</del>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="2" />
-                                            <input type="hidden" name="quantity" value="1">
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Cashew Nuts, 100g" />
-                                            <input type="hidden" name="amount" value="200.00" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="discount_id" value="" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Pôr no Carrinho" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 product-men">
-                        <div class="men-pro-item simpleCart_shelfItem">
-                            <div class="men-thumb-item">
-                                <img src="<?php /*echo base_url("resources/images/m3.jpg");*/?>" alt="">
-                                <div class="men-cart-pro">
-                                    <div class="inner-men-cart-pro">
-                                        <a href="#" class="link-product-add-cart">Ver mais</a>
-                                    </div>
-                                </div>
-                                <span class="product-new-top">New</span>
-
-                            </div>
-                            <div class="item-info-product ">
-                                <h4>
-                                    <a href="#">Pista..., 250g</a>
-                                </h4>
-                                <div class="info-product-price">
-                                    <span class="item_price">$520.99</span>
-                                    <del>$600.99</del>
-                                </div>
-                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" /> <input type="hidden" name="id" value="3" />
-                                            <input type="hidden" name="quantity" value="1">
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="Pista, 250g" />
-                                            <input type="hidden" name="amount" value="520.99" />
-                                            <input type="hidden" name="discount_amount" value="1.00" />
-                                            <input type="hidden" name="discount_id" value="1" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Pôr no Carrinho" class="button" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>-->
                     <div class="clearfix"></div>
                 </div>
             </div>

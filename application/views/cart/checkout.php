@@ -58,7 +58,7 @@
                                         </div>
                                     </td>
                                     <td class="invert">Spotzero Spin Mop</td>
-                                    <td class="invert"><?php echo $item["price"]; ?></td>
+                                    <td class="invert"><?php echo $item["price"]; ?>€</td>
                                     <td class="invert">
                                         <div class="rem">
                                             <div class="close" > </div>
