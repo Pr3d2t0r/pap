@@ -1,5 +1,5 @@
 /* Styles for dialog window */
-#small-dialog,#small-dialog1{
+#small-dialog,#small-dialog1,#small-dialog2{
 	background: white;
 	padding:20px 20px 30px 20px;
 	text-align: left;
@@ -321,7 +321,7 @@ button::-moz-focus-inner {
 	transition: all 0.5s ease-in-out;
 }
 @media all and (max-width:667px){
-  #small-dialog, #small-dialog1 {
+  #small-dialog, #small-dialog1, #small-dialog2 {
     max-width: 566px;
   }
   .login h3, .select-city h3 {

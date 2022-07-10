@@ -9,5 +9,6 @@ $app = new Application();
 
 $app->router->response('cart/', new CartResponseHandler());
 $app->router->response('stores/', new ShopResponseHandler());
+$app->router->response('order/', new OrderResponseHandler());
 
 $app->run();

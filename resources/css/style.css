@@ -5022,3 +5022,21 @@ h4.help-head a{
     margin-left: 15px;
     margin-top: 10px;
 }
+
+.order-info{
+    text-align: initial;
+}
+
+.order-info h4{
+    text-align: center;
+    margin-top: 25px;
+    font-size: 23px;
+    margin-bottom: 25px;
+}
+
+.order-info ul{
+    margin-left: 40px;
+}
+.order-info ul li{
+    margin-bottom: 5px;
+}

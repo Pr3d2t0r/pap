@@ -649,6 +649,47 @@
             })
         })
     </script>
+    <script>
+        $("#track-order").on("submit", evt=>{
+            const status = sts => {
+                switch (sts) {
+                    case "received":
+                        return "Processando";
+                    case "awaiting_shipping":
+                        return "Aguardando Envio";
+                    case "shipped":
+                        return "Enviado";
+                    case "completed":
+                        return "Entregue";
+                }
+                return "Processandoo";
+            }
+            evt.preventDefault();
+            var reference = $(evt.target[0]).val();
+            $.ajax({
+                url: "<?php echo base_url("/api/order/find", null, false); ?>/"+reference,
+                method: "GET",
+                success: function (item) {
+
+                    $(".order-info").html("");
+                    if (typeof item.error != "undefined"){
+                        $(".order-info").html("<h4 class='error'>Não existe nenhum pedido com esta referencia!</h4>");
+                        return;
+                    }
+                    $(".order-info").append(`
+                        <h4>Pedido #<span>${item.reference}</span></h4>
+                        <ul>
+                            <li>Comprador: ${item.name}</li>
+                            <li>Status: ${status(item.status)}</li>
+                            <li>Total: ${item.total.toFixed(2)}€</li>
+                            <li>Efetuado em: ${item.created_at}</li>
+                        </ul>
+
+                    `);
+                }
+            })
+        })
+    </script>
 </body>
 </html>
 

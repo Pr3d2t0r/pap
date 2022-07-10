@@ -19,7 +19,7 @@
                         <span class="fa fa-map-marker" aria-hidden="true"></span> Lojas Perto de Si</a>
                 </li>
                 <li>
-                    <a href="#" data-toggle="modal" data-target="#myModal1">
+                    <a  class="play-icon popup-with-zoom-anim" href="#small-dialog2">
                         <span class="fa fa-truck" aria-hidden="true"></span> Rastrear Pedido</a>
                 </li>
                 <li>
@@ -75,6 +75,7 @@
 <?php
 //shop locator (popup)
 $this->load->view('components/shop_locator');
+$this->load->view('components/track_order');
 if (!isset($isLoggedIn) || !$isLoggedIn) {
     //sign-in Modal
     $this->load->view('components/sign_in');
