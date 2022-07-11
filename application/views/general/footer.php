@@ -713,7 +713,7 @@
                 method: "POST",
                 success: function (item) {
                     console.log(item);
-                    $("#url").html("http://localhost/pap/cart/see?scrt="+ item.token);
+                    $("#url").html("<?php echo base_url("cart/see", null, false); ?>?scrt="+ item.token);
                 }
             })
         })

@@ -36,6 +36,8 @@ class Product extends MY_Controller {
     }
 
     public function details($id){
+        $this->data['product'] = $this->ProductModel->getById($id);
+        $this->data['discount'] = $this->DiscountModel->getById($id);
         $this->openView("product/detail");
 	}
 

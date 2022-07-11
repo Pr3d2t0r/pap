@@ -23,7 +23,7 @@ class Home extends MY_Controller {
             $filters['q'] = $post['q'];
 //        var_dump($filters);
         $this->data['filters'] = $filters;
-        $this->data['campaigns'] = $this->CampaignsModel->getAll() ?? [];
+        $this->data['campaigns'] = $this->CampaignsModel->getAllLimit(5) ?? [];
         $products = $this->ProductModel->getAllLimit(9, $filters) ?? [];
         foreach ($products as $key => $product){
             if(isset($product['discount_id']) && !empty($product['discount_id'])){
