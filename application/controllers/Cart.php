@@ -7,7 +7,7 @@ class Cart extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array("CartItemsModel", "CartModel", "PersonalInfoModel", "PaymentInfoModel", "OrderModel", "OrderItemsModel", "DiscountModel", "ProductModel", "ShopModel"));
+        $this->load->model(array("CartItemsModel", "CartModel", "PersonalInfoModel", "PaymentInfoModel", "OrderModel", "OrderItemsModel", "DiscountModel", "ProductModel"));
         $this->load->library(array('form_validation'));
         $this->load->helper(array('mail_helper'));
         $this->data['checkout'] = true;

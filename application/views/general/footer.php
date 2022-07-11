@@ -774,6 +774,11 @@
             })
         }
     </script>
+    <script>
+        $(".starRating input[type='radio']").on("click", evt=>{
+            $(evt.target.form).submit()
+        });
+    </script>
 </body>
 </html>
 

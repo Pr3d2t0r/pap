@@ -6,7 +6,6 @@ class ProductModel extends MY_Model{
     private string $meta = "productmeta";
     private string $quantity = "productquantity";
     private string $reviews = "productreview";
-    private string $tags = "producttag";
 
     public function __construct(){
         parent::__construct();
@@ -21,6 +20,51 @@ class ProductModel extends MY_Model{
             $this->db->where("shop_id", $shopId);
         $result = $this->db->get($this->quantity);
         return $result->num_rows() > 0 ? $result->result_array() : null;
+    }
+
+    public function getReviewForUser($userId, $productId){
+        if (is_null($productId) || is_null($userId))
+            return false;
+        $this->db->where("product_id", $productId);
+        $this->db->where("user_id", $userId);
+        $result = $this->db->get($this->reviews);
+        return $result->num_rows() > 0 ? $result->row_array()['rating'] : null;
+    }
+
+    public function getMetaDataForProduct($productId){
+        if (is_null($productId))
+            return false;
+        $this->db->where("product_id", $productId);
+        $result = $this->db->get($this->meta);
+        return $result->num_rows() > 0 ? $result->result_array() : null;
+    }
+
+    public function getImagesForProduct($productId){
+        if (is_null($productId))
+            return false;
+        $this->db->where("product_id", $productId);
+        $result = $this->db->get($this->images);
+        return $result->num_rows() > 0 ? $result->result_array() : null;
+    }
+
+    public function addReview($review, $productId, $userId){
+        if (is_null($review) || is_null($userId))
+            return false;
+        $dbReview = $this->getReviewForUser($userId, $productId);
+        if ($dbReview==null) {
+            $this->db->insert($this->reviews, [
+                "product_id" => $productId,
+                "user_id" => $userId,
+                "rating" => $review
+            ]);
+        }else{
+            $this->db->where("product_id", $productId);
+            $this->db->where("user_id", $userId);
+            $this->db->update($this->reviews, [
+                "rating" => $review
+            ]);
+        }
+        return true;
     }
 
     public function reserve($productId, $shopId, $qt){

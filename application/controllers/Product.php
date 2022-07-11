@@ -43,8 +43,10 @@ class Product extends MY_Controller {
             $this->data['product']['discount_amount'] = $this->data['product']['price'] * ($this->data['discount']['discount'] / 100);
             $this->data['product']['new_price'] = $this->data['product']['price'] - $this->data['product']['discount_amount'];
         }
-        /*if ($this->isLoggedIn)
-            $this->data['review'] = $this->ProductModel->getReviewForUser($id, $this->user->id);*/
+        if ($this->isLoggedIn)
+            $this->data['review'] = $this->ProductModel->getReviewForUser($id, $this->user->id);
+        $this->data['metadata'] = $this->ProductModel->getMetaDataForProduct($id) ?? [];
+        $this->data['images'] = $this->ProductModel->getImagesForProduct($id) ?? [];
         $this->openView("product/detail");
 	}
 
@@ -73,4 +75,15 @@ class Product extends MY_Controller {
         $this->data['products'] = $products;
         $this->openView("product/index");
 	}
+
+    public function rating($id){
+        if (!$this->isLoggedIn) {
+            $this->session->set_flashdata("error_msg", "Login necessário");
+            redirect("produto/".$id);
+            return;
+        }
+        $this->ProductModel->addReview($this->input->post("rating"), $id, $this->user->id);
+        $this->session->set_flashdata("success_msg", "Review efetuada com sucesso!");
+        redirect("produto/".$id);
+    }
 }

@@ -35,20 +35,24 @@
         </div>
         <div class="col-md-7 single-right-left simpleCart_shelfItem">
             <h3><?php echo $product['title']; ?></h3>
-            <div class="rating1">
-					<span class="starRating">
-						<input id="rating5" type="radio" name="rating" value="5">
-						<label for="rating5">5</label>
-						<input id="rating4" type="radio" name="rating" value="4" checked>
-						<label for="rating4">4</label>
-						<input id="rating3" type="radio" name="rating" value="3">
-						<label for="rating3">3</label>
-						<input id="rating2" type="radio" name="rating" value="2">
-						<label for="rating2">2</label>
-						<input id="rating1" type="radio" name="rating" value="1">
-						<label for="rating1">1</label>
-					</span>
-            </div>
+            <?php if (isset($review) && !empty($review)): ?>
+                <div class="rating1">
+                    <form action="<?php echo base_url("product/".$product['id']."/rating"); ?>" method="post">
+                        <span class="starRating">
+                            <input id="rating5" type="radio" name="rating" value="5" <?php if (isset($review) && !empty($review) && $review==5) echo "checked";?>>
+                            <label for="rating5">5</label>
+                            <input id="rating4" type="radio" name="rating" value="4" <?php if (isset($review) && !empty($review) && $review==4) echo "checked";?>>
+                            <label for="rating4">4</label>
+                            <input id="rating3" type="radio" name="rating" value="3" <?php if (isset($review) && !empty($review) && $review==3) echo "checked";?>>
+                            <label for="rating3">3</label>
+                            <input id="rating2" type="radio" name="rating" value="2" <?php if (isset($review) && !empty($review) && $review==2) echo "checked";?>>
+                            <label for="rating2">2</label>
+                            <input id="rating1" type="radio" name="rating" value="1" <?php if (isset($review) && !empty($review) && $review==1) echo "checked";?>>
+                            <label for="rating1">1</label>
+                        </span>
+                    </form>
+                </div>
+            <?php endif; ?>
             <p>
                 <span class="item_price"><?php echo $product['new_price'] ?? $product['price']; ?>€</span>
                 <?php if (isset($product['new_price'])): ?>
@@ -85,27 +89,19 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    <div>
-        <h3 class="w3-head text-center">Detalhes</h3>
-        <ul>
-            <li>
-                <h4>Meta-data key</h4>
-                <p>Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value </p>
-            </li>
-            <li>
-                <h4>Meta-data key</h4>
-                <p>Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value </p>
-            </li>
-            <li>
-                <h4>Meta-data key</h4>
-                <p>Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value </p>
-            </li>
-            <li>
-                <h4>Meta-data key</h4>
-                <p>Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value Meta-data value </p>
-            </li>
-        </ul>
-    </div>
+    <?php if (!empty($metadata)) :?>
+        <div class="product-details">
+            <h3 class="w3-head text-center">Detalhes</h3>
+            <ul>
+                <?php foreach($metadata as $data): ?>
+                    <li>
+                        <h4><?php echo $data["key"]; ?></h4>
+                        <p><?php echo $data["content"]; ?></p>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif;?>
 </div>
 
 <?php
