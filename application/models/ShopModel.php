@@ -6,6 +6,7 @@ class ShopModel extends MY_Model{
     }
     public function getLocationList(){
         $shops = $this->getAll();
+        if ($shops == null) return [];
         $locations = [];
         foreach ($shops as $shop){
             $added = false;
