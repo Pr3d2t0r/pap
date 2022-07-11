@@ -10,8 +10,9 @@ class MY_Controller extends CI_Controller
     ];
     protected array $rolesNedded;
 
-    public function __construct($rolesNedded)
+    public function __construct($rolesNedded=[],$loginNedded=true)
     {
+        $this->rolesNedded = $rolesNedded;
         parent::__construct();
         $userId = $this->isUserLogedIn();
         if ($userId) {
@@ -19,6 +20,11 @@ class MY_Controller extends CI_Controller
             $this->isLoggedIn = true;
             $this->data['isLoggedIn'] = true;
             $this->data['user'] = $this->user;
+        }else{
+            if ($loginNedded){
+                $this->session->set_flashdata("error_msg", "Acesso Proibido!");
+                redirect("login");
+            }
         }
     }
 
@@ -51,6 +57,7 @@ class MY_Controller extends CI_Controller
             $this->load->view('general/menu', $this->data);
             $this->load->view($name, $this->data);
             $this->load->view('general/footer', $this->data);
+
             return;
         }
         $this->load->view($name, $this->data);

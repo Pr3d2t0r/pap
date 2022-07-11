@@ -114,7 +114,7 @@ if (!isset($isLoggedIn) || !$isLoggedIn) {
                                 <span class="sr-only">(Atual)</span>
                             </a>
                         </li>-->
-                        <li class="dropdown <?php echo $this->router->fetch_class() == "Product" ? "active" : ""; ?> ?>">
+                        <li class="dropdown <?php echo $this->router->fetch_class() == "Product" ? "active" : ""; ?>">
                             <a href="#" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produtos
                                 <span class="caret"></span>
                             </a>
@@ -142,13 +142,13 @@ if (!isset($isLoggedIn) || !$isLoggedIn) {
                                 <?php endif; ?>
                             </a>
                         </li>
-                        <li class="<?php echo $this->router->fetch_class() == "Fliers" ? "active" : ""; ?>">
-                            <a class="nav-stylehead" href="<?php echo base_url("folhetos/"); ?>">Folhetos
-                                <?php if ($this->router->fetch_class() == "Fliers"): ?>
+                        <!--<li class="<?php /*echo $this->router->fetch_class() == "Fliers" ? "active" : ""; */?>">
+                            <a class="nav-stylehead" href="<?php /*echo base_url("folhetos/"); */?>">Folhetos
+                                <?php /*if ($this->router->fetch_class() == "Fliers"): */?>
                                     <span class="sr-only">(Atual)</span>
-                                <?php endif; ?>
+                                <?php /*endif; */?>
                             </a>
-                        </li>
+                        </li>-->
                         <li class="<?php echo $this->router->fetch_class() == "Help" ? "active" : ""; ?>">
                             <a class="nav-stylehead" href="<?php echo base_url("ajuda/"); ?>">Ajuda
                                 <?php if ($this->router->fetch_class() == "Help"): ?>
