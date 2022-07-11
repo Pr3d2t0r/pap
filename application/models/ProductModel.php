@@ -60,6 +60,10 @@ class ProductModel extends MY_Model{
 
                 $where[] = $queryQ;
             }
+
+            if (isset($filters['category'])){
+                $where[] = "id IN (select pc.product_id from productcategory as pc inner join category as ct on ct.id=pc.category_id  where upper(ct.slug) like upper('".$filters['category']."'))";
+            }
             $query .= implode(" AND ", $where);
 //            echo $query;
             $result = $this->db->query($query );
