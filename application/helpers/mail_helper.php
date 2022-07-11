@@ -1,7 +1,7 @@
 <?php
 
 class MailSender{
-    static public $API_KEY = "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";
+    static public $API_KEY = "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";
     private array $to = [];
     private ?array $sender;
     public string $subject;
@@ -44,6 +44,7 @@ class MailSender{
 
         $resp = curl_exec($ci);
         curl_close($ci);
+        var_dump($resp);
         return $resp;
     }
 

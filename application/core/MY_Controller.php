@@ -4,6 +4,7 @@ class MY_Controller extends CI_Controller
 {
     protected $user = null;
     protected bool $isLoggedIn = false;
+    protected $location = null;
     protected array $data = [
         'isLoggedIn' => false,
         'user' => null
@@ -12,7 +13,7 @@ class MY_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
+        $this->load->helper('location_helper');
         $userId = $this->isUserLogedIn();
         if ($userId) {
             $this->user = $this->UserModel->getById($userId, "OBJECT");
@@ -22,6 +23,7 @@ class MY_Controller extends CI_Controller
         }
         $this->data['locations'] = $this->ShopModel->getLocationList();
         $this->data['categories'] = chunkArrayHalf($this->CategoryModel->getAll());
+        $this->data['location'] = $this->location = new Location();
     }
 
     private function isUserLogedIn(){

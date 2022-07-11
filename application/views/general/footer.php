@@ -619,21 +619,29 @@
         });
     </script>
     <script>
-        $(".list_of_cities").on("change", evt=>{
+        $("#small-dialog1 .list_of_cities").on("change", evt=>{
             var city = $(evt.target).val();
+            _getLocals(city);
+        })
 
+        $("#small-dialog1 .local").on("click", evt=>{
+            var city = $(evt.target).attr("city");
+            _getLocals(city);
+        })
+
+        function _getLocals(city) {
             $.ajax({
                 url: "<?php echo base_url("/api/stores/find", null, false); ?>/"+city,
                 method: "GET",
                 success: function (xdata) {
                     var items = xdata;
-                    $(".stores").html(`
+                    $("#small-dialog1 .stores").html(`
                         <div>
                             <h3 class="w3-head">Lojas</h3>
                         </div>
                     `);
                     for (var i = 0; i < items.length; i++) {
-                        $(".stores").append(`
+                        $("#small-dialog1 .stores").append(`
                             <div class="store">
                                 <div>
                                     <span class="fa fa-home" aria-hidden="true"></span>
@@ -648,7 +656,7 @@
                     }
                 }
             })
-        })
+        }
     </script>
     <script>
         $("#track-order").on("submit", evt=>{
@@ -723,6 +731,49 @@
             document.getElementById("products").scrollIntoView();
         </script>
     <?php endif; ?>
+    <script>
+        $("#small-dialog3 .local").on("click", evt => {
+            var city = $(evt.target).attr("city");
+            _getStock(city, <?php if (isset($product['id']) && !empty($product['id'])) echo $product['id']; ?>);
+        });
+        $("#small-dialog3 .list_of_cities").on("change", evt=>{
+            var city = $(evt.target).val();
+            _getStock(city, <?php if (isset($product['id']) && !empty($product['id'])) echo $product['id']; ?>);
+        })
+
+        function _getStock(city, productId) {
+            $.ajax({
+                url: "<?php echo base_url("/api/stores/stock", null, false); ?>/",
+                method: "POST",
+                data:{
+                    city: city,
+                    productId: productId
+                },
+                success: function (xdata) {
+                    var items = xdata;
+                    $("#small-dialog3 .stores").html(`
+                        <div>
+                            <h3 class="w3-head">Lojas</h3>
+                        </div>
+                    `);
+                    for (var i = 0; i < items.length; i++) {
+                        $("#small-dialog3 .stores").append(`
+                            <div class="store">
+                                <div>
+                                    <span class="fa fa-home" aria-hidden="true"></span>
+                                    <span class="info">${city} ${items[i].address}</span>
+                                </div>
+                                <div class="${items[i].hasStock ? "hasStock" : "notStock"}">
+                                    <span class="fa fa-inbox" aria-hidden="true"></span>
+                                    <span class="info">${items[i].hasStock ? "Disponivel" : "Indesponivel"}</span>
+                                </div>
+                            </div>
+                        `);
+                    }
+                }
+            })
+        }
+    </script>
 </body>
 </html>
 

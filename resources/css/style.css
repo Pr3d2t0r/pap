@@ -5099,3 +5099,21 @@ h4.help-head a{
 .customer-rev input[type='radio']:checked ~ span i{
     color: #00ACEE;
 }
+
+.select-city h3{
+    font-size: 20px !important;
+}
+
+.select-city h3 span{
+    color: #1adeed;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#small-dialog3 .stores .hasStock{
+    color: green !important;
+}
+
+#small-dialog3 .stores .notStock{
+    color: red !important;
+}

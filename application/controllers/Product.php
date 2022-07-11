@@ -37,7 +37,14 @@ class Product extends MY_Controller {
 
     public function details($id){
         $this->data['product'] = $this->ProductModel->getById($id);
-        $this->data['discount'] = $this->DiscountModel->getById($id);
+        $this->data['title'] = $this->data['product']['meta_title'] . " | On Market Portugal";
+        if(isset($this->data['product']['discount_id']) && !empty($this->data['product']['discount_id'])){
+            $this->data['discount'] = $this->DiscountModel->getById($this->data['product']['discount_id']);
+            $this->data['product']['discount_amount'] = $this->data['product']['price'] * ($this->data['discount']['discount'] / 100);
+            $this->data['product']['new_price'] = $this->data['product']['price'] - $this->data['product']['discount_amount'];
+        }
+        /*if ($this->isLoggedIn)
+            $this->data['review'] = $this->ProductModel->getReviewForUser($id, $this->user->id);*/
         $this->openView("product/detail");
 	}
 
