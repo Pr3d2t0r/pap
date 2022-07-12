@@ -24,24 +24,23 @@
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="<?php echo base_url()?>">Produtos</a>
-                    <a class="collapse-item" href="<?php echo base_url()?>">Categorias</a>
-                    <a class="collapse-item" href="<?php echo base_url()?>">Discontos</a>
+                    <a class="collapse-item" href="<?php echo base_url("produtos")?>">Produtos</a>
+                    <a class="collapse-item" href="<?php echo base_url("produto/desconto")?>">Descontos</a>
                 </div>
             </div>
         </li>
         <li class="nav-item <?php echo $this->router->fetch_class() == "Campaign" ? "active" : ""; ?>">
-            <a class="nav-link" href="<?php echo base_url()?>">
+            <a class="nav-link" href="<?php echo base_url("campanhas")?>">
                 <i class="fas fa-camera"></i>
                 <span>Campanhas</span></a>
         </li>
         <li class="nav-item <?php echo $this->router->fetch_class() == "Faq" ? "active" : ""; ?>">
-            <a class="nav-link" href="<?php echo base_url()?>">
+            <a class="nav-link" href="<?php echo base_url("faq")?>">
                 <i class="fas fa-question"></i>
                 <span>FAQ</span></a>
         </li>
         <li class="nav-item <?php echo $this->router->fetch_class() == "Orderm" ? "active" : ""; ?>">
-            <a class="nav-link" href="<?php echo base_url()?>">
+            <a class="nav-link" href="<?php echo base_url("pedidos")?>">
                 <i class="fas fa-box-open"></i>
                 <span>Pedidos</span></a>
         </li>
