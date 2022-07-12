@@ -25,16 +25,6 @@
                     <th>Remover</th>
                 </tr>
                 </thead>
-             <!--   <tfoot>
-                <tr>
-                    <th>#</th>
-                    <th>Nome</th>
-                    <th>Descrição</th>
-                    <th>Preço</th>
-                    <th>Editar</th>
-                    <th>Remover</th>
-                </tr>
-                </tfoot>-->
                 <tbody>
                     <?php foreach ($products as $product): ?>
                         <tr>

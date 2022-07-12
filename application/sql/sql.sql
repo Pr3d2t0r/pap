@@ -61,13 +61,13 @@ create table if not exists `Role`
 );
 
 insert into `Role`(`role`, `permissions`)
-values ('platform_manager', '["Any", "SuperAdmin"]'),
-       ('direction', '["Any"]'),
-       ('accounting', '["Any"]'),
-       ('manager', '["Any"]'),
-       ('cashier', '["Any"]'),
-       ('repositions', '["Any"]'),
-       ('sellers', '["Any"]');
+values ('platform_manager', 'a:2:{i:0;s:3:"Any";i:1;s:10:"SuperAdmin";}'),
+       ('direction', 'a:1:{i:0;s:3:"Any";}'),
+       ('accounting', 'a:1:{i:0;s:3:"Any";}'),
+       ('manager', 'a:1:{i:0;s:3:"Any";}'),
+       ('cashier', 'a:1:{i:0;s:3:"Any";}'),
+       ('repositions', 'a:1:{i:0;s:3:"Any";}'),
+       ('sellers', 'a:1:{i:0;s:3:"Any";}');
 
 create table if not exists `Employee`
 (

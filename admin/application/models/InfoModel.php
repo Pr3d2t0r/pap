@@ -15,7 +15,7 @@ class InfoModel extends CI_Model{
         $this->db->select_sum("total", "total");
         $this->db->where("created_at >", "DATE_SUB(now(), INTERVAL 3 MONTH)");
         $result = $this->db->get("order");
-        return number_format($result->row_array()['total'], 2);
+        return number_format($result->row_array()['total']??0, 2);
     }
 
     public function getAmountOfSales(){

@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['produtos'] = "Product";
+$route['produto/edit'] = "Product/edit";
 
 $route['login'] = "User/login";
 $route['logout'] = "User/logout";

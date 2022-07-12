@@ -134,6 +134,10 @@
                     }
                 });
             });
+            $("#clearDiscount").on("click", evt=>{
+                $("input[name='discountId']").prop('checked', false);
+                evt.preventDefault();
+            })
         </script>
     <?php endif; ?>
 
