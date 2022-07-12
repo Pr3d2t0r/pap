@@ -35,4 +35,17 @@ class Product extends MY_Controller {
         $this->data['metadata'] = $this->ProductModel->getMetaDataForProduct($body['id']) ?? [];
         $this->openView("product/edit");
     }
+
+    public function add(){
+        $discounts = $this->DiscountModel->getAll();
+        foreach ($discounts as $key => $discount){
+            $campaign = $this->CampaignsModel->getForDiscount($discount['id']);
+            $discounts[$key]['campaign'] = false;
+            if (!empty($campaign))
+                $discounts[$key]['campaign'] = $campaign;
+
+        }
+        $this->data['discounts'] = chunkArrayHalf($discounts);
+        $this->openView("product/add");
+    }
 }

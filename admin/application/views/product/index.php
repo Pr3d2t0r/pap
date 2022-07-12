@@ -1,6 +1,6 @@
 <h1 class="h3 mb-2 text-gray-800">Produtos</h1>
 <div class="d-flex flex-row-reverse">
-    <a href="#" class="m-2"><i class="fa fa-plus"></i> Adicionar</a>
+    <a href="<?php echo base_url("produto/add"); ?>" class="m-2"><i class="fa fa-plus"></i> Adicionar</a>
 </div>
 <div class="card shadow mb-4">
     <?php if (empty($products)): ?>

@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['produtos'] = "Product";
 $route['produto/edit'] = "Product/edit";
+$route['produto/add'] = "Product/add";
 
 $route['login'] = "User/login";
 $route['logout'] = "User/logout";
