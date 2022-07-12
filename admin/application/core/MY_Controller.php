@@ -8,15 +8,26 @@ class MY_Controller extends CI_Controller
         'isLoggedIn' => false,
         'user' => null
     ];
-    protected array $rolesNedded;
+    protected array $permissionNedded;
 
-    public function __construct($rolesNedded=[],$loginNedded=true)
+    public function __construct($permissionNedded=[],$loginNedded=true)
     {
-        $this->rolesNedded = $rolesNedded;
+        $this->permissionNedded = $permissionNedded;
         parent::__construct();
         $userId = $this->isUserLogedIn();
         if ($userId) {
             $this->user = $this->UserModel->getById($userId, "OBJECT");
+            $this->user->employee_id = $this->UserModel->isEmployee($userId);
+            if ($this->user->employee_id === false){
+                $this->session->set_flashdata("error_msg", "Acesso Proibido!");
+                redirect("login");
+            }
+            $this->user->permissions = $this->RoleModel->getForEmployee($this->user->employee_id);
+            if (!$this->hasPermission()){
+                $this->session->set_flashdata("error_msg", "Acesso Proibido!");
+                redirect("login");
+            }
+            $this->user->personal_info = $this->PersonalInfoModel->getById($this->user->main_personal_info_id, "OBJECT");
             $this->isLoggedIn = true;
             $this->data['isLoggedIn'] = true;
             $this->data['user'] = $this->user;
@@ -61,5 +72,10 @@ class MY_Controller extends CI_Controller
             return;
         }
         $this->load->view($name, $this->data);
+    }
+    protected function hasPermission(){
+        if (in_array("SuperAdmin", $this->user->permissions)) return true;
+        foreach ($this->permissionNedded as $permission) if (!in_array($permission, $this->user->permissions)) return false;
+        return true;
     }
 }
