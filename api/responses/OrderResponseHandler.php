@@ -14,4 +14,17 @@ class OrderResponseHandler extends ResponseHandler {
             throw new Exception("There isn't any order with this reference!");
         return $result[0];
     }
+
+    public function month(){
+        $result = $this->db->executeGet("select * from `order`", [], PDO::FETCH_OBJ);
+        $monthArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        if (!empty($result)){
+            foreach ($result as $order){
+                $date = DateTime::createFromFormat("Y-m-d H:i:s",$order->created_at);
+                $month = date("m", $date->getTimestamp());
+                $monthArr[intval($month)-1] += $order->total;
+            }
+        }
+        return $monthArr;
+    }
 }

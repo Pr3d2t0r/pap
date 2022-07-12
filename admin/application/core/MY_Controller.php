@@ -31,6 +31,7 @@ class MY_Controller extends CI_Controller
             $this->isLoggedIn = true;
             $this->data['isLoggedIn'] = true;
             $this->data['user'] = $this->user;
+            $this->data['page'] = $this->router->fetch_class();
         }else{
             if ($loginNedded){
                 $this->session->set_flashdata("error_msg", "Acesso Proibido!");
