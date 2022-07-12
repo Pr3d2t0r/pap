@@ -57,5 +57,9 @@ $route['produtos'] = "Product";
 $route['produto/edit'] = "Product/edit";
 $route['produto/add'] = "Product/add";
 
+$route['campanhas'] = "Campaign";
+$route['campanha/edit'] = "Campaign/edit";
+$route['campanha/add'] = "Campaign/add";
+
 $route['login'] = "User/login";
 $route['logout'] = "User/logout";

@@ -135,7 +135,7 @@
                 });
             });
             $("#clearDiscount").on("click", evt=>{
-                $("input[name='discountId']").prop('checked', false);
+                $("input[name='discount_id']").prop('checked', false);
                 evt.preventDefault();
             })
         </script>

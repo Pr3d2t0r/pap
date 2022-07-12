@@ -4,7 +4,6 @@
 
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="p-5">
@@ -41,7 +40,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Descrição:</label>
-                                        <textarea name="description" rows="6" class="form-control" placeholder="Descrição"></textarea>
+                                        <textarea name="description" rows="6" class="form-control" placeholder="Descrição"><?php echo $product["description"]; ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Preço:</label>
@@ -50,7 +49,8 @@
                                     </div>
                                     <?php if (!empty($discounts)) :?>
                                         <div class="text-center">
-                                            <h1 class="h5 text-gray-900 mb-3">Descontos</h1>
+                                            <h1 class="h5 text-gray-900 mb-0">Descontos</h1>
+                                            <span class="mb-3 small text-warning d-block">O desconto é facultativo</span>
                                             <button id="clearDiscount" class="btn btn-outline-danger mb-4">Remover descontos</button>
                                         </div>
                                         <div class="form-group row w-75 mx-auto">
@@ -72,6 +72,7 @@
                                     <button type="submit" class="btn btn-primary btn-block">
                                         Guardar
                                     </button>
+                                    <a href="<?php echo base_url("produtos"); ?>" class="btn btn-dark btn-block">Voltar</a>
                                 </form>
                                 <hr>
                             </div>
