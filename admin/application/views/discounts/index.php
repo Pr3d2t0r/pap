@@ -5,11 +5,11 @@
 <div class="card shadow mb-4">
     <?php if (empty($discounts)): ?>
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Não existem perguntas ferquentes</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Não existem descontos</h6>
         </div>
     <?php else: ?>
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Perguntas Ferquentes</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Descontos</h6>
         </div>
         <div class="card-body">
         <div class="table-responsive">

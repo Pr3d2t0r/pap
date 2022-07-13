@@ -22,6 +22,17 @@ class ProductModel extends MY_Model{
         return $result->num_rows() > 0 ? $result->result_array() : null;
     }
 
+    public function getStockForShop($shopId, $productId=false){
+        if (is_null($shopId))
+            return false;
+        $this->db->where("shop_id", $shopId);
+        if ($productId != false)
+            $this->db->where("product_id", $productId);
+        $result = $this->db->get($this->quantity);
+        return $result->num_rows() > 0 ? $result->result_array() : null;
+    }
+
+
     public function getReviewForUser($userId, $productId){
         if (is_null($productId) || is_null($userId))
             return false;

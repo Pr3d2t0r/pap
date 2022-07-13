@@ -20,15 +20,28 @@
                                 </div>
                                 <form action="" method="post" class="user">
                                     <div class="form-group">
-                                        <label>Pergunta: </label>
-                                        <textarea name="question" rows="2" class="form-control" placeholder="Pergunta" style="resize: none" required><?php echo $question['question']; ?></textarea>
+                                        <label>Nº de telefone </label>
+                                        <input type="text" class="form-control"
+                                               placeholder="Nº de telefone" name="phone_number" value="<?php echo $shop["phone_number"]; ?>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Resposta:</label>
-                                        <textarea name="response" rows="4" class="form-control" placeholder="Resposta" style="resize: vertical" required><?php echo $question['response']; ?></textarea>
+                                        <label>País </label>
+                                        <input type="text" class="form-control"
+                                               placeholder="País" name="country" value="<?php echo $shop["country"]; ?>" required>
                                     </div>
-                                    <div class="formgroup">
-                                        <label><input type="checkbox" name="status" id="" <?php if ($question['status'] == "active") echo "checked"; ?>> Mostrar no site</label>
+                                    <div class="form-group">
+                                        <label>Distrito </label>
+                                        <input type="text" class="form-control"
+                                               placeholder="Distrito" name="county" value="<?php echo $shop["county"]; ?>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Cidade </label>
+                                        <input type="text" class="form-control"
+                                               placeholder="Cidade" name="city" value="<?php echo $shop["city"]; ?>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Morada </label>
+                                        <textarea name="address" rows="4" class="form-control" placeholder="Morada" style="resize: vertical" required><?php echo $shop["address"]; ?></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-block">
                                         Guardar

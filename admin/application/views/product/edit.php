@@ -11,15 +11,15 @@
                                     <h1 class="h2 text-gray-900 mb-4">Editar</h1>
                                 </div>
                                 <div class="text-center">
-                                    <h1 class="h5 text-gray-900 mb-3">Informação Geral</h1>
-                                </div>
-                                <div class="text-center">
                                     <?php if (!empty($formError)): ?>
                                         <p class="text-danger small"><?php echo $formError; ?></p>
                                     <?php endif; ?>
                                     <?php if (!empty($success)): ?>
                                         <p class="text-success small"><?php echo $success; ?></p>
                                     <?php endif; ?>
+                                </div>
+                                <div class="text-center">
+                                    <h1 class="h5 text-gray-900 mb-3">Informação Geral</h1>
                                 </div>
                                 <form action="" method="post" class="user" enctype="multipart/form-data">
                                     <input type="hidden" name="id" value="<?php echo $product['id']; ?>">

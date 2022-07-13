@@ -17,17 +17,9 @@
             Gestão
         </div>
         <li class="nav-item <?php echo $this->router->fetch_class() == "Shop" ? "active" : ""; ?>">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
+            <a class="nav-link" href="<?php echo base_url("lojas")?>">
                 <i class="fas fa-building"></i>
                 <span>Lojas</span></a>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="<?php echo base_url("lojas")?>">Ver Lojas</a>
-                    <a class="collapse-item" href="<?php echo base_url("lojas/add/stock")?>">Adicionar stock</a>
-                </div>
-            </div>
         </li>
         <li class="nav-item <?php echo $this->router->fetch_class() == "Product" ? "active" : ""; ?>">
             <a class="nav-link" href="<?php echo base_url("produtos")?>">
