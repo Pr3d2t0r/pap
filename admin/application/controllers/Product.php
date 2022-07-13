@@ -63,7 +63,6 @@ class Product extends MY_Controller {
                 $this->session->set_flashdata("success_msg", "Produto editado com sucesso!");
                 redirect("produtos");
             }else{
-                var_dump($result);
                 $this->data['formError'] = "<p class='text-danger small'>Erro ao inserir o(s) ficheiro(s)</p>";
             }
         }
@@ -104,7 +103,6 @@ class Product extends MY_Controller {
                     redirect("produtos");
                 }
             }else{
-                var_dump($result);
                 $this->data['formError'] = "<p class='text-danger small'>Erro ao inserir o(s) ficheiro(s)</p>";
             }
         }

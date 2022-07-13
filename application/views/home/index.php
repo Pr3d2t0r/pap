@@ -9,7 +9,7 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <?php foreach ($campaigns as $key => $campaign): ?>
-                <div class="item <?php if($key != 0) echo "item" . $key; else echo "active"; ?>" style="background:-webkit-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url(<?php echo $campaign['thumbnail']; ?>) no-repeat;background-size:cover;">
+                <div class="item <?php if($key != 0) echo "item" . $key; else echo "active"; ?>" style="background:-webkit-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url(<?php echo base_url("resources/images/campaigns/".$campaign["thumbnail"]) ?>) no-repeat;background-size:cover;">
                     <div class="container">
                         <div class="carousel-caption">
                             <h3><?php echo $campaign['title']?></h3>

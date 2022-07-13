@@ -114,7 +114,7 @@ class UploadFiles
         ];
     }
 
-    private final function act($config, $action)
+    private function act($config, $action)
     {
         $this->ci->image_lib->initialize($config);
 

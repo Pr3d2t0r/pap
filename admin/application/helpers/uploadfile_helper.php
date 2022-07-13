@@ -57,7 +57,6 @@ class UploadFile
                     $data['thumb_path'] = $data['file_path']
                         . 'thumbs/' . $data['raw_name'] . $data['file_ext'];
                 }
-
                 return $data;
             }
         ];
@@ -65,7 +64,13 @@ class UploadFile
 
     public function upload()
     {
-        $config['upload_path'] = './resources/images' . (!empty($this->uploadPath) ? "/" . $this->uploadPath : "");
+        if(empty($_FILES[$this->name]['name']))
+            return [
+                "error" => false,
+                "empty" => true
+            ];
+
+        $config['upload_path'] = '../resources/images' . (!empty($this->uploadPath) ? "/" . $this->uploadPath : "");
         $config['allowed_types'] = 'png|jpg|jpeg';
         $config['max_size'] = '51120'; //Kb
         $config['encrypt_name'] = true;
@@ -96,7 +101,7 @@ class UploadFile
 
     }
 
-    private final function act($config, $action)
+    private function act($config, $action)
     {
         $this->ci->image_lib->initialize($config);
 

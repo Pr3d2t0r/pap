@@ -21,7 +21,7 @@
                                 <div class="text-center">
                                     <h1 class="h5 text-gray-900 mb-3">Informação Geral</h1>
                                 </div>
-                                <form action="" method="post" class="user">
+                                <form action="" method="post" class="user" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label>Nome da Campanha: </label>
                                         <input type="text" class="form-control"
@@ -37,6 +37,22 @@
                                         <input type="text" class="form-control"
                                                placeholder="Rederecionamento" name="href" value="<?php echo set_value("href"); ?>" required>
                                     </div>
+                                    <?php if (!empty($discounts)) :?>
+                                        <div class="text-center">
+                                            <h1 class="h5 text-gray-900 mb-0">Descontos</h1>
+                                            <span class="mb-3 small text-warning d-block">O desconto é facultativo</span>
+                                            <button id="clearDiscount" class="btn btn-outline-danger mb-4">Remover descontos</button>
+                                        </div>
+                                        <div class="form-group row w-75 mx-auto">
+                                            <?php foreach ($discounts as $discountArr): ?>
+                                                <div class="col-6">
+                                                    <?php foreach ($discountArr as $discount): ?>
+                                                        <label style="width: fit-content" class="d-block mx-auto"><input type="radio" name="discount_id" value="<?php echo $discount["id"];?>" <?php if($discount["id"] == set_value('discount_id')) echo "checked";?>> <?php echo $discount['campaign'] === false ? $discount["discount"]."%" : $discount['campaign']['title']."(".$discount["discount"]."%)";?></label>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
                                     <div class="text-center">
                                         <h1 class="h5 text-gray-900 mb-3">Imagem</h1>
                                     </div>

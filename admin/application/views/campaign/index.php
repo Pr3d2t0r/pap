@@ -29,16 +29,16 @@
                         <tr>
                             <td><?php echo $campaign["title"]; ?></td>
                             <td><?php echo $campaign["description"]; ?></td>
-                            <td><a href="<?php echo str_replace("admin/", "", base_url($campaign["href"])); ?>" target="popup" onclick="window.open('<?php echo str_replace("admin/", "", base_url($campaign["href"])); ?>','popup','width=600'); return false;"><?php echo $campaign["href"]; ?></a></td>
-                            <td><a href="<?php echo str_replace("admin/", "", base_url($campaign["thumbnail"])); ?>" target="popup" onclick="window.open('<?php echo str_replace("admin/", "", base_url($campaign["thumbnail"])); ?>','popup','height=600'); return false;">Ver imagem</a></td>
+                            <td><a href="<?php echo $campaign["href"]; ?>" target="popup" onclick="window.open('<?php echo str_replace("admin/", "", $campaign["href"]); ?>','popup','width=600'); return false;"><?php echo $campaign["href"]; ?></a></td>
+                            <td><a href="<?php echo str_replace("admin/", "", base_url("resources/campaigns/".$campaign["thumbnail"])); ?>" target="popup" onclick="window.open('<?php echo str_replace("admin/", "", base_url("resources/images/campaigns/".$campaign["thumbnail"])); ?>); ?>','popup','height=600'); return false;">Ver imagem</a></td>
                             <td class="text-center">
                                 <form action="<?php echo base_url("campaign/edit"); ?>" method="post">
                                     <input type="hidden" name="id" value="<?php echo $campaign["id"]; ?>">
-                                    <button type="submit" class="btn bg-white"><a href="#"><i class="fa fa-edit text-warning"></i></button>
+                                    <button type="submit" class="btn bg-white"><i class="fa fa-edit text-warning"></i></button>
                                 </form>
                             </td>
                             <td class="text-center ">
-                                <form action="<?php echo base_url("campaign/remove"); ?>">
+                                <form action="<?php echo base_url("campaign/remove"); ?>" method="post" class="confirm">
                                     <input type="hidden" name="id" value="<?php echo $campaign["id"]; ?>">
                                     <button type="submit" class="btn bg-white"><i class="fa fa-trash text-danger"></i></button>
                                 </form>

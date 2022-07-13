@@ -30,13 +30,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Pequena descrição:</label>
-                                        <textarea name="description" rows="6" class="form-control" placeholder="Descrição"><?php echo $campaign["description"]; ?></textarea>
+                                        <textarea name="description" rows="4" class="form-control" placeholder="Descrição"><?php echo $campaign["description"]; ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label class="mb-0">Rederecionamento: </label>
                                         <p class="small text-left mb-2">(quando o user clicar em 'ver mais' será rederecionado para este link)</p>
                                         <input type="text" class="form-control"
-                                               placeholder="Titulo da Pagina" name="meta_title" value="<?php echo $campaign["href"]; ?>" required>
+                                               placeholder="Rederecionamento" name="href" value="<?php echo $campaign["href"]; ?>" required>
                                     </div>
                                     <?php if (!empty($discounts)) :?>
                                         <div class="text-center">
@@ -48,14 +48,15 @@
                                         <?php foreach ($discounts as $discountArr): ?>
                                             <div class="col-6">
                                                 <?php foreach ($discountArr as $discount): ?>
-                                                    <label style="width: fit-content" class="d-block mx-auto"><input type="radio" name="discountId" value="<?php echo $discount["id"];?>" <?php if($discount["id"] == $campaign['discount_id']) echo "checked";?>> <?php echo $discount['campaign'] === false ? $discount["discount"]."%" : $discount['campaign']['title']."(".$discount["discount"]."%)";?></label>
+                                                    <label style="width: fit-content" class="d-block mx-auto"><input type="radio" name="discount_id" value="<?php echo $discount["id"];?>" <?php if($discount["id"] == $campaign['discount_id']) echo "checked";?>> <?php echo $discount['campaign'] === false ? $discount["discount"]."%" : $discount['campaign']['title']."(".$discount["discount"]."%)";?></label>
                                                 <?php endforeach; ?>
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
                                     <?php endif; ?>
                                     <div class="text-center">
-                                        <h1 class="h5 text-gray-900 mb-3">Imagem</h1>
+                                        <h1 class="h5 text-gray-900 mb-0">Imagem</h1>
+                                        <span class="mb-3 small text-warning d-block">Ao selecionar uma imagem substituí a antiga</span>
                                     </div>
                                     <div class="form-group text-center">
                                         <input type="file" name="image">
