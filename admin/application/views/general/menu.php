@@ -16,6 +16,11 @@
         <div class="sidebar-heading">
             Gestão
         </div>
+        <li class="nav-item <?php echo $this->router->fetch_class() == "Shop" ? "active" : ""; ?>">
+            <a class="nav-link" href="<?php echo base_url("lojas")?>">
+                <i class="fas fa-building"></i>
+                <span>Lojas</span></a>
+        </li>
         <li class="nav-item <?php echo $this->router->fetch_class() == "Product" ? "active" : ""; ?>">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
@@ -39,7 +44,7 @@
                 <i class="fas fa-question"></i>
                 <span>FAQ</span></a>
         </li>
-        <li class="nav-item <?php echo $this->router->fetch_class() == "Orderm" ? "active" : ""; ?>">
+        <li class="nav-item <?php echo $this->router->fetch_class() == "Order" ? "active" : ""; ?>">
             <a class="nav-link" href="<?php echo base_url("pedidos")?>">
                 <i class="fas fa-box-open"></i>
                 <span>Pedidos</span></a>

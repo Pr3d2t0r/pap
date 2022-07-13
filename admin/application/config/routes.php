@@ -61,5 +61,8 @@ $route['campanhas'] = "Campaign";
 $route['campanha/edit'] = "Campaign/edit";
 $route['campanha/add'] = "Campaign/add";
 
+$route['pedidos'] = "Order";
+$route['pedidos/all'] = "Order/all";
+
 $route['login'] = "User/login";
 $route['logout'] = "User/logout";
