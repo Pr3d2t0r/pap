@@ -12,46 +12,55 @@ class Order extends MY_Controller {
     }
 
     public function index(){
-        $this->data['orders'] = $this->OrderModel->getAll();
+        $this->data['orders'] = $this->OrderModel->getAllProcessed();
         foreach ($this->data['orders'] as $key => $order){
             $this->data['orders'][$key]['cliente'] = $this->PersonalInfoModel->getById($order['personal_info_id']);
             $this->data['orders'][$key]['store'] = $this->ShopModel->getById($order['shop_id']);
-            switch ($order['status']) {
-                case "received":
-                    $this->data['orders'][$key]['statusMsg'] = "Processando";
-                    break;
-                case "awaiting_shipping":
-                    $this->data['orders'][$key]['statusMsg'] = "Aguardando Envio";
-                    break;
-                case "shipped":
-                    $this->data['orders'][$key]['statusMsg'] = "Enviado";
-                    break;
-                case "completed":
-                    $this->data['orders'][$key]['statusMsg'] = "Entregue";
-                    break;
-                default:
-                    $this->data['orders'][$key]['statusMsg'] = "Processando";
-            }
+            $this->data['orders'][$key]['statusMsg'] = $this->statusMsg($order['status']);
+            $this->data['orders'][$key]['sent'] = $order['status'] != "awaiting_shipping";
+            $this->data['orders'][$key]['complete'] = $order['status'] = "complete";
+        }
+        $this->data['pendingOrders'] = $this->OrderModel->getAllPending();
+        foreach ($this->data['pendingOrders'] as $key => $order){
+            $this->data['pendingOrders'][$key]['cliente'] = $this->PersonalInfoModel->getById($order['personal_info_id']);
+            $this->data['pendingOrders'][$key]['store'] = $this->ShopModel->getById($order['shop_id']);
+            $this->data['pendingOrders'][$key]['statusMsg'] = $this->statusMsg($order['status']);
         }
         $this->openView("order/index");
     }
 
-    public function all(){
-        $this->data['orders'] = $this->OrderModel->getAll();
-        $this->openView("faq/index");
-    }
-
-    public function edit(){
+    public function process(){
         $body = $this->input->post();
         if (!isset($body['id'])){
             $this->session->set_flashdata("error_msg", "Acesso proibido!");
-            redirect("faq");
+            redirect("pedidos");
         }
-        $this->data['question'] = $this->QuestionModel->getById($body['id']);
-        $this->openView("faq/edit");
+        $this->OrderModel->process($body['id'], "awaiting_shipping");
+        $this->session->set_flashdata("success_msg", "Pedido Processado com sucesso!");
+        redirect("pedidos");
     }
 
-    public function add(){
-        $this->openView("faq/add");
+    public function send(){
+        $body = $this->input->post();
+        if (!isset($body['id'])){
+            $this->session->set_flashdata("error_msg", "Acesso proibido!");
+            redirect("pedidos");
+        }
+        $this->OrderModel->process($body['id'], "shipped");
+        $this->session->set_flashdata("success_msg", "Pedido Processado com sucesso!");
+        redirect("pedidos");
+    }
+
+    private function statusMsg($status){
+        switch ($status) {
+            case "awaiting_shipping":
+                return "Aguardando Envio";
+            case "shipped":
+                return "Enviado";
+            case "completed":
+                return "Entregue";
+            default:
+                return "Processando";
+        }
     }
 }

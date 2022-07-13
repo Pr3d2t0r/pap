@@ -14,6 +14,24 @@ class OrderModel extends MY_Model{
         ]);
     }
 
+    public function getAllPending(){
+        $this->db->where("status", "received");
+        $query = $this->db->get($this->table);
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }
+        return null;
+    }
+
+    public function getAllProcessed(){
+        $this->db->where("status !=", "received");
+        $query = $this->db->get($this->table);
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }
+        return null;
+    }
+
     public function associatePaymentInfo($cartId, $paymentInfoId) {
         if (is_null($cartId) || is_null($paymentInfoId))
             return false;
@@ -27,5 +45,12 @@ class OrderModel extends MY_Model{
     public function getReference($orderId){
         $order = $this->getById($orderId, "OBJECT");
         return $order->reference ?? "###############";
+    }
+
+    public function process($orderId, $status){
+        $this->db->where("id", $orderId);
+        $this->db->update($this->table, [
+            "status" => $status
+        ]);
     }
 }

@@ -119,7 +119,7 @@
 
         <script>
             $(document).ready(function() {
-                $('#dataTable').DataTable({
+                $('.table').DataTable({
                     "language": {
                         "paginate": {
                             "next": "Proxima",

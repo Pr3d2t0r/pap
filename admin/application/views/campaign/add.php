@@ -37,6 +37,12 @@
                                         <input type="text" class="form-control"
                                                placeholder="Rederecionamento" name="href" value="<?php echo set_value("href"); ?>" required>
                                     </div>
+                                    <div class="text-center">
+                                        <h1 class="h5 text-gray-900 mb-3">Imagem</h1>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <input type="file" name="image">
+                                    </div>
                                     <button type="submit" class="btn btn-primary btn-block">
                                         Guardar
                                     </button>

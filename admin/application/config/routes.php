@@ -71,7 +71,6 @@ $route['loja/(:num)/stock'] = "Shop/stock/$1";
 $route['loja/(:num)/add/stock'] = "Shop/addstock/$1";
 
 $route['pedidos'] = "Order";
-$route['pedidos/all'] = "Order/all";
 
 $route['login'] = "User/login";
 $route['logout'] = "User/logout";
