@@ -213,7 +213,7 @@
                                                         <input type="hidden" name="business" value=" " />
                                                         <input type="hidden" name="return" value=" " />
                                                         <input type="hidden" name="cancel_return" value=" " />
-                                                        <input type="submit" name="submit" value="Pôr no Carrinho" class="button" />
+                                                        <Button type="submit" class="btn text-dark" style="font-size: 29px; width: 100%;padding-top: 5px;padding-bottom: 5px;"><i class="fa fa-cart-plus"></i></Button>
                                                     </fieldset>
                                                 </form>
                                             </div>
