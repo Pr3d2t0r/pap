@@ -8,7 +8,7 @@
                     <div class="col-lg-12">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h2 text-gray-900 mb-4">Adicionar Pergunta/Resposta</h1>
+                                <h1 class="h2 text-gray-900 mb-4">Adicionar Desconto</h1>
                             </div>
                             <div class="text-center">
                                 <?php if (!empty($formError)): ?>
@@ -20,17 +20,19 @@
                             </div>
                             <form action="" method="post" class="user">
                                 <div class="form-group">
-                                    <label>Pergunta: </label>
-                                    <textarea name="question" rows="2" class="form-control" placeholder="Pergunta" style="resize: none" required><?php echo set_value("description"); ?></textarea>
+                                    <label>Desconto(%): </label>
+                                    <input class="form-control" type="text" name="discount" placeholder="Desconto(%)" value="<?php echo set_value("discount"); ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label>Resposta:</label>
-                                    <textarea name="response" rows="4" class="form-control" placeholder="Resposta" style="resize: vertical" required><?php echo set_value("description"); ?></textarea>
+                                    <label>De:</label>
+                                    <input class="form-control" type="date" name="starts_at" id="">
+                                    <label class="mt-2">Até:</label>
+                                    <input class="form-control" type="date" name="ends_at" id="">
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block">
                                     Guardar
                                 </button>
-                                <a href="<?php echo base_url("faq"); ?>" class="btn btn-dark btn-block">Voltar</a>
+                                <a href="<?php echo base_url("descontos"); ?>" class="btn btn-dark btn-block">Voltar</a>
                             </form>
                             <hr>
                         </div>

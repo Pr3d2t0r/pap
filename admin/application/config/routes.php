@@ -61,6 +61,14 @@ $route['campanhas'] = "Campaign";
 $route['campanha/edit'] = "Campaign/edit";
 $route['campanha/add'] = "Campaign/add";
 
+$route['descontos'] = "Discount";
+$route['desconto/add'] = "Discount/add";
+
+$route['stores'] = "Shop";
+$route['stores/edit'] = "Shop/edit";
+$route['stores/add'] = "Shop/add";
+$route['stores/add/stock'] = "Shop/stock";
+
 $route['pedidos'] = "Order";
 $route['pedidos/all'] = "Order/all";
 

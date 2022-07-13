@@ -17,7 +17,7 @@
             rel="stylesheet">
 
     <link href="<?php echo base_url("resources/css/sb-admin-2.min.css") ?>" rel="stylesheet">
-    <?php if ($page == "Product"): ?>
+    <?php if ($page != "home"): ?>
         <link href="<?php echo base_url("resources/vendor/datatables/dataTables.bootstrap4.min.css"); ?>" rel="stylesheet">
     <?php endif;?>
 </head>

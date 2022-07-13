@@ -113,7 +113,7 @@
                 });
             });
         </script>
-    <?php elseif($page == "Product"): ?>
+    <?php elseif($page != "home"): ?>
         <script src="<?php echo base_url("resources/vendor/datatables/jquery.dataTables.min.js") ?>"></script>
         <script src="<?php echo base_url("resources/vendor/datatables/dataTables.bootstrap4.min.js") ?>"></script>
 
