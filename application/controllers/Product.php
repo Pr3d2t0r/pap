@@ -25,6 +25,7 @@ class Product extends MY_Controller {
         $this->data['filters'] = $filters;
         $products = $this->ProductModel->getAllLimit(9, $filters) ?? [];
         foreach ($products as $key => $product){
+            $products[$key]['image'] = $this->ProductModel->getMainImage($product['id']);
             if(isset($product['discount_id']) && !empty($product['discount_id'])){
                 $discount = $this->DiscountModel->getById($product['discount_id']);
                 $products[$key]['discount_amount'] = $product['price'] * ($discount['discount'] / 100);
@@ -46,7 +47,7 @@ class Product extends MY_Controller {
         if ($this->isLoggedIn)
             $this->data['review'] = $this->ProductModel->getReviewForUser($id, $this->user->id);
         $this->data['metadata'] = $this->ProductModel->getMetaDataForProduct($id) ?? [];
-        $this->data['images'] = $this->ProductModel->getImagesForProduct($id) ?? [];
+        $this->data['images'] = $this->ProductModel->getImages($id) ?? [];
         $this->openView("product/detail");
 	}
 
@@ -66,6 +67,7 @@ class Product extends MY_Controller {
         $this->data['filters'] = $filters;
         $products = $this->ProductModel->getAllLimit(9, $filters) ?? [];
         foreach ($products as $key => $product){
+            $products[$key]['image'] = $this->ProductModel->getMainImage($product['id']);
             if(isset($product['discount_id']) && !empty($product['discount_id'])){
                 $discount = $this->DiscountModel->getById($product['discount_id']);
                 $products[$key]['discount_amount'] = $product['price'] * ($discount['discount'] / 100);

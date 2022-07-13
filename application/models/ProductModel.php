@@ -39,12 +39,21 @@ class ProductModel extends MY_Model{
         return $result->num_rows() > 0 ? $result->result_array() : null;
     }
 
-    public function getImagesForProduct($productId){
+    public function getImages($productId){
         if (is_null($productId))
             return false;
         $this->db->where("product_id", $productId);
-        $result = $this->db->get($this->images);
+        $result = $this->db->get($this->images, 7);
         return $result->num_rows() > 0 ? $result->result_array() : null;
+    }
+
+    public function getMainImage($productId){
+        if (is_null($productId))
+            return false;
+        $this->db->where("product_id", $productId);
+        $this->db->where("main", true);
+        $result = $this->db->get($this->images);
+        return $result->row_array()['path'];
     }
 
     public function addReview($review, $productId, $userId){

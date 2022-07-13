@@ -16,18 +16,12 @@
             <div class="grid images_3_of_2">
                 <div class="flexslider">
                     <ul class="slides">
-                        <li data-thumb="<?php echo base_url("resources/images/si.jpg"); ?>">
-                            <div class="thumb-image">
-                                <img src="<?php echo base_url("resources/images/si.jpg"); ?>"class="img-responsive" alt=""> </div>
-                        </li>
-                        <li data-thumb="<?php echo base_url("resources/images/si2.jpg"); ?>">
-                            <div class="thumb-image">
-                                <img src="<?php echo base_url("resources/images/si2.jpg"); ?>" class="img-responsive" alt=""> </div>
-                        </li>
-                        <li data-thumb="<?php echo base_url("resources/images/si3.jpg"); ?>">
-                            <div class="thumb-image">
-                                <img src="<?php echo base_url("resources/images/si3.jpg"); ?>" class="img-responsive" alt=""> </div>
-                        </li>
+                        <?php foreach ($images as $image): ?>
+                            <li data-thumb="<?php echo base_url("resources/images/produtos/".$image['path']); ?>">
+                                <div class="thumb-image">
+                                    <img src="<?php echo base_url("resources/images/produtos/".$image['path']); ?>"class="img-responsive" alt=""> </div>
+                            </li>
+                        <?php endforeach; ?>
                     </ul>
                     <div class="clearfix"></div>
                 </div>

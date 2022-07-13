@@ -56,7 +56,6 @@
                             </li>
                         </ul>
                     </div>
-                    <!-- descontos -->
                     <div class="left-side">
                         <h3 class="agileits-sear-head">Desconto</h3>
                         <ul>
@@ -186,13 +185,8 @@
                                 <div class="col-md-4 product-men">
                                     <div class="men-pro-item simpleCart_shelfItem">
                                         <div class="men-thumb-item">
-                                            <img src="<?php echo base_url("resources/images/m1.jpg");?>" alt="">
-                                            <div class="men-cart-pro">
-                                                <div class="inner-men-cart-pro">
-                                                    <a href="<?php echo base_url("produto/".$product['id']); ?>" class="link-product-add-cart">Ver mais</a>
-                                                </div>
-                                            </div>
-                                            <!--<span class="product-new-top">New</span>-->
+                                            <img src="<?php echo base_url("resources/images/produtos/resized/".$product['image']);?>" alt="">
+                                            <?php if (isset($product['discount_percentage'])): ?><span class="product-new-top"><?php echo $product['discount_percentage']; ?>%</span> <?php endif; ?>
                                         </div>
                                         <div class="item-info-product ">
                                             <h4>
@@ -223,6 +217,7 @@
                                                     </fieldset>
                                                 </form>
                                             </div>
+                                            <a href="<?php echo base_url("produto/".$product['id']); ?>" class="">Ver mais</a>
                                         </div>
                                     </div>
                                 </div>

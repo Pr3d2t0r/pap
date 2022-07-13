@@ -26,9 +26,11 @@ class Home extends MY_Controller {
         $this->data['campaigns'] = $this->CampaignsModel->getAllLimit(5) ?? [];
         $products = $this->ProductModel->getAllLimit(9, $filters) ?? [];
         foreach ($products as $key => $product){
+            $products[$key]['image'] = $this->ProductModel->getMainImage($product['id']);
             if(isset($product['discount_id']) && !empty($product['discount_id'])){
                 $discount = $this->DiscountModel->getById($product['discount_id']);
                 $products[$key]['discount_amount'] = $product['price'] * ($discount['discount'] / 100);
+                $products[$key]['discount_percentage'] = $discount['discount'];
                 $products[$key]['new_price'] = $product['price'] - $products[$key]['discount_amount'];
             }
         }
