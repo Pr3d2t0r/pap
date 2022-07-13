@@ -47,7 +47,7 @@
                                 </form>
                             </td>
                             <td class="text-center ">
-                                <form action="<?php echo base_url("loja/remove"); ?>">
+                                <form action="<?php echo base_url("shop/remove"); ?>" method="post", class="confirm">
                                     <input type="hidden" name="id" value="<?php echo $shop["id"]; ?>">
                                     <button type="submit" class="btn bg-white"><i class="fa fa-trash fa-2x text-danger"></i></button>
                                 </form>

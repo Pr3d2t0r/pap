@@ -22,9 +22,9 @@
                 <div class="col-xs-6 footer-grids">
                     <h3>Acesso Rápido</h3>
                     <ul>
-                        <li>
-                            <a href="<?php echo base_url("sobre"); ?>">Sobre Nós</a>
-                        </li>
+                        <!--<li>
+                            <a href="<?php /*echo base_url("sobre"); */?>">Sobre Nós</a>
+                        </li>-->
                         <li>
                             <a href="<?php echo base_url("contactos"); ?>">Contacte-nos</a>
                         </li>
@@ -32,11 +32,14 @@
                             <a href="<?php echo base_url("ajuda"); ?>">Ajuda</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url("termos"); ?>">Termos de Utilização</a>
+                            <a href="<?php echo base_url("admin"); ?>">Admin</a>
+                        </li>
+                        <!--<li>
+                            <a href="<?php /*echo base_url("termos"); */?>">Termos de Utilização</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url("privacidade"); ?>">Politica de Privacidade</a>
-                        </li>
+                            <a href="<?php /*echo base_url("privacidade"); */?>">Politica de Privacidade</a>
+                        </li>-->
                     </ul>
                 </div>
                 <div class="col-xs-6 footer-grids">

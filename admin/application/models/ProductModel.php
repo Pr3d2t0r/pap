@@ -32,6 +32,24 @@ class ProductModel extends MY_Model{
         return $result->num_rows() > 0 ? $result->result_array() : null;
     }
 
+    public function addStock($id, $product_id, $qt){
+        $existing = $this->getStockForShop($id, $product_id);
+        if ($existing != null){
+            $this->db->where("shop_id", $id);
+            $this->db->where("product_id", $product_id);
+            $this->db->update($this->quantity, [
+                "quantity" => $existing[0]['quantity'] + intval($qt),
+                "available_quantity" => $existing[0]['available_quantity'] + intval($qt),
+            ]);
+            return;
+        }
+        $this->db->insert($this->quantity, [
+            "product_id" => $product_id,
+            "shop_id" => $id,
+            "quantity" => $qt,
+            "available_quantity" => $qt,
+        ]);
+    }
 
     public function getReviewForUser($userId, $productId){
         if (is_null($productId) || is_null($userId))

@@ -131,24 +131,11 @@ if (!isset($isLoggedIn) || !$isLoggedIn) {
                                             </ul>
                                         </div>
                                     <?php endforeach; ?>
+                                    <a href="<?php echo base_url("produtos");?>">Ver todos</a>
                                     <div class="clearfix"></div>
                                 </div>
                             </ul>
                         </li>
-                        <li class="<?php echo $this->router->fetch_class() == "About" ? "active" : ""; ?>">
-                            <a class="nav-stylehead" href="<?php echo base_url("sobre/"); ?>">Sobre nós
-                                <?php if ($this->router->fetch_class() == "About"): ?>
-                                    <span class="sr-only">(Atual)</span>
-                                <?php endif; ?>
-                            </a>
-                        </li>
-                        <!--<li class="<?php /*echo $this->router->fetch_class() == "Fliers" ? "active" : ""; */?>">
-                            <a class="nav-stylehead" href="<?php /*echo base_url("folhetos/"); */?>">Folhetos
-                                <?php /*if ($this->router->fetch_class() == "Fliers"): */?>
-                                    <span class="sr-only">(Atual)</span>
-                                <?php /*endif; */?>
-                            </a>
-                        </li>-->
                         <li class="<?php echo $this->router->fetch_class() == "Help" ? "active" : ""; ?>">
                             <a class="nav-stylehead" href="<?php echo base_url("ajuda/"); ?>">Ajuda
                                 <?php if ($this->router->fetch_class() == "Help"): ?>

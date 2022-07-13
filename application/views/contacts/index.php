@@ -71,9 +71,6 @@
                             <a href="mailto:info@epcc.pt">info@epcc.pt</a>
                         </p>
                     </div>
-                    <div class="col-xs-5 contact-agile">
-                        <img src="<?php echo base_url("resources/images/contact2.jpg"); ?>" alt="">
-                    </div>
                     <div class="clearfix"> </div>
                 </div>
             </div>

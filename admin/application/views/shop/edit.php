@@ -19,6 +19,7 @@
                                     <?php endif; ?>
                                 </div>
                                 <form action="" method="post" class="user">
+                                    <input type="hidden" name="id" value="<?php echo $shop["id"]; ?>">
                                     <div class="form-group">
                                         <label>Nº de telefone </label>
                                         <input type="text" class="form-control"
@@ -46,7 +47,7 @@
                                     <button type="submit" class="btn btn-primary btn-block">
                                         Guardar
                                     </button>
-                                    <a href="<?php echo base_url("faq"); ?>" class="btn btn-dark btn-block">Voltar</a>
+                                    <a href="<?php echo base_url("lojas"); ?>" class="btn btn-dark btn-block">Voltar</a>
                                 </form>
                                 <hr>
                             </div>
