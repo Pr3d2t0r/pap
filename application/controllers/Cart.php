@@ -239,6 +239,7 @@ class Cart extends MY_Controller {
         $amounts = $this->calculate();
         $shopId = $this->findBestShop($amounts['items']);
         $orderId = $this->OrderModel->insert([
+            "reference" => bin2hex(openssl_random_pseudo_bytes(15)),
             "user_id" => $this->user->id,
             "sub_total" => $amounts['subtotal'],
             "shipping" => $amounts['envio'],

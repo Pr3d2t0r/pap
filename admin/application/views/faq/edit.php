@@ -19,6 +19,7 @@
                                     <?php endif; ?>
                                 </div>
                                 <form action="" method="post" class="user">
+                                    <input type="hidden" name="id" value="<?php echo $question['id']; ?>">
                                     <div class="form-group">
                                         <label>Pergunta: </label>
                                         <textarea name="question" rows="2" class="form-control" placeholder="Pergunta" style="resize: none" required><?php echo $question['question']; ?></textarea>

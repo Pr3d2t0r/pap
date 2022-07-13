@@ -266,7 +266,7 @@ create table if not exists `CartPublicTokens`
 create table if not exists `Order`
 (
     `id`               int(11) primary key auto_increment,
-    `reference`        varchar(15)                                                   not null default substr(UUID(), -15),
+    `reference`        varchar(15)                                                   not null,
     `user_id`          int(11)                                                       not null,
     `status`           enum ('received', 'awaiting_shipping', 'shipped', 'complete') not null default 'received',
     `sub_total`        float                                                         not null,

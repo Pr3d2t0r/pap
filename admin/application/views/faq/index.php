@@ -16,6 +16,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Pergunta</th>
                     <th>Resposta</th>
                     <th>Estado</th>
@@ -26,6 +27,7 @@
                 <tbody>
                     <?php foreach ($questions as $question): ?>
                         <tr>
+                            <td><?php echo $question["id"]; ?></td>
                             <td><?php echo $question["question"]; ?></td>
                             <td><?php echo $question["response"]; ?></td>
                             <td><?php echo $question["status"]=="active" ? "ativo" : "inativo"; ?></td>
@@ -36,7 +38,7 @@
                                 </form>
                             </td>
                             <td class="text-center ">
-                                <form action="<?php echo base_url("faq/remove"); ?>">
+                                <form action="<?php echo base_url("faq/remove"); ?>" class="cofirm" method="post">
                                     <input type="hidden" name="id" value="<?php echo $question["id"]; ?>">
                                     <button type="submit" class="btn bg-white"><i class="fa fa-trash text-danger"></i></button>
                                 </form>

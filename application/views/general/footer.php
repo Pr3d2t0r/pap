@@ -2,37 +2,6 @@
 
 <footer>
     <div class="container">
-        <div class="w3l-grids-footer">
-            <div class="col-xs-4 offer-footer">
-                <div class="col-xs-4 icon-fot">
-                    <span class="fa fa-map-marker" aria-hidden="true"></span>
-                </div>
-                <div class="col-xs-8 text-form-footer">
-                    <h3>Rastreie seu pedido</h3>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-xs-4 offer-footer">
-                <div class="col-xs-4 icon-fot">
-                    <span class="fa fa-refresh" aria-hidden="true"></span>
-                </div>
-                <div class="col-xs-8 text-form-footer">
-                    <h3>Aceitamos Devoluções</h3>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-xs-4 offer-footer">
-                <div class="col-xs-4 icon-fot">
-                    <span class="fa fa-times" aria-hidden="true"></span>
-                </div>
-                <div class="col-xs-8 text-form-footer">
-                    <h3>Cancelamento Online</h3>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-
         <div class="footer-info w3-agileits-info">
             <h3>Categorias</h3>
             <div class="col-sm-5 address-right">
@@ -689,7 +658,7 @@
                         <h4>Pedido #<span>${item.reference}</span></h4>
                         <ul>
                             <li>Comprador: ${item.name}</li>
-                            <li>Status: ${status(item.status)}</li>
+                            <li>Estado: ${status(item.status)}</li>
                             <li>Total: ${item.total.toFixed(2)}€</li>
                             <li>Efetuado em: ${item.created_at}</li>
                         </ul>

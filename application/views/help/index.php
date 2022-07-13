@@ -19,9 +19,9 @@
             <div class="clearfix"></div>
         </div>
         <div class="faq-w3agile">
-            <h3 class="w3-head">10 Perguntas mais frequentes</h3>
+            <h3 class="w3-head">Perguntas mais frequentes</h3>
             <ul class="faq">
-                <?php foreach ($questions as $i => $question): ?>
+                <?php foreach ($questions ?? [] as $i => $question): ?>
                     <li class="item<?php echo $i+1; ?>">
                         <a href="#" title="click here"><?php echo $question["question"]; ?></a>
                         <ul>

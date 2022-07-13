@@ -12,7 +12,7 @@
                             </div>
                             <div class="text-center">
                                 <?php if (!empty($formError)): ?>
-                                    <p class="text-danger small"><?php echo $formError; ?></p>
+                                    <?php echo $formError; ?>
                                 <?php endif; ?>
                                 <?php if (!empty($success)): ?>
                                     <p class="text-success small"><?php echo $success; ?></p>
