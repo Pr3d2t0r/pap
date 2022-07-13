@@ -29,8 +29,8 @@
                         <tr>
                             <td><?php echo $campaign["title"]; ?></td>
                             <td><?php echo $campaign["description"]; ?></td>
-                            <td><?php echo $campaign["href"]; ?></td>
-                            <td><?php echo $campaign["thumbnail"]; ?></td>
+                            <td><a href="<?php echo str_replace("admin/", "", base_url($campaign["href"])); ?>" target="popup" onclick="window.open('<?php echo str_replace("admin/", "", base_url($campaign["href"])); ?>','popup','width=600'); return false;"><?php echo $campaign["href"]; ?></a></td>
+                            <td><a href="<?php echo str_replace("admin/", "", base_url($campaign["thumbnail"])); ?>" target="popup" onclick="window.open('<?php echo str_replace("admin/", "", base_url($campaign["thumbnail"])); ?>','popup','height=600'); return false;">Ver imagem</a></td>
                             <td class="text-center">
                                 <form action="<?php echo base_url("campaign/edit"); ?>" method="post">
                                     <input type="hidden" name="id" value="<?php echo $campaign["id"]; ?>">

@@ -24,12 +24,12 @@
                                 <form action="" method="post" class="user" enctype="multipart/form-data">
                                     <input type="hidden" name="id" value="<?php echo $campaign['id']; ?>">
                                     <div class="form-group">
-                                        <label>Nome: </label>
+                                        <label>Nome da Campanha: </label>
                                         <input type="text" class="form-control"
                                                placeholder="Nome" name="title" value="<?php echo $campaign["title"]; ?>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Descrição:</label>
+                                        <label>Pequena descrição:</label>
                                         <textarea name="description" rows="6" class="form-control" placeholder="Descrição"><?php echo $campaign["description"]; ?></textarea>
                                     </div>
                                     <div class="form-group">
