@@ -29,7 +29,7 @@
                             <td><?php echo $discount["discount"]; ?></td>
                             <td><?php echo ($discount['campaign'] !== false ? $discount['campaign']['title'] : "N/A"); ?></td>
                             <td class="text-center ">
-                                <form action="<?php echo base_url("desconto/remove"); ?>">
+                                <form action="<?php echo base_url("discount/remove"); ?>" method="post" class="confirm">
                                     <input type="hidden" name="id" value="<?php echo $discount["id"]; ?>">
                                     <button type="submit" class="btn bg-white"><i class="fa fa-trash text-danger"></i></button>
                                 </form>

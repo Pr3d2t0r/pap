@@ -138,7 +138,7 @@
                 $("input[name='discount_id']").prop('checked', false);
                 evt.preventDefault();
             })
-            $("form.cofirm").on("submit", evt=>{
+            $("form.confirm").on("submit", evt=>{
                 if(!confirm("Deseja mesmo efetuar esta operação!"))
                     evt.preventDefault();
             });

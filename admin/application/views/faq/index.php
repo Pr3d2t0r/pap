@@ -38,7 +38,7 @@
                                 </form>
                             </td>
                             <td class="text-center ">
-                                <form action="<?php echo base_url("faq/remove"); ?>" class="cofirm" method="post">
+                                <form action="<?php echo base_url("faq/remove"); ?>" class="confirm" method="post">
                                     <input type="hidden" name="id" value="<?php echo $question["id"]; ?>">
                                     <button type="submit" class="btn bg-white"><i class="fa fa-trash text-danger"></i></button>
                                 </form>
