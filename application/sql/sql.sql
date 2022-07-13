@@ -186,7 +186,8 @@ create table if not exists `ProductImages`
 (
     `id`         int(11) primary key auto_increment,
     `product_id` int(11)      not null,
-    `path`       varchar(255) not null
+    `path`       varchar(255) not null,
+    `main`       bit default false
 );
 
 create table if not exists `ProductQuantity`

@@ -21,7 +21,7 @@
                                 <div class="text-center">
                                     <h1 class="h5 text-gray-900 mb-3">Informação Geral</h1>
                                 </div>
-                                <form action="" method="post" class="user">
+                                <form action="" method="post" class="user" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label>Referencia: </label>
                                         <input type="text" class="form-control"
@@ -56,17 +56,18 @@
                                         <?php foreach ($discounts as $discountArr): ?>
                                             <div class="col-6">
                                                 <?php foreach ($discountArr as $discount): ?>
-                                                    <label style="width: fit-content" class="d-block mx-auto"><input type="radio" name="discountId" value="<?php echo $discount["id"];?>" <?php if(set_value("discount_id") == $discount['id']) echo "checked";?>> <?php echo $discount['campaign'] === false ? $discount["discount"]."%" : $discount['campaign']['title']."(".$discount["discount"]."%)";?></label>
+                                                    <label style="width: fit-content" class="d-block mx-auto"><input type="radio" name="discount_id" value="<?php echo $discount["id"];?>" <?php if(set_value("discount_id") == $discount['id']) echo "checked";?>> <?php echo $discount['campaign'] === false ? $discount["discount"]."%" : $discount['campaign']['title']."(".$discount["discount"]."%)";?></label>
                                                 <?php endforeach; ?>
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
                                     <?php endif; ?>
                                     <div class="text-center">
-                                        <h1 class="h5 text-gray-900 mb-3">Imagens</h1>
+                                        <h1 class="h5 text-gray-900 mb-0">Imagens</h1>
+                                        <span class="mb-3 small text-warning d-block">Selecione pelo menos uma imagem</span>
                                     </div>
                                     <div class="form-group text-center">
-                                        <input type="file" multiple name="images">
+                                        <input type="file" multiple name="images[]">
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-block">
                                         Guardar

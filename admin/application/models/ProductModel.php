@@ -130,4 +130,25 @@ class ProductModel extends MY_Model{
             return $query->result_array();
         return null;
     }
+    public function storeImages($id, $files, $create=true){
+        if (isset($files['files'])){
+            for ($i = 0; $i < count($files['files']); $i++) {
+                $data = [
+                    "product_id" => $id,
+                    "path" => $files['files'][$i],
+                ];
+                if ($create && $i == 0)
+                    $data["main"] = true;
+                $this->db->insert($this->images, $data);
+            }
+        }else{
+            $data = [
+                "product_id" => $id,
+                "path" => $files['file'],
+            ];
+            if ($create)
+                $data["main"] = true;
+            $this->db->insert($this->images, $data);
+        }
+    }
 }

@@ -57,7 +57,7 @@
                                         <?php foreach ($discounts as $discountArr): ?>
                                             <div class="col-6">
                                                 <?php foreach ($discountArr as $discount): ?>
-                                                    <label style="width: fit-content" class="d-block mx-auto"><input type="radio" name="discountId" value="<?php echo $discount["id"];?>" <?php if($discount["id"] == $product['discount_id']) echo "checked";?>> <?php echo $discount['campaign'] === false ? $discount["discount"]."%" : $discount['campaign']['title']."(".$discount["discount"]."%)";?></label>
+                                                    <label style="width: fit-content" class="d-block mx-auto"><input type="radio" name="discount_id" value="<?php echo $discount["id"];?>" <?php if($discount["id"] == $product['discount_id']) echo "checked";?>> <?php echo $discount['campaign'] === false ? $discount["discount"]."%" : $discount['campaign']['title']."(".$discount["discount"]."%)";?></label>
                                                 <?php endforeach; ?>
                                             </div>
                                         <?php endforeach; ?>
@@ -67,7 +67,7 @@
                                         <h1 class="h5 text-gray-900 mb-3">Imagens</h1>
                                     </div>
                                     <div class="form-group text-center">
-                                        <input type="file" multiple name="images">
+                                        <input type="file" multiple name="images[]">
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-block">
                                         Guardar

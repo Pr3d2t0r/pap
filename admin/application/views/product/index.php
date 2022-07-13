@@ -40,7 +40,7 @@
                                 </form>
                             </td>
                             <td class="text-center ">
-                                <form action="<?php echo base_url("produto/remove"); ?>">
+                                <form action="<?php echo base_url("product/remove"); ?>" method="post" class="confirm">
                                     <input type="hidden" name="id" value="<?php echo $product["id"]; ?>">
                                     <button type="submit" class="btn bg-white"><i class="fa fa-trash text-danger"></i></button>
                                 </form>
