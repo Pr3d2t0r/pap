@@ -25,13 +25,14 @@ class Campaign extends MY_Controller {
         }
         $this->data['campaign'] = $this->CampaignsModel->getById($body['id']);
         $discounts = $this->DiscountModel->getAll();
-        foreach ($discounts as $key => $discount){
-            $campaign = $this->CampaignsModel->getForDiscount($discount['id']);
-            $discounts[$key]['campaign'] = false;
-            if (!empty($campaign))
-                $discounts[$key]['campaign'] = $campaign;
+        if (is_array($discounts))
+            foreach ($discounts as $key => $discount){
+                $campaign = $this->CampaignsModel->getForDiscount($discount['id']);
+                $discounts[$key]['campaign'] = false;
+                if (!empty($campaign))
+                    $discounts[$key]['campaign'] = $campaign;
 
-        }
+            }
         $this->form_validation->set_rules('title', 'Nome', 'trim|required|min_length[10]|max_length[30]');
         $this->form_validation->set_rules('description', 'Descrição', 'trim|required|min_length[15]|max_length[50]');
         $this->form_validation->set_rules('href', 'Rederecionamento', 'trim|required|min_length[10]|max_length[255]');
@@ -47,6 +48,8 @@ class Campaign extends MY_Controller {
                 unset($body['id']);
                 if (!isset($result['empty']) || $result['empty'] === false)
                     $body["thumbnail"] = $result['file'];
+                if (!isset($body['discount_id']))
+                    $body['discount_id']=null;
                 $this->CampaignsModel->update($id, $body);
                 $this->session->set_flashdata("success_msg", "Campanha editada com sucesso!");
                 redirect("campanhas");
@@ -61,12 +64,13 @@ class Campaign extends MY_Controller {
 
     public function add(){
         $discounts = $this->DiscountModel->getAll();
-        foreach ($discounts as $key => $discount){
-            $campaign = $this->CampaignsModel->getForDiscount($discount['id']);
-            $discounts[$key]['campaign'] = false;
-            if (!empty($campaign))
-                $discounts[$key]['campaign'] = $campaign;
-        }
+        if (is_array($discounts))
+            foreach ($discounts as $key => $discount){
+                $campaign = $this->CampaignsModel->getForDiscount($discount['id']);
+                $discounts[$key]['campaign'] = false;
+                if (!empty($campaign))
+                    $discounts[$key]['campaign'] = $campaign;
+            }
 
         $this->form_validation->set_rules('title', 'Nome', 'trim|required|min_length[10]|max_length[30]');
         $this->form_validation->set_rules('description', 'Descrição', 'trim|required|min_length[15]|max_length[50]');
@@ -92,7 +96,7 @@ class Campaign extends MY_Controller {
             }
         }
 
-        $this->data['discounts'] = chunkArrayHalf($discounts);
+        $this->data['discounts'] = chunkArrayHalf($discounts ?? []);
         $this->openView("campaign/add");
     }
 

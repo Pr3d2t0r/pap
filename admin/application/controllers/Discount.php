@@ -13,12 +13,13 @@ class Discount extends MY_Controller {
 
     public function index(){
         $discounts = $this->DiscountModel->getAll();
-        foreach ($discounts as $key => $discount){
-            $campaign = $this->CampaignsModel->getForDiscount($discount['id']);
-            $discounts[$key]['campaign'] = false;
-            if (!empty($campaign))
-                $discounts[$key]['campaign'] = $campaign;
-        }
+        if (is_array($discounts))
+            foreach ($discounts as $key => $discount){
+                $campaign = $this->CampaignsModel->getForDiscount($discount['id']);
+                $discounts[$key]['campaign'] = false;
+                if (!empty($campaign))
+                    $discounts[$key]['campaign'] = $campaign;
+            }
         $this->data['discounts'] = $discounts;
         $this->openView("discounts/index");
     }

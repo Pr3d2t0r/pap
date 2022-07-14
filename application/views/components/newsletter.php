@@ -11,9 +11,6 @@
                 <span class="fa fa-envelope-o" aria-hidden="true"></span>
             </div>
         </div>
-        <div class="col-xs-4 w3l-rightmk">
-            <img src="<?php echo base_url('resources/images/tab3.png');?>" alt=" ">
-        </div>
         <div class="clearfix"></div>
     </div>
 </div>
